@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+		  xmlns="http://www.w3.org/1999/xhtml" 
+		  xmlns:th="http://www.thymeleaf.org" 
+		  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+		  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		  layout:decorator="layouts/main"  >
+	<head >
+		 <title></title>
+		 <meta name="description" content=""/>
+	     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		 <link rel="stylesheet" th:href="@{css/main.css}" href="../static/css/main.css"/> 
+	</head>
+	<body>
+				<div layout:fragment="loginContent" >
+					<div id="registrationcontainer">
+							<form name="registration" th:action="@{/reg}" th:object="${user}" method="post" class="form-signin">
+								<div id="regtitle"  th:text="#{rRegisztracioX}">  Registration:
+								</div>
+								<div id="regfirstnametext" th:text="#{rKeresztnevX}" align="right">  FirstName:
+								</div>
+								<div id="regfirstnameinput">  
+									  <input type="text" id="firstname" name="firstname" th:field="*{firstName}"  onfocus="this.placeholder = ''" th:attr="placeholder=#{rKeresztnev}"  />  
+								</div>
+								<div id="regfirstnameerror" th:if="${#fields.hasErrors('firstName')}" th:text="#{rKeresztnevhiba}">test1
+								</div>
+								<div id="clear">
+								</div>
+								<div id="reglastnametext"th:text="#{rVezeteknevX}"align="right">  LastName:
+								</div>
+								<div id="reglastnameinput">  
+									  <input type="text" id="lastname" name="lastname" th:field="*{lastName}" onfocus="this.placeholder = ''" th:attr="placeholder=#{rVezeteknev}"  />   
+								</div>
+								<div id="reglastnameerror" th:if="${#fields.hasErrors('lastName')}" th:text="#{rVezeteknevhiba}">test2
+								</div>
+								<div id="clear">
+								</div>
+								<div id="regemailtext"th:text="#{rEmailX}"align="right">  Email:
+								</div>
+								<div id="regemailinput">  
+									  <input type="text" id="email" name="email" th:field="*{email}" onfocus="this.placeholder = ''" th:attr="placeholder=#{rEmail}"  />   
+								</div>
+								<div id="regemailerror" th:if="${#fields.hasErrors('email')}" th:text="#{rEmailhiba}">test3
+								</div>
+								<div id="clear">
+								</div>
+								<div id="regpasswordtext" th:text="#{rJelszoX}"align="right"> Password: 
+								</div>
+								<div id="regpasswordinput"> 
+								 	<input type="password" id="regpassword" name="regpassword" th:field="*{password}" onfocus="this.placeholder = ''"  th:attr="placeholder=#{rJelszo}" />  
+								</div>
+								<div id="regpassworderror" th:if="${#fields.hasErrors('password')}" th:text="#{rJelszohiba}">test4
+								</div>
+								<div id="clear">
+								</div>
+								<div id="regsubmit" > 
+									<button class="button registration111" type="submit" th:text="#{rRegisztracio}">Registration</button>
+								</div>
+							</form>	
+							<div th:text="${exist}"></div>
+							<div id="exist1" th:text="#{userexist}"></div>
+							<script th:inline="javascript"> var a = [[${exist}]] ; if(a!= null) { var o = document.getElementById("exist1"); 
+							o.className = "show"; setTimeout(function(){ o.className = o.className.replace("show","");},3700); } </script>	
+					</div>
+				</div>
+		</body>
+</html>
+

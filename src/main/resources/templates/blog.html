@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorator="layouts/main">
+	<head>
+		<title>Blogs</title>
+		<meta name="description" content=""/>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		<link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css"/>
+	</head>
+	<body>
+				<div id="blogfragment" layout:fragment="loginContent">
+						<div id="contentblog">	
+								<div id="maintitle" th:text="#{bfocim}">Blogs:</div>
+									<div id="article">
+										<article th:each="blog : ${blogsearch}">
+												<header>
+													<h1 id="blogcimtext" th:text="#{bcim}">Cim:</h1> 
+													<h1 id="blogcimtartalom"th:text="${blog.title}">Blog cim</h1> 
+													<p id="clearparagraph"></p>
+												</header>
+											
+												<section id="bsection" th:utext="${blog.content}">
+												   asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+												 
+												</section>
+												
+												<footer>
+													<address>
+														<p id="blogdatumtext" th:text="#{bdatum}">Datum:</p>
+														<p id="blogdatumtartalom" th:text="${#dates.format(blog.posted, 'yyyy.MM.dd HH:mm')}">Posted on September 31, 2015 at 10:00 PM</p>
+														<p id="clearparagraph"></p>
+														<p id="bbekuldte" th:text="#{bbekuldte}">Bekuldte:</p>
+													  <span id="bspan" th:text="${blog.blogger}">Anonymous</span>
+													  <p id="clearparagraph"></p>
+													</address>
+												</footer>
+												<hr/>
+										</article>
+									</div>			
+				
+<!-- 								<div id = "comment"> -->
+<!-- 									<form th:action="@{/blogreg}" th:object="${blogs}" method="post"> -->
+<!-- 										<div id="blogtitletext" th:text="#{blogtitle}" align="right">  Blog Title: -->
+<!-- 										</div> -->
+<!-- 										<div id="blogtitleinput">   -->
+<!-- 											  <input type="text" id="blogtitleinputfield"  th:field="*{title}"  onfocus="this.placeholder = ''" th:attr="placeholder=#{btitleinput}"  />   -->
+<!-- 										</div> -->
+<!-- 										<div id="clear"> -->
+<!-- 										</div> -->
+<!-- 										<div id="blogcontenttext" th:text="#{blogcontent}" align="right">  Blog Content: -->
+<!-- 										</div> -->
+<!-- 										<div id="blogcontentinput">   -->
+<!-- 											 <textarea name="message" id="blogcontentinputarea" rows="5" cols="60"  -->
+<!-- 											 th:field="*{content}"  onfocus="this.placeholder = ''" th:attr="placeholder=#{bcontentinput}" > </textarea>-->
+<!-- 										</div> -->
+<!-- 										<div id="bsubmit" >  -->
+<!-- 											<button class="button bsubmit" type="submit" th:text="#{bsubmit}">Hozzaszolas Elkuldese</button> -->
+<!-- 										</div> -->
+<!-- 									</form> -->
+<!-- 								</div> -->
+						</div>
+				</div>
+			
+	</body>
+</html>

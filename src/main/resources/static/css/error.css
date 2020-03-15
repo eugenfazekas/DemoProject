@@ -1,0 +1,154 @@
+html, body {
+height:100%;
+}
+*{ margin: 0px; padding:0px;}
+
+div#statusfix{
+	margin-top:-808px;
+	margin-left:150px;
+	
+	font-family:"Arial";
+font-size:200px;
+color:#444;
+height:150px;
+width:150px;
+background-color:#fff;
+/*text-shadow:5px 5px 15px #000;*/
+  animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+div#statusmobil {
+color:#aaa;
+font-size:200px;
+font-family:"Arial";
+text-align:center;
+padding:16px;
+position:fixed;
+bottom:505px;
+/*text-shadow:5px 5px 15px #000;*/
+left:7.4%;
+width:18%;
+z-index:1;
+visibility:hidden;
+}
+
+div#errorfix{
+	margin-top:0px;
+	margin-left:320px;
+	
+	font-family:"Arial";
+font-size:200px;
+color:#444;
+height:150px;
+width:150px;
+background-color:#fff;
+/*text-shadow:5px 5px 15px #000;*/
+  animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+div#errormobil {
+color:#aaa;
+font-size:200px;
+font-family:"Arial";
+text-align:center;
+padding:16px;
+position:fixed;
+bottom:355px;
+/*text-shadow:5px 5px 15px #000;*/
+left:16.5%;
+width:24.1%;
+z-index:1;
+visibility:hidden;
+}
+
+div#pagefix{
+	margin-top:50px;
+	margin-left:450px;
+	
+	font-family:"Arial";
+font-size:100px;
+color:#444;
+height:150px;
+width:800px;
+background-color:#fff;
+/*text-shadow:5px 5px 15px #000;*/
+  animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+div#pagemobil {
+width:auto;	
+color:#aaa;
+font-size:100px;
+font-family:"Arial";
+text-align:center;
+position:fixed;
+bottom:286px;
+/*text-shadow:5px 5px 15px #000;*/
+left:10.1%;
+width:70%;
+z-index:1;
+visibility:hidden;
+}
+
+div#indexlink{
+margin-top:50px;
+margin-left:1600px;
+}
+
+a#derra{
+color:#aaa;
+text-decoration:none;
+}
+a#derra:hover{
+color:#eee;
+text-decoration:underline;
+}
+
+@keyframes example {
+    0%   {color: #fff;}
+	33%  {color: #ccc;}
+    66%  {color: #bbb;}
+    100%   {color: #eee;}
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+div#statusmobil.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 8s;
+  animation: fadein 8s ;
+}
+div#errormobil.show1 {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein1 5s;
+  animation: fadein1 5s;
+}
+
+div#pagemobil.show2 {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein2 4s;
+  animation: fadein2 4s ;
+}
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 505px; opacity: 1;}
+}
+
+@-webkit-keyframes fadein1 {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 355px; opacity: 1;}
+}
+@-webkit-keyframes fadein2 {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 286px; opacity: 1;}
+}
+

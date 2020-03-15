@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorator="layouts/main">
+
+  
+	<head>
+		<title>Index</title>
+		 <meta name="description" content=""/>
+	     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />				
+		 <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css"/>
+	</head>
+	<body>
+		<div layout:fragment="loginContent" >	
+			<div id="indexcontainer">
+				<div id="storiesarticle">
+					<article id="article1" >
+								<h1 id="storiescim" th:text="${story.title}">Story cim</h1> 
+							<section id="storiessection1" th:utext="${story.content1}">
+							   asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+								asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+								 asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg	
+							</section>
+							
+							<div  class="image2">
+							<img th:src="${story.image1}"  src="../../static/img/error1.jpg" height="382" width="680"/>
+							</div>
+							
+							<section id="storiessection2" th:utext="${story.content2}">
+							   asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+							asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+								 asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+							</section>
+							
+							<div class="video2">
+								<iframe  width="680" height="382" th:src="${story.video1}"
+							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+							
+							<section id="storiessection3" th:utext="${story.content3}">
+							   asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+								 asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+								 asdas.khtb, kjyafukyrgcykawret  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg  snkhtnkrtyhbkrhtg
+							</section>
+					</article>
+				</div>
+			
+				<div th:text="${message}">				</div>
+				<div th:text="${activation}">				</div>
+				<div id="mySnackbarregistration" th:text="#{registrationsucces}"></div>
+				<div id="mySnackbaractivation" th:text="#{activationok}"></div>
+						
+			
+	 		
+	 		
+			<script th:inline="javascript"> var a = [[${message}]] ; if(a!= null) { var o = document.getElementById("mySnackbarregistration"); 
+				o.className = "show"; setTimeout(function(){ o.className = o.className.replace("show","");},3700); } </script>	
+			<script th:inline="javascript"> var a = [[${activation}]] ; if(a!= null) { var o = document.getElementById("mySnackbaractivation"); 
+				o.className = "show"; setTimeout(function(){ o.className = o.className.replace("show","");},3700); } </script>		
+		</div>
+		</div>
+	</body>
+</html>
+
+<!-- 	 -->

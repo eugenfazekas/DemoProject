@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorator="layouts/main">
+	<head>
+		<title>storiesreg</title>
+		<meta name="description" content=""/>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		 <link rel="stylesheet" th:href="@{/css/main.css}" href="../../static/css/main.css"/>
+	</head>
+	<body>
+				<div id="indexregfragment" layout:fragment="loginContent">
+						<div id = "IndexReg">
+									<form th:action="@{/indexreg}" th:object="${index}" method="post">
+										<div id="indextitletext"  align="right">  Story Title:
+										</div>
+										<div id="indextitleinput">  
+											  <input type="text" id="indextitleinputfield"  th:field="*{title}"  onfocus="this.placeholder = ''"   />  
+										</div>
+										<div id="clear">
+										</div>
+										<div id="indexcontenttext1"  align="right">  Story Content 1:
+										</div>
+										<div id="indexcontentinput1">  
+											 <textarea name="message" id="indexcontentinputarea" rows="5" cols="60" 
+											 th:field="*{content1}"  onfocus="this.placeholder = ''" ></textarea>
+										</div>
+									
+										<div id="clear">
+										</div>
+										<div id="indexcontenttext2"  align="right">  Story Content 2:
+										</div>
+										<div id="indexcontentinput2">  
+											 <textarea name="message" id="indexcontentinputarea" rows="5" cols="60" 
+											 th:field="*{content2}"  onfocus="this.placeholder = ''"> </textarea>
+										</div>
+										
+										<div id="clear">
+										</div>
+										<div id="indexcontenttext3"  align="right">  Story Content 3:
+										</div>
+										<div id="indexcontentinput3">  
+											 <textarea name="message" id="indexcontentinputarea" rows="5" cols="60" 
+											 th:field="*{content3}"  onfocus="this.placeholder = ''"  > </textarea>
+										</div>
+							
+										<div id="clear">
+										</div>
+										<div id="indexvideo"  align="right">  Story Video 1:
+										</div>
+										<div id="indexvideoinput">  
+											  <input type="text" id="indexvideoinputfield"  th:field="*{video1}"  onfocus="this.placeholder = ''"  />  
+										</div>
+										<div id="clear">
+										</div>
+										<div id="indeximage"  align="right">  Story Image 1:
+										</div>
+										<div id="indeximageinput">  
+											  <input type="text" id="indeximageinputfield"  th:field="*{image1}"  onfocus="this.placeholder = ''"  />  
+										</div>
+										<div id="clear">
+										</div>
+										<div id="bsubmit" > 
+											<button class="button bsubmit" type="submit" th:text="#{storysubmit}">Send Story</button>
+										</div>
+									</form>
+									<div th:text="${exist}"></div>
+							<div id="exist1" th:text="#{storyexist}"></div>
+							<script th:inline="javascript"> var a = [[${exist}]] ; if(a!= null) { var o = document.getElementById("exist1"); 
+							o.className = "show"; setTimeout(function(){ o.className = o.className.replace("show","");},3700); } </script>	
+						</div>
+				</div>
+	</body>
+</html>

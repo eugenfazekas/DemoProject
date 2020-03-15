@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorator="layouts/main">
+	<head>
+		<title>Videos</title>
+		<meta name="description" content=""/>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		<link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css"/>
+	</head>
+			<body>
+				<div layout:fragment="loginContent" id="vfragment">
+					<div id="vcontent">
+					<div id="vtitle">Videos
+					</div>
+							<div id="vbuttonleft" >
+								<button class="button button4" id="slideLeft" > < </button>
+							</div>
+								<div id="videoborder">
+								
+									<div id="videocontainer">
+											<div id="video0">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/9uhr0Z6VQ9E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<div class="video">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/-nutDpwJhc0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<div class="video">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/kapEh7DcnYs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<div class="video">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/9u1YyAq2EYM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<div class="video">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/p3oUDoPtye0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<div class="video">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/bRz0fDXtet8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<div class="video">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/v_IXq4LY8-A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<div class="video">
+												<iframe width="750" height="422" src="https://www.youtube.com/embed/dolnVN4Qga4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+									</div>
+								</div>	
+							<div id="vbuttonright">
+									<button class="button button5" id="slideRight" > > </button>
+							</div>	
+					</div>	
+					<div id="clear"></div>
+					<script>
+						const buttonRight = document.getElementById('slideRight');
+						const buttonLeft = document.getElementById('slideLeft');
+
+						buttonRight.onclick = function () {
+						  document.getElementById('videoborder').scrollLeft += 790;
+						};
+						buttonLeft.onclick = function () {
+						  document.getElementById('videoborder').scrollLeft -= 790;
+						};
+					</script>
+				</div>
+			</body>
+</html>
+

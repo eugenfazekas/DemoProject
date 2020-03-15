@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorator="layouts/main">
+	<head>
+		<title>stories</title>
+		<meta name="description" content=""/>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		<link rel="stylesheet" th:href="@{/css/main.css}" href="../../static/css/main.css"/>
+	</head>
+	<body>
+		<div layout:fragment="loginContent"  >
+			<div id="storiesfragment">
+			<div id="storiesecim">Stories:</div>
+			<form  action="/admin/setstory" >		
+							<div id="storykereses">
+								 <input type="text"  id="storysearchinput" name="storysearch" placeholder="StoryName" onfocus="this.placeholder = ''" />
+							</div>
+							<div id="storysearchbutton">
+								<button class="button storysearch" value="Search" type="submit" >Set Story</button>
+							</div>
+			</form>	
+				<div id="toaddstory">
+				<a id="addstory" href="/admin/addstory">AddStory</a>
+				</div>
+			<form  action="/admin/storydelete" >		
+							<div id="storytorles">
+								 <input type="text"  id="storysearchinput" name="storydelete" placeholder="StoryName" onfocus="this.placeholder = ''" />
+							</div>
+							<div id="storydeletebutton">
+								<button class="button storydelete" value="Delete" type="submit" >Delete Story</button>
+							</div>
+			</form>	
+				<div id="clear">
+				</div>
+				<div id="storiesarticle">
+					<article th:each="story:${stories}" >
+								<h1 id="storiescim" th:text="${story.title}">Story cim</h1> 
+							<section id="storiessection1" th:utext="${story.content1}">
+							  
+							</section>
+							
+							<div  class="image2">
+							<img th:src="${story.image1}"   height="382" width="680"/>
+							</div >
+							
+							<section id="storiessection2" th:utext="${story.content2}">
+							  
+							</section>
+						
+							<div class="video2">
+							<iframe  width="680" height="382" th:src="${story.video1}"
+							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div >
+							
+							<section id="storiessection3" th:utext="${story.content3}">
+							 
+							</section>
+							<p id="storiesdate" th:text="${#dates.format(story.created, 'yyyy.MM.dd HH:mm')}">Posted on September 31, 2015 at 10:00 PM</p>
+							<footer></footer>
+							
+				
+					<hr id="hrstory"/> 
+				
+					</article>
+					
+			
+					
+				</div>	
+			
+				</div>
+			</div>	
+	</body>
+</html>	

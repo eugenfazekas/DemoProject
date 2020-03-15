@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:th="http://www.thymeleaf.org" >
+
+	<head>
+		<title>Page Not Found</title>
+		 <meta name="description" content=""/>
+	     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />				
+		 <link rel="stylesheet" th:href="@{/css/error.css}" href="../static/css/error.css"/>
+	</head>
+	
+			<body>
+			<div id="pic">
+					<img th:src="@{/img/error.jpg}" src="../static/img/error.jpg"  id="kep" alt="Nincs kep" title="ErrorPage" height="1098" width="1800"/>
+				
+				<div id="statusfix" th:text="${status}">200
+				</div>
+				<div id="statusmobil" th:text="${status}">200
+				</div>
+				
+				<div id="errorfix">error
+				</div>
+				<div id="errormobil">error
+				</div>
+					
+				
+				<div id="pagefix">Page Not Found
+				</div>
+				<div id="pagemobil">Page Not Found
+				</div>
+				
+			</div>
+			<div id="indexlink">
+				<a href="/index" id="derra" th:text="#{derr}">Vissza a fooldalra       </a>
+			</div>
+				
+		
+			
+						
+		<script>
+				                  function initialSetup() {
+            if (document.getElementById("statusfix") !== null) {
+                document.getElementById('statusfix').style.visibility = 'hidden';
+                setTimeout(function () {
+                    document.getElementById('statusfix').style.visibility = 'visible';
+                }, 8000);
+            }
+        }
+            initialSetup();
+			</script>
+			
+			<script>
+			function mySnackbar() {
+			var o = document.getElementById("statusmobil");
+			o.className = "show";
+			setTimeout(function(){ o.className = o.className.replace("show","");},8000);
+			}
+			setTimeout(function aa() {mySnackbar(); },0);
+		</script>
+		
+		<script>
+				                  function initialSetup1() {
+            if (document.getElementById("errorfix") !== null) {
+                document.getElementById('errorfix').style.visibility = 'hidden';
+                setTimeout(function () {
+                    document.getElementById('errorfix').style.visibility = 'visible';
+                }, 13000);
+            }
+        }
+            initialSetup1();
+			</script>
+		
+			<script>
+			function mySnackbar1() {
+			var o = document.getElementById("errormobil");
+			o.className = "show1";
+			setTimeout(function(){ o.className = o.className.replace("show1","");},5000);
+			}
+			setTimeout(function bb() {mySnackbar1(); },8000);
+		</script>
+		<script>
+				                  function initialSetup2() {
+            if (document.getElementById("pagefix") !== null) {
+                document.getElementById('pagefix').style.visibility = 'hidden';
+                setTimeout(function () {
+                    document.getElementById('pagefix').style.visibility = 'visible';
+                }, 17000);
+            }
+        }
+            initialSetup2();
+			</script>
+		<script>
+			function mySnackbar2() {
+			var o = document.getElementById("pagemobil");
+			o.className = "show2";
+			setTimeout(function(){ o.className = o.className.replace("show2","");},4000);
+			}
+			setTimeout(function cc() {mySnackbar2(); },13000);
+		</script>
+			
+			</body>
+</html>
+
