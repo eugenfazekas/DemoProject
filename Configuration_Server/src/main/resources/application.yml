@@ -1,0 +1,18 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        encrypt.enabled: false
+        git:
+          uri: https://github.com/eugenfazekas/Config-Repo/
+          #searchPaths: licensingservice,organizationservice,zuulservice
+        
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    org.springframework.context: WARN
+    org.springframework.beans.factory.annotation : WARN
+    com.skynet.configserver: DEBUG          
