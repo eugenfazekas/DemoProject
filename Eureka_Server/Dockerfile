@@ -1,6 +1,6 @@
 FROM openjdk:11-slim as build
 
 WORKDIR /workspace
-ADD target/*.jar app.jar
+ADD target/eurekaserver-latest.jar eurekaserver-latest.jar
 EXPOSE 8761
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-jar","eurekaserver-latest.jar"]
