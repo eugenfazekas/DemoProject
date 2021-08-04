@@ -11,10 +11,10 @@
 	</parent>
 	
 	<groupId>com.skynet</groupId>
-	<artifactId>configserver</artifactId>
+	<artifactId>gatewayserver</artifactId>
 	<version>latest</version>
-	<name>Configuration_Server</name>
-	<description>Demo project Config Server</description>
+	<name>Gateway_Server</name>
+	<description>Demo project Gateway Server</description>
 	
 	<properties>
 		<java.version>11</java.version>
@@ -36,13 +36,72 @@
 	
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-server</artifactId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<exclusions>
+				<exclusion>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-ribbon</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.netflix.ribbon</groupId>
+                    <artifactId>ribbon-eureka</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+		
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20190722</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency> 
+		    <groupId> org.springframework.cloud </groupId> 
+		    <artifactId>spring-cloud-starter-sleuth</artifactId> 
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>net.logstash.logback</groupId>
+		    <artifactId>logstash-logback-encoder</artifactId>
+		    <version>6.3</version>
 		</dependency>
 	</dependencies>
 	

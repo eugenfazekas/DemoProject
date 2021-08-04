@@ -1,13 +1,23 @@
 server:
   port: 8888
+  
 spring:
+  application:
+    name: configserver
+  profiles: 
+    active: ${CONFIG_MODE}
   cloud:
     config:
       server:
         encrypt.enabled: false
         git:
           uri: https://github.com/eugenfazekas/Config-Repo/
-          #searchPaths: licensingservice,organizationservice,zuulservice
+          searchPaths: authenticationserver,resourceserver,gatewayserver
+              
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/           
         
 logging:
   level:

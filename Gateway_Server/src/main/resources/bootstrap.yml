@@ -1,0 +1,18 @@
+spring:
+    application:
+     name: gatewayserver 
+    profiles:
+      active: dev 
+    cloud:
+        config: 
+            uri: http://localhost:8888
+
+management: 
+  endpoint: 
+    gateway: 
+      enabled: true 
+  endpoints:   
+    web:
+     exposure:
+        include: gateway
+

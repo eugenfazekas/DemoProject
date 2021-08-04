@@ -1,10 +1,10 @@
-package com.skynet.configserver;
+package com.skynet.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConfigServerApplicationTests {
+class GatewayServerApplicationTests {
 
 	@Test
 	void contextLoads() {
