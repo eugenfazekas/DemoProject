@@ -1,0 +1,75 @@
+<div class=" m-3 p-4">
+
+    <div class="m-4">
+        <h1 ><u>Managing Profile Images</u></h1>
+    </div>
+
+    <div class="border col-5 float-left">
+
+        <div class="m-4 p-4 border">
+            
+            <div class="mb-4">
+                <h3>{{firstName}}'s Profile Image</h3> 
+            </div>
+
+            <div class="ml-4 pl-4">
+                <img [src]="userRepository.getProfilePhoto()" width="150">
+            </div>
+        </div>
+
+        <div class="m-4 p-4 border">
+
+            <div class="" >
+                    <form  [formGroup]="imageUploadForm" (ngSubmit)="submitImageForm()" >
+                    
+                        <mat-form-field class="">
+                            <mat-label>Upload Photo</mat-label>
+                            <ngx-mat-file-input formControlName="image" [multiple]="multiple" (change)="onChange($event)" name="fileInput" [accept]="accept">
+                            </ngx-mat-file-input>
+                        </mat-form-field>
+
+                    
+                    <div class="m-4">
+                        <img [src]="imageService.imageBase64" height="200">
+                    </div>
+
+                    <p class="clearfix"></p>
+                    <button mat-raised-button color="accent" class="ml-1 mt-2" 
+                        >Upload Profile Photo
+                    </button>
+
+                </form>
+
+            </div>
+        </div> 
+    </div>
+
+    <div *ngIf=" userRepository.loadedImages && userRepository.getUser()?.profilePhotos?.length > 0 " class="border ml-4 float-left ">
+        <h2>Images</h2>
+        <div>
+            <span class="material-icons md-40 m-2 border ch-200l" (click)="previousImage()"> arrow_back_ios </span>
+
+            <img [src]="imageService._url +'/images/' + id +'/' + userRepository.getUser().profilePhotos[imageIndex] + '.png'" width="84%">
+
+                <span class="material-icons md-40 m-2 border ch-200r" (click)="nextImage()">arrow_forward_ios </span>
+
+                <p style="clear:both"></p>
+
+                <button type="button" class="ml-4 mb-2 btn btn-danger" (click)="deleteProfileImage(userRepository.getUser().profilePhotos[imageIndex])"> Delete</button>
+                <button type="button" class="mr-4 mb-2 btn btn-primary float-right" (click)="updateImageProfile(userRepository.getUser().profilePhotos[imageIndex])"> SetProfile</button>
+                
+        </div>
+    </div>
+
+    <p style="clear:both"></p>
+
+        <div class="border m-4 " *ngIf=" userRepository.getUser() != null &&  userRepository.getUser()?.profilePhotos?.length > 0 "   >
+            <div *ngFor="let image of userRepository.getUser().profilePhotos; let i = index" class="float-left mt-3">
+                <img [src]= "imageService._url +'/images/' + id +'/' + image + '.png' " (click)="setImageIndex(i)" width="200" height="150">
+                <div class="clearfix"></div>
+            </div>
+            <p style="clear:both"></p>
+        </div>
+
+</div>
+

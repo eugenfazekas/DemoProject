@@ -1,0 +1,142 @@
+<div class=" m-4 p-2"> 
+
+    <div class=" clearfix m-2 cBorder detailsContainer col-5 float-left" >
+
+        <div class=" m-2 pl-2 pt-4">
+            <div>
+                <img [src]="userRepository.getProfilePhoto()" width="100">
+            </div>
+                        <br>
+                       <h1>{{ userRepository.getUser().firstName != null ? userRepository.getUser().firstName : this.firstName }}'s Profile</h1> 
+                       <br>
+                <div>
+                    <h3>Account Details</h3>
+                    <table class="m-3">
+                        <tr><td>FirstName:</td><td>{{userRepository.getUser().firstName}}</td></tr>
+                        <tr><td>LastName:</td><td>{{userRepository.getUser().lastName}}</td></tr>
+                    </table>
+                </div>  
+            <br>
+                <div> 
+                    <h3>User Address<Address></Address></h3>
+                    <table class="m-4 ">
+                        <tr><td>Country:</td><td>{{ userRepository.getUser().address?.country }}</td></tr>
+                        <tr><td>City:</td><td>{{ userRepository.getUser().address?.city }}</td></tr>
+                        <tr><td>Street:</td><td>{{ userRepository.getUser().address?.street }}</td></tr>
+                        <tr><td>Nr:</td><td>{{ userRepository.getUser().address?.number }}</td></tr>
+                    </table>
+                </div>
+
+                <div class="m-2 p-2 ">
+                     <div class="float-left mr-4">
+                        <button mat-raised-button color="warn" class="ml-4 mt-2 " (click)="enableEditProfile()">Edit Profile</button>
+                   </div>
+                   <div class="ml-4 pl-4">
+                    <button mat-raised-button color="warn" class="ml-4 mt-2 " (click)="enableEditAccount()">Edit Account</button>
+                  </div>
+                </div>
+
+           </div>
+    </div>
+
+    <div class="border w-50 float-right mt-2" *ngIf="editProfile">
+        <div class="mb-4" >
+            <form [formGroup]="editUserDetailsForm" (ngSubmit)="submitProfileForm()">
+
+                    <mat-form-field appearance="fill">
+                    <mat-label>Enter FirstName</mat-label>
+                    <input matInput placeholder="" formControlName="firstName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                    <mat-label>Enter LastName</mat-label>
+                    <input matInput placeholder="" formControlName="lastName">
+                    </mat-form-field>
+
+                    <br>
+                    <div formGroupName="address">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Selected Country</mat-label>
+                            <mat-select ([ngModel])="userModel.address.country" formControlName="country">
+                                <mat-option value="Romania">Romania</mat-option>
+                                <mat-option value="Hungary">Hungary</mat-option>
+                                <mat-option value="UK">UK</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter You're City</mat-label>
+                            <input matInput placeholder="" formControlName="city">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter You're Street</mat-label>
+                            <input matInput placeholder="" formControlName="street">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter You're Street Number</mat-label>
+                            <input matInput placeholder="" formControlName="number">
+                        </mat-form-field>
+
+                    </div>
+                    <button mat-raised-button color="accent" class="ml-4 mt-2" 
+                    [disabled]="formSubmitted || editUserDetailsForm.invalid"
+                    [class.btn-secondary]="formSubmitted && editUserDetailsForm.invalid"
+                    >Update Profile</button>
+                </form>
+        </div>
+    </div> 
+
+    <div class="cBorder float-left ml-4 mt-2 p-4 col-5" style="background-color:#efefef" *ngIf="editAccount">
+        <h2>Update Account</h2>
+        <div class="m-2" >
+
+            <div class="" >
+                <h5 class="float-left">Enable MultiFactor Authorization</h5>
+                <mat-slide-toggle class="ml-3" [(ngModel)]="mfaChecked"></mat-slide-toggle>
+                <div class="mb-3 float-none"></div>
+            </div>
+
+            <form class="border" novalidate [formGroup]="formGroup" (ngSubmit)="submitAccountForm()">
+
+                <div class="form-group" *ngFor="let control of formGroup.userControls">
+                        
+                    <label class="ml-2">{{control.label}}</label>
+                    <div class="clearfix"></div>
+                    <input class="form-control float-left col-10 clearfix" [class.border-success]="control.valid" [class.border-danger]="control.invalid && control.touched || 
+                    formGroup.errors ?.passwordsNotEqual && (control.modelProperty == 'password' || control.modelProperty == 'confirmPassword')"
+                        name="{{control.modelProperty}}"
+                        formControlName="{{control.modelProperty}}"  [type]="hideVisibility(control.modelProperty)"/>
+                        <mat-icon matSuffix *ngIf="control.modelProperty == 'confirmPassword'" class="ml-2"  (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <p class="clearfix"></p>
+                    <ul class="text-danger list-unstyled"
+                            *ngIf="(formSubmitted || control.dirty) && control.invalid">
+                        <li *ngFor="let error of control.getValidationMessages()">
+                         {{error}}
+                        </li>
+                    </ul>
+                    <small *ngIf="formGroup.errors ?.passwordsNotEqual && (control.modelProperty == 'password' || control.modelProperty == 'confirmPassword')" 
+                    class="text-danger">Passwords do not match</small>
+                </div>
+            
+                <button class="btn btn-primary" type="submit" 
+                    [disabled]="formSubmitted || formGroup.invalid"
+                    [class.btn-secondary]="formSubmitted && formGroup.invalid" >Update
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div class=" border float-left ml-4 mt-2 p-4" *ngIf="responseToggle">
+        <div class="ml-4 mt-2">
+            <h3 class="text-success">User SuccesFull Updated!</h3>
+            <br>
+            <div class="d-flex justify-content-center">
+                 <button class="btn btn-primary " (click)="updateOk()" >Let's do Something else!</button>
+             </div>
+        </div>
+    </div>
+  <p class="clearfix"></p>
+</div>

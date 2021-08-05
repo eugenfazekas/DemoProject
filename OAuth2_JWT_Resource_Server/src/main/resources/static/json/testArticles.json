@@ -1,0 +1,202 @@
+[
+	{
+		"category" : "cars",
+		"title" : "Volkswagen",
+		"owner" : "John Skybolt",
+		"published_date" : "2021.01.28 14:20:10",
+		"content" : "Heavy fuel consumtion",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "books",
+		"title" : "angular",
+		"owner" : "Kiss Pista",
+		"published_date" : "2021.02.28 14:20:20",
+		"content" : "JSON object mapping",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "travel",
+		"title" : "gasoline",
+		"owner" : "Vladimir Molotov",
+		"published_date" : "2021.03.28 14:20:20",
+		"content" : "Good firing",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "science",
+		"title" : "relativity",
+		"owner" : "Albert Einstein",
+		"published_date" : "2020.02.28 14:20:20",
+		"content" : "e=mc^2",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "nature",
+		"title" : "Cherry tree",
+		"owner" : "Abraham Wilington",
+		"published_date" : "2020.01.28 14:20:20",
+		"content" : "like cherrys",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "cars",
+		"title" : "Bmw",
+		"owner" : "John Skybolt",
+		"published_date" : "2020.03.28 14:20:20",
+		"content" : "Low fuel consumtion",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "books",
+		"title" : "SpringBoot",
+		"owner" : "Kiss Pista",
+		"published_date" : "2020.04.28 14:20:20",
+		"content" : "SQL object mapping",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "travel",
+		"title" : "diesel",
+		"owner" : "Vladimir Molotov",
+		"published_date" : "2020.05.28 14:20:20",
+		"content" : "Not to good firing",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "science",
+		"title" : "gravity",
+		"owner" : "Albert Einstein",
+		"published_date" : "2020.06.28 14:20:20",
+		"content" : "e=mc^2",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "nature",
+		"title" : "Apple tree",
+		"owner" : "Abraham Wilington",
+		"published_date" : "2020.07.28 14:20:20",
+		"content" : "like apple",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "cars",
+		"title" : "Audi",
+		"owner" : "John Skybolt",
+		"published_date" : "2020.08.28 14:20:20",
+		"content" : "Good manuvering",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "books",
+		"title" : "Sql",
+		"owner" : "Kiss Pista",
+		"published_date" : "2020.09.28 14:20:20",
+		"content" : "Select * from table",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "travel",
+		"title" : "carosine",
+		"owner" : "Vladimir Molotov",
+		"published_date" : "2020.10.28 14:20:20",
+		"content" : "Jet using carosine",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "science",
+		"title" : "Black holes",
+		"owner" : "Albert Einstein",
+		"published_date" : "2020.11.28 14:20:20",
+		"content" : "Blach holes have very big gravity",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "nature",
+		"title" : "Banana tree",
+		"owner" : "Abraham Wilington",
+		"published_date" : "2020.12.28 14:20:20",
+		"content" : "Monkeys like banana",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "cars",
+		"title" : "Renault",
+		"owner" : "John Skybolt",
+		"published_date" : "2019.01.28 14:20:10",
+		"content" : "Good fuel consumtion",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "books",
+		"title" : "Javascript",
+		"owner" : "Kiss Pista",
+		"published_date" : "2019.02.28 14:20:10",
+		"content" : "I like to learn javascript",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "travel",
+		"title" : "Vodka",
+		"owner" : "Vladimir Molotov",
+		"published_date" : "2019.03.28 14:20:10",
+		"content" : "When we fire up a building",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "science",
+		"title" : "LightSpeed",
+		"owner" : "Albert Einstein",
+		"published_date" : "2019.04.28 14:20:10",
+		"content" : "Speed of light is 300.000 km/s",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "nature",
+		"title" : "Orange tree",
+		"owner" : "Abraham Wilington",
+		"published_date" : "2019.05.28 14:20:10",
+		"content" : "Orange contains a lot og C vitamin",
+		"image_title" : "no image"
+	},{
+		"category" : "cars",
+		"title" : "Peugeot",
+		"owner" : "John Skybolt",
+		"published_date" : "2019.06.28 14:20:10",
+		"content" : "France 5 Star Car",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "books",
+		"title" : "C Sharp",
+		"owner" : "Kiss Pista",
+		"published_date" : "2019.07.28 14:20:10",
+		"content" : "Windows Applicatiopns",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "travel",
+		"title" : "Hidrogen",
+		"owner" : "Vladimir Molotov",
+		"published_date" : "2019.08.28 14:20:10",
+		"content" : "When we blow up some hidrogen cars",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "science",
+		"title" : "Quantum Mechanics",
+		"owner" : "Albert Einstein",
+		"published_date" : "2019.09.28 14:20:10",
+		"content" : "Idid'nt learn quantum mechanics",
+		"image_title" : "no image"
+	},
+	{
+		"category" : "nature",
+		"title" : "PineApple tree",
+		"owner" : "Abraham Wilington",
+		"published_date" : "2019.10.28 14:20:10",
+		"content" : "like pineApple on pizza",
+		"image_title" : "no image"
+	}
+	
+]

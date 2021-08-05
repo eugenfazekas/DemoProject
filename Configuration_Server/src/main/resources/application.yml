@@ -3,7 +3,7 @@ server:
   
 spring:
   application:
-    name: configserver
+    name: config-server
   profiles: 
     active: ${CONFIG_MODE}
   cloud:
@@ -12,7 +12,7 @@ spring:
         encrypt.enabled: false
         git:
           uri: https://github.com/eugenfazekas/Config-Repo/
-          searchPaths: authenticationserver,resourceserver,gatewayserver
+          searchPaths: authentication-server,gateway-server,resource-server
               
 eureka:
   client:

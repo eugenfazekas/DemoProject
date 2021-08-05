@@ -1,0 +1,23 @@
+.md-48 {
+    font-size: 40px !important;
+  }
+
+ .ch-200l {
+    height: 75px;
+    padding-top: 4.5%;
+    padding-left: 1%;
+ } 
+
+ .ch-200r {
+    height: 75px;
+    padding-top: 4.5%;
+    padding-right: 0.5%;
+ } 
+
+ .ch-200l:hover {
+   background-color: #1a8cff;
+ }
+
+ .ch-200r:hover {
+   background-color: #1a8cff;
+ }

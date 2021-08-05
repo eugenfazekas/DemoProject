@@ -1,0 +1,38 @@
+<div class="m-3">
+    <div class="float-left m-3">
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill">
+              <mat-label>Enter New Category</mat-label>
+              <input matInput placeholder="" formControlName="category" required>
+            </mat-form-field>
+        </form>
+      </div>
+      <div class="float-left border m-4">
+         <button mat-stroked-button color="primary" (click)="onSubmit()">Add category</button>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+  <div class="float-none m-4">
+    <table  class="table border table-sm col-3">
+      <thead>
+          <tr><th colspan="2" >Categories Name</th><th></th></tr>
+      </thead>
+      <tbody>
+          <tr *ngIf="getCategories().length == 0">
+              <td >There are no categories</td>
+          </tr>
+              <tr class="border" *ngFor="let  item of getCategories()">
+                  <td>{{item | titlecase}}</td>
+                  <td></td>
+                  <td>
+                      <button class="btn btn-danger" (click)="deleteCategory(item)">
+                          Delete
+                      </button>
+                  </td>
+              </tr>
+      </tbody>
+  </table>
+  </div>

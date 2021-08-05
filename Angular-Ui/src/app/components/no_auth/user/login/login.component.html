@@ -1,0 +1,72 @@
+<div class="m-4">
+  <div class="">
+    <button class=" float-right border" mat-button color="warn" routerLink="/registration">Registration</button>
+    <p class="float-none"></p>
+</div>
+  <div class="">
+     <h3 class="m-4 border w-50"><u>Welcome To Cronoweb Log In Process</u></h3>
+  </div>
+  
+</div>
+<div class="m-4">
+  <mat-horizontal-stepper linear #stepper>
+
+    <mat-step [stepControl]="mfaCheckForm">
+      <form  novalidate [formGroup]="mfaCheckForm" (ngSubmit)="submitMfaForm()">
+        <ng-template matStepLabel>Fill out your email</ng-template>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="pat@example.com" formControlName="email">
+          <mat-error *ngIf="mfaCheckForm.get('email').hasError('pattern')">Please enter a valid email address</mat-error>
+        </mat-form-field>
+
+        <br>
+        <br *ngIf="mfaCheckForm.get('email').hasError('pattern') && mfaCheckForm.get('email').dirty ">
+        <button type="submit"  [disabled]="mfaCheckForm.invalid"
+                               [class.btn-secondary]="mfaCheckForm.invalid" 
+                               mat-flat-button color="primary">Verify Email</button>
+        </form>
+        <div class="p-2">
+          <small *ngIf="errorMessageCheck" class="text-danger ">Wrong username or email</small>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="loginForm">
+      <form  novalidate [formGroup]="loginForm" (ngSubmit)="delegateForm()">
+        <ng-template matStepLabel>Fill out your password</ng-template> 
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput placeholder="pat@example.com" formControlName="password">
+          <mat-error *ngIf="loginForm.get('password').hasError('required')">Please enter a password</mat-error>
+        </mat-form-field>
+
+        <br>
+        <br *ngIf="loginForm.get('password').hasError('pattern') && loginForm.get('password').dirty ">
+        <button type="submit"  [disabled]="loginForm.invalid"
+                               [class.btn-secondary]="loginForm.invalid" 
+                               mat-flat-button color="primary">Send Password</button>
+        </form>
+        <div class="p-2">
+          <small *ngIf="errorMessageCheck" class="text-danger ">wrong password</small>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="loginForm" *ngIf="mfaChecked">
+        
+      <form novalidate [formGroup]="loginForm" (ngSubmit)="submitForm()" >
+        <ng-template matStepLabel>Fill out with your One Time Password</ng-template>
+         <mat-form-field appearance="fill">
+              <mat-label>OneTimePassword</mat-label>
+              <input matInput placeholder="password" formControlName="password" required>
+          </mat-form-field>
+          <div class="p-2">
+            <small *ngIf="errorMessageCheck" class="text-danger">Wrong One Time Password</small>
+          </div>
+
+          <button type="submit" mat-flat-button color="primary">Send One Time Password</button>
+      </form>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</div>

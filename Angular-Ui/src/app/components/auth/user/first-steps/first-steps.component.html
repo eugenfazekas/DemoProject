@@ -1,0 +1,73 @@
+<div class="m-4">
+  <div class="m-4 w-75">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <mat-label>FirstName</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="firstName" >
+        </mat-form-field>
+        <p class="float-none"></p>
+        <mat-form-field>
+          <mat-label>LastName</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="lastName" >
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Selected Country</mat-label>
+              <mat-select formControlName="country">
+                  <mat-option value="Romania">Romania</mat-option>
+                  <mat-option value="Hungary">Hungary</mat-option>
+                  <mat-option value="UK">UK</mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <p class="float-none"></p>
+
+          <mat-form-field appearance="fill">
+              <mat-label>Enter You're City</mat-label>
+              <input matInput placeholder="" formControlName="city">
+          </mat-form-field>
+
+          <p class="float-none"></p>
+
+          <mat-form-field appearance="fill">
+              <mat-label>Enter You're Street</mat-label>
+              <input matInput placeholder="" formControlName="street">
+          </mat-form-field>
+
+          <p class="float-none"></p>
+
+          <mat-form-field appearance="fill">
+              <mat-label>Enter You're Street Number</mat-label>
+              <input matInput placeholder="" formControlName="number">
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="accent" class="ml-4 mt-2" (click)="submitForm()"
+                    [disabled]="formSubmitted || firstFormGroup.invalid || secondFormGroup.invalid"
+                    [class.btn-secondary]="formSubmitted && (firstFormGroup.invalid || secondFormGroup.invalid)" 
+                    >Update Profile</button>
+      </div>
+    </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

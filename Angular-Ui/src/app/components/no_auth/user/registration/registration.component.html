@@ -1,0 +1,34 @@
+<br>
+
+<div class="ml-4">
+    <h1 class="ml-3"><u>Registration</u></h1>
+</div>
+<br>
+<div class="ml-4 pl-4" >
+    <h5 class="float-left">Enable MultiFactor Authorization</h5>
+    <mat-slide-toggle class="ml-3" [(ngModel)]="mfaChecked"></mat-slide-toggle>
+    <div class="float-none"></div>
+</div>
+<form class="m-4 p-4 col-6 border" novalidate [formGroup]="formGroup" (ngSubmit)="submitForm()">
+
+    <div class="form-group" *ngFor="let control of formGroup.userControls">
+        <label>{{control.label}}</label>
+        <input class="form-control" [class.border-success]="control.valid" [class.border-danger]="control.invalid && control.touched || 
+        formGroup.errors ?.passwordsNotEqual && (control.modelProperty == 'password' || control.modelProperty == 'confirmPassword')"
+            name="{{control.modelProperty}}"
+            formControlName="{{control.modelProperty}}" />
+        <ul class="text-danger list-unstyled"
+                *ngIf="(formSubmitted || control.dirty) && control.invalid">
+            <li *ngFor="let error of control.getValidationMessages()">
+             {{error}}
+            </li>
+        </ul>
+        <small *ngIf="formGroup.errors ?.passwordsNotEqual && (control.modelProperty == 'password' || control.modelProperty == 'confirmPassword')" 
+        class="text-danger">Passwords do not match</small>
+    </div>
+
+    <button class="btn btn-primary" type="submit" 
+        [disabled]="formSubmitted || formGroup.invalid"
+        [class.btn-secondary]="formSubmitted && formGroup.invalid" >Create
+    </button>
+</form>
