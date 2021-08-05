@@ -17,7 +17,7 @@ import com.service.ArticleService;
 
 @RestController
 
-@RequestMapping("article")
+@RequestMapping("resource-server/v1/article")
 public class ArticleController {
 	
 	private ArticleService articleService;
@@ -26,26 +26,23 @@ public class ArticleController {
 		this.articleService = articleService;
 	}
 
-	@RequestMapping(value = "findAllArticles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/findAllArticles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Article> findCategories() {
-	
 	
 		return articleService.findAllArticles();
 	}
 
-	@RequestMapping(value = "saveArticle", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveArticle", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Article saveArticle(@RequestBody Article article ) {
 		
-		articleService.saveArticle(article);
-		
+		articleService.saveArticle(article);	
 			return article;
 	}
 	
-	@RequestMapping(value = "saveImage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveImage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String saveImage(@RequestParam MultipartFile fileInput ) {
 		
 		articleService.saveImage(fileInput);
-		
 			return "Image saved";
 	}
 	

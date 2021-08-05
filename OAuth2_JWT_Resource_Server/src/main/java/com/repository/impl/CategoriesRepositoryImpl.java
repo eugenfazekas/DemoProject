@@ -58,6 +58,7 @@ public class CategoriesRepositoryImpl implements CategoriesRepository{
 			Query query = new Query();
 			query.addCriteria(Criteria.where("category").is("category"));
 			mongoTemplate.updateFirst(query, new Update().push("categories", category), Category.class, CATEGORIES_COLLECTION);
+			log.debug("Category added "+ category);
 		}
 
 		@Override
@@ -66,6 +67,7 @@ public class CategoriesRepositoryImpl implements CategoriesRepository{
 			Query query = new Query();
 			query.addCriteria(Criteria.where("category").is("category"));
 			mongoTemplate.updateFirst(query, new Update().pull("categories", category), Category.class, CATEGORIES_COLLECTION);
+			log.debug("Category deleted "+ category);
 		}
 
 		@Override
@@ -74,5 +76,6 @@ public class CategoriesRepositoryImpl implements CategoriesRepository{
 					Query query = new Query();
 					query.addCriteria(Criteria.where("category").is("category"));
 			return mongoTemplate.findOne(query, Category.class, CATEGORIES_COLLECTION);
+			
 		}
 }

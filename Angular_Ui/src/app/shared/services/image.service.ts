@@ -9,11 +9,11 @@ export class ImageService {
   public imageBlob: Blob;
   public imageBase64;
   private imageWidths: number = 500;
-  public _url: string; 
+  public _url: string = 'http://localhost:4880'; 
 
-  constructor(private logservice: LogService, @Inject(RESOURCE_URL) _resourceURL: string,) {
+  constructor(private logservice: LogService) {
     this.logservice.logDebugMessage(String('ImageService constructor: '));
-    this._url = _resourceURL; }
+   }
 
   fileReader(item) {
     this.logservice.logDebugMessage(String('ImageService fileReader() '));

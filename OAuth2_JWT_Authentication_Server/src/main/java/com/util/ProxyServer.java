@@ -46,7 +46,7 @@ public class ProxyServer {
 	private String baseURL;
 	
 	public void sendNewUserId(String id) {
-		String url = baseURL + "/user/createUserResource";
+		String url = baseURL + "/resource-server/v1//user/createUserResource";
 		
 		var body = new ProxyUser();
 		body.setId(id);

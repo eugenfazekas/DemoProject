@@ -12,7 +12,7 @@ import com.model.User;
 import com.service.UserService;
 
 @RestController
-@RequestMapping("userDetails")
+@RequestMapping("resource-server/v1/userDetails")
 public class UserDetailsController {
 	
 	private UserService userService;
@@ -21,34 +21,34 @@ public class UserDetailsController {
 		this.userService = userService;
 	}
 
-	@RequestMapping(value = "findUserByEmail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/findUserByEmail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User findUserByEmail(@RequestParam String email) {
 
 		return null; //userService.findUserByEmail(email);
 		
 	}
 	
-	@RequestMapping(value = "updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User updateUser(@RequestBody User user) {
 
 		return userService.updateUser(user);
 	}
 	
-	@RequestMapping(value = "saveProfileImage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/saveProfileImage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String saveProfileImage(@RequestParam MultipartFile fileInput) {
 
 		userService.uploadProfilePhoto(fileInput);
 		return "Image saved";
 	}
 	
-	@RequestMapping(value = "deleteProfileImage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/deleteProfileImage", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String deleteProfileImage(@RequestParam  String imageName, String imageNameActive) {
 		
 		userService.deleteProfilePhoto(imageName, Boolean.valueOf(imageNameActive));
 		return "Image deleted";
 	}
 	
-	@RequestMapping(value = "setActiveProfilePhoto", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/setActiveProfilePhoto", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String setActiveProfilePhoto(@RequestParam  String imageName) {
 
 		 userService.setActiveProfilePhoto( imageName);

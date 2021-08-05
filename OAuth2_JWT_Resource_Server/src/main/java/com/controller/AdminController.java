@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.service.ArticleService;
 
 @RestController
-@RequestMapping("admin")
+@RequestMapping("resource-server/v1/admin")
 public class AdminController {
 	
 	private ArticleService articleService;
@@ -19,7 +19,7 @@ public class AdminController {
 		this.articleService = articleService;
 	}
 
-	@RequestMapping(value = "deleteArticle", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/deleteArticle", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String deleteCategory(@RequestParam String articleId) {
 
 		articleService.deleteArticle(articleId);

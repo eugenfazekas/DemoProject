@@ -37,6 +37,8 @@ public class MyCommandLineRunnerImpl implements MyCommandLineRunner, CommandLine
 		createCollectionCategories();
 		importDummyJsonArticles();
 		creatDummyUsers();
+		createCategory();
+		insertDummyCategories();
 	}
 	
 	@Override

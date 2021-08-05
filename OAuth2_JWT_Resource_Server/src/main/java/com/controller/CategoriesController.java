@@ -12,7 +12,7 @@ import com.service.CategoriesService;
 
 
 @RestController
-@RequestMapping("categories")
+@RequestMapping("resource-server/v1/categories")
 public class CategoriesController {
 	
 	private CategoriesService categoriesService;
@@ -22,21 +22,21 @@ public class CategoriesController {
 		this.categoriesService = categoriesService;
 	}
 
-	@RequestMapping(value = "findCategories", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/findCategories", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<String> findCategories() {
 	
 	
 		return categoriesService.findAllCategories();
 	}
 	
-	@RequestMapping(value = "addCategory", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/addCategory", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String addCategory(@RequestParam String category) {
 
 		categoriesService.addCategory(category);
 			return category;
 	}
 	
-	@RequestMapping(value = "deleteCategory", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/deleteCategory", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String deleteCategory(@RequestParam String category) {
 
 		categoriesService.deleteCategory(category);

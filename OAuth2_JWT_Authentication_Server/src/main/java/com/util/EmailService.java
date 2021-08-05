@@ -16,14 +16,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-	private String subjecten,text1en,text2en,text3en,ValidationLink;
+	@Value("${emailservice.subjecten}")
+	  private String subjecten;
+	
+	@Value("${emailservice.text1en}")
+	  private String text1en;
+	
+	@Value("${emailservice.text2en}")
+	  private String text2en;
+	
+	@Value("${emailservice.text3en}")
+	  private String text3en;
+	
+	@Value("${emailservice.validationLink}")
+	  private String validationLink;
 
+	
 	private JavaMailSender javaMailSender;
 
-	public EmailService(JavaMailSender javaMailSender) {}
+	public EmailService(JavaMailSender javaMailSender) {
+		this.javaMailSender = javaMailSender;
+	}
 	
 public void sendMessageen(String email ,String fullName,String key) throws MessagingException, IOException  {
-	
 	MimeMessage msg = javaMailSender.createMimeMessage();
     MimeMessageHelper messageen = new MimeMessageHelper(msg, false);
 		
@@ -35,7 +50,7 @@ public void sendMessageen(String email ,String fullName,String key) throws Messa
 									"	<p  style='margin-left:3%; margin-top:2%; color: white;'> " + text2en +  "<a style='color: white' >" +email+ "</a> </p>	\r\n" + 
 									"	<p  style='margin-left:3%; margin-top:2%; color: white; '> "+text3en+"</p>\r\n" + 
 									"	<p  style='margin-left:3%; margin-top:2%; color: white;'>" +
-									"<a style='color: white' href="+ValidationLink + key+">"+ValidationLink + key+"  </a>" +
+									"<a style='color: white' href="+validationLink + key+">"+validationLink + key+"  </a>" +
 								"</div>",true);
 			javaMailSender.send(msg);
 		}
@@ -74,11 +89,11 @@ public void sendMessageen(String email ,String fullName,String key) throws Messa
 	}
 	
 	public String getValidationLink() {
-		return ValidationLink;
+		return validationLink;
 	}
 	
 	public void setValidationLink(String validationLink) {
-		ValidationLink = validationLink;
-	}	
+		this.validationLink = validationLink;
+	}
 }
 
