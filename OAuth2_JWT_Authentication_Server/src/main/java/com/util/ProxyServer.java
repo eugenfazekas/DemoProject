@@ -42,11 +42,11 @@ public class ProxyServer {
 	@Autowired
 	private AuthorizationServerEndpointsConfiguration configuration;
 	
-	@Value("${resource.server.base.url}")
+	@Value("${resource.service.base.url}")
 	private String baseURL;
 	
 	public void sendNewUserId(String id) {
-		String url = baseURL + "/resource-server/v1//user/createUserResource";
+		String url = baseURL + "/api2/v1//user/createUserResource";
 		
 		var body = new ProxyUser();
 		body.setId(id);

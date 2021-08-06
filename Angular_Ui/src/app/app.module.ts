@@ -68,8 +68,8 @@ import { AdminGuard } from './shared/guards/admin-guard';
   ],
   providers: [
               UserRestDataSourceService,
-              { provide: AUTH_URL, useValue: 'http://localhost:4800/authentication-server/v1'},
-              { provide: RESOURCE_URL, useValue: 'http://localhost:4880/resource-server/v1'},
+              { provide: AUTH_URL, useValue: 'http://localhost:5555/api1/api1/v1'},
+              { provide: RESOURCE_URL, useValue: 'http://localhost:5555/api2/api2/v1'},
               AuthService,
               AuthGuard,
               AdminGuard,

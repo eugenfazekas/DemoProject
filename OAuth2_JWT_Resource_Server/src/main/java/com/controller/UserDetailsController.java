@@ -12,7 +12,7 @@ import com.model.User;
 import com.service.UserService;
 
 @RestController
-@RequestMapping("resource-server/v1/userDetails")
+@RequestMapping("api2/v1/userDetails")
 public class UserDetailsController {
 	
 	private UserService userService;

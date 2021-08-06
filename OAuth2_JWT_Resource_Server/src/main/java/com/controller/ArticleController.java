@@ -17,7 +17,7 @@ import com.service.ArticleService;
 
 @RestController
 
-@RequestMapping("resource-server/v1/article")
+@RequestMapping("api2/v1/article")
 public class ArticleController {
 	
 	private ArticleService articleService;

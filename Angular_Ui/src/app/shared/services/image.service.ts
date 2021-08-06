@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { LogService } from './log.service';
-import { FormControl } from '@angular/forms';
-import { RESOURCE_URL } from '../../rest-api/user-rest-data-source.service';
+
 
 @Injectable()
 export class ImageService {
@@ -9,7 +8,7 @@ export class ImageService {
   public imageBlob: Blob;
   public imageBase64;
   private imageWidths: number = 500;
-  public _url: string = 'http://localhost:4880'; 
+  public _url: string = 'http://localhost:5555/api2'; 
 
   constructor(private logservice: LogService) {
     this.logservice.logDebugMessage(String('ImageService constructor: '));

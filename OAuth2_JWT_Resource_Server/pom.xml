@@ -11,7 +11,7 @@
 	</parent>
 	
 	<groupId>com</groupId>
-	<artifactId>OAuth2_JWT_Resource_Server</artifactId>
+	<artifactId>oauth2_jwt_resource_server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OAuth2_JWT_Resource_Server</name>
 	<description>OAuth2_JWT_Resource_Server</description>
@@ -20,6 +20,7 @@
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR11</spring-cloud.version>
 		<docker.image.prefix>skybolt83</docker.image.prefix>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 	
 	<dependencies>
@@ -126,7 +127,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<finalName>Resource_Server-1.0</finalName>
+		<finalName>resource_server-1.0</finalName>
 	</build>
 
 </project>

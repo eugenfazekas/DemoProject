@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.service.ArticleService;
 
 @RestController
-@RequestMapping("resource-server/v1/admin")
+@RequestMapping("api2/v1/admin")
 public class AdminController {
 	
 	private ArticleService articleService;

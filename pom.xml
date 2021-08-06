@@ -12,5 +12,7 @@
         <module>Eureka_Server</module>
         <module>Configuration_Server</module>
 		<module>Gateway_Server</module>
+		<module>OAuth2_JWT_Authentication_Server</module>
+		<module>OAuth2_JWT_Resource_Server</module>
     </modules>
 </project>

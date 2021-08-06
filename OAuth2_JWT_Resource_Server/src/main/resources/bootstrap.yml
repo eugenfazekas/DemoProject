@@ -1,6 +1,6 @@
 spring:
     application:
-     name: resource-server
+     name: resource-service
     profiles:
       active: dev
     cloud:

@@ -2,7 +2,7 @@ FROM openjdk:11-slim
 
 WORKDIR /workspace
 
-ADD target/Authentication_Server-1.0.jar Authentication_Server-1.0.jar
+ADD target/authentication_server-1.0.jar authentication_server-1.0.jar
 EXPOSE 4800
-ENTRYPOINT ["java","-jar","/Authentication_Server-1.0.jar"]
+ENTRYPOINT ["java","-jar","/authentication_server-1.0.jar"]
 

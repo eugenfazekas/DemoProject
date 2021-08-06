@@ -45,7 +45,7 @@ export class AuthService {
   
   loginUser(user: string, pass: string): Observable<string> {
     this.logservice.logDebugMessage(String('AuthService loginUser() '));
-    return this._http.post('http://localhost:4800/oauth/token',{},{'headers': this.basicAuthHeader() ,'params' : this.param(user,pass) }).pipe(
+    return this._http.post('http://localhost:5555/api1/oauth/token',{},{'headers': this.basicAuthHeader() ,'params' : this.param(user,pass) }).pipe(
 
               map( (response: any) => {
                       const decodedToken = this.helper.decodeToken(response.access_token);

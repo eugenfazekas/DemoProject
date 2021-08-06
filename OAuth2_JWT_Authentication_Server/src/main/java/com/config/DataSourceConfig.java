@@ -16,16 +16,16 @@ public class DataSourceConfig {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	@Value("${authentication_server.url}")
+	@Value("${authentication_database.url}")
 	private String url;
 	
-	@Value("${authentication_server.db}")
+	@Value("${authentication_database.db}")
 	private String db;
 	
-	@Value("${authentication_server.username}")
+	@Value("${authentication_database.username}")
 	private String username;
 	
-	@Value("${authentication_server.password}")
+	@Value("${authentication_database.password}")
 	private String password;
 	
 	public DataSource mySqlDataSource() {

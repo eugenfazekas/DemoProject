@@ -12,7 +12,7 @@ import com.service.CategoriesService;
 
 
 @RestController
-@RequestMapping("resource-server/v1/categories")
+@RequestMapping("api2/v1/categories")
 public class CategoriesController {
 	
 	private CategoriesService categoriesService;

@@ -20,7 +20,7 @@ import com.service.OneTimePasswordService;
 import com.service.UserService;
 
 @RestController
-@RequestMapping("authentication-server/v1/user")
+@RequestMapping("api1/v1/user")
 public class UserController {
 
 	private UserService userService;

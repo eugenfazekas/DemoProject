@@ -12,7 +12,7 @@ spring:
         encrypt.enabled: false
         git:
           uri: https://github.com/eugenfazekas/Config-Repo/
-          searchPaths: authentication-server,gateway-server,resource-server
+          searchPaths: authentication-service,gateway-server,resource-service
               
 eureka:
   client:

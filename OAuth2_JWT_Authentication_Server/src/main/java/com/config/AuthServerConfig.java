@@ -43,10 +43,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 	@Value("${client.secret}")
     private String secret;
 	
-	@Value("${resourceServer.client-id}")
+	@Value("${resourceService.client-id}")
     private String resourceServerClientId;
 	
-	@Value("${resourceServer.client-secret}")
+	@Value("${resourceService.client-secret}")
     private String resourceServerSecret;
   
 	@Autowired
