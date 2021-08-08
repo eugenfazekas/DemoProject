@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+         
+    postgres:
+        image: "postgres:latest"
+        container_name: postgresdb
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        environment: 
+            - POSTGRES_DB=db_users
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=e21Wz44
+        ports:
+            - "5432:5432" 
+        healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U postgres"]
+          interval: 1s
+          timeout: 1s
+          retries: 50
+
+    eurekaserver:
+        image: skybolt83/eurekaserver
+        container_name: Eureka_Server
+        ports:
+          - "8761:8761"  
+        healthcheck:
+          test: curl --fail http://localhost:8761/actuator/health || exit 1
+          interval: 1s
+          timeout: 1s
+          retries: 20 
+          start_period: 3s    
+        mem_limit: 1024m
+        mem_reservation: 128M    
+
+    configserver:
+        image: skybolt83/configserver
+        container_name: configserver
+        environment: 
+            ENCRYPT_KEY: "IMSYMMETRIC"
+        depends_on:
+          eurekaserver:
+            condition: service_healthy      
+        ports:
+           - "8888:8888" 
+        healthcheck:
+          test: curl --fail http://localhost:8888/actuator/health || exit 1
+          interval: 1s
+          timeout: 1s
+          retries: 20 
+          start_period: 3s
+        mem_limit: 1024m
+        mem_reservation: 128M   
+            
+    gatewayserver:
+        image: skybolt83/gatewayserver
+        container_name: Gateway_Server
+        depends_on:
+          configserver:
+            condition: service_healthy
+        ports:
+          - "5555:5555"         
+            
+    authenticationservice:
+        image: skybolt83/oauth2_jwt_authorization_server
+        container_name: OAuth2_JWT_Authorization_Server
+        depends_on:
+            postgres:
+                condition: service_healthy
+            configserver:
+                condition: service_healthy    
+        environment: 
+            ENCRYPT_KEY: "IMSYMMETRIC"
+        ports:
+            - "4800:4800"
+        healthcheck:
+          test: curl --fail http://localhost:4800/actuator/health || exit 1
+          interval: 1s
+          timeout: 1s
+          retries: 30 
+          start_period: 3s
+        mem_limit: 1024m
+        mem_reservation: 128M 
+ 
+    mongodb:
+        image: mongo
+        container_name: Mongo_Database
+        volumes:
+            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+            - mongodata:/data/db
+        environment:
+            - MONGO_INITDB_DATABASE=db_nx
+            - MONGO_INITDB_ROOT_USERNAME=mongo_admin
+            - MONGO_INITDB_ROOT_PASSWORD=admin_password
+        ports:
+            - "27017:27017"
+        healthcheck:
+            test: "exit 0"     
+        
+    resourceservice:
+        image: skybolt83/oauth2_jwt_resource_server
+        container_name: OAuth2_JWT_Resource_Server
+        depends_on:
+            mongodb:
+                condition: service_healthy
+            authenticationservice:
+                condition: service_healthy
+        environment: 
+            ENCRYPT_KEY: "IMSYMMETRIC"
+        ports:
+            - "4880:4880"  
+            
+    angularui:
+        build: ./Angular_Ui
+        container_name: Angular_Ui
+        depends_on:
+            - "postgres"
+            - "authenticationservice" 
+            - "mongodb" 
+            - "resourceservice"
+        ports:
+            - "4200:80"
+    
+    zipkin:
+        image: openzipkin/zipkin
+        container_name: Zipkin_Server
+        ports:
+          - "9411:9411"    
+
+volumes:
+    pgdata:          
+    mongodata:     
+            
+     

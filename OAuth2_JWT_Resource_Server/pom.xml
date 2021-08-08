@@ -12,7 +12,7 @@
 	
 	<groupId>com</groupId>
 	<artifactId>oauth2_jwt_resource_server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>latest</version>
 	<name>OAuth2_JWT_Resource_Server</name>
 	<description>OAuth2_JWT_Resource_Server</description>
 	

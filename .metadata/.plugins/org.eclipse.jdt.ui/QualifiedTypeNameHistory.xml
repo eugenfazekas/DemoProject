@@ -11,4 +11,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource"/>
     <fullyQualifiedTypeName name="org.springframework.web.reactive.config.CorsRegistry"/>
     <fullyQualifiedTypeName name="org.springframework.web.reactive.config.WebFluxConfigurer"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.util.net.openssl.ciphers.Cipher"/>
+    <fullyQualifiedTypeName name="javax.crypto.Cipher"/>
 </qualifiedTypeNameHistroy>

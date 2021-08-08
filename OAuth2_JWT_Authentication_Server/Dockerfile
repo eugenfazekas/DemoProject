@@ -1,8 +1,14 @@
-FROM openjdk:11-slim 
+FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine
 
-WORKDIR /workspace
+RUN apk --no-cache add curl
 
 ADD target/authentication_server-1.0.jar authentication_server-1.0.jar
+
 EXPOSE 4800
-ENTRYPOINT ["java","-jar","/authentication_server-1.0.jar"]
+
+ADD run.sh run.sh
+RUN chmod +x run.sh
+CMD ./run.sh
+
+
 
