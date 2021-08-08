@@ -19,11 +19,7 @@ import com.auth.user.UserAuthenticationProviderService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-
+	
 	@Autowired
     private UserAuthenticationProviderService userAuthenticationProvider;
 	

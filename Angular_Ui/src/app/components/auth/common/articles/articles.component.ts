@@ -81,8 +81,10 @@ export class ArticlesComponent implements OnInit {
   }
 
   getImageTitle(name: string): string {
-    this.logservice.logDebugMessage(String('ArticlesComponent getImageTitle() ')); 
-    let image_title = name + 'Ω' + formatDate(new Date(),'yyyy.MM.dd HH-mm-ss','en');
+     let image_title = null;
+     image_title = formatDate(new Date(),'yyyy.MM.dd HH-mm-ss','en');
+     this.logservice.logDebugMessage(String('ArticlesComponent getImageTitle() ')); 
+     image_title = name + 'Ω' + formatDate(new Date(),'yyyy.MM.dd HH-mm-ss','en');
     return image_title;
   }
 
@@ -92,19 +94,30 @@ export class ArticlesComponent implements OnInit {
                 this.newArticle[c] = this.createArticleForm.controls[c].value : null);
                 let id =  this.loggedUserService.getId();  
                 this.newArticle.owner = this.loggedUserService.getFullName(); 
-                if(this.createArticleForm.valid) {
+                if(this.createArticleForm.valid) {  
                   this.logservice.logDebugMessage(String('ArticlesComponent submitForm() '));
                       this.newArticle.image_title = this.createArticleForm.controls['image'].value != '' ? this.getImageTitle(id): null;
                       this.articleRepository.saveArticle(this.newArticle);
+                        if(!this.createArticleForm.controls['image'].value && this.imageService.imageBinaryBoolean == false){
+                          this.createArticle = false;
+                          window.location.reload();
+                        }
                         if(this.createArticleForm.controls['image'].value) {
+                          let imagename = this.getImageTitle(id);
                           let formData = new FormData();
-                          formData.append('fileInput', this.imageService.imageBlob, this.getImageTitle(id));
-                          this.articleRepository.saveImage(formData);
-                      }
-                      this.createArticle = false;
-                      window.location.reload();
-                }
-  }
+                          let imageBLob = this.imageService.imageBlob;
+                              if(this.imageService.imageBinaryBoolean == true && imagename != null && imageBLob.size > 10 ) {
+                                  formData.append('fileInput', imageBLob, imagename);
+                                  this.articleRepository.saveImage(formData).subscribe(
+                                    res =>  {
+                                              window.location.reload();
+                                          } ,
+                                    err => console.log(err)
+                                  );
+                              }
+                        }
+                  }
+              }
 
   userId(title: string): string {
     this.logservice.logDebugMessage(String('ArticlesComponent userId() '));

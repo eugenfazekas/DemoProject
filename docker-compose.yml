@@ -114,9 +114,7 @@ services:
         build: ./Angular_Ui
         container_name: Angular_Ui
         depends_on:
-            - "postgres"
             - "authenticationservice" 
-            - "mongodb" 
             - "resourceservice"
         ports:
             - "4200:80"

@@ -9,6 +9,7 @@ export class ImageService {
   public imageBase64;
   private imageWidths: number = 500;
   public _url: string = 'http://localhost:5555/api2'; 
+  public imageBinaryBoolean: boolean = false;
 
   constructor(private logservice: LogService) {
     this.logservice.logDebugMessage(String('ImageService constructor: '));
@@ -55,11 +56,14 @@ export class ImageService {
         for (var i = 0; i < byteString.length; i++) {
             ia[i] = byteString.charCodeAt(i);
         }
-        return new Blob([ab], { type: 'image/png' });
+        let blob = new Blob([ab], { type: 'image/png' });
+        this.imageBinaryBoolean = true;
+        return blob;
     } 
 
     inputService(item : any) {
-      this.fileReader(item).then(res => this.compressImage(res, this.imageWidths).then(res => { this.imageBlob = this.b64toBlob(res); this.imageBase64 = res}));
+      this.imageBinaryBoolean = false;
+      this.fileReader(item).then(res => this.compressImage(res, this.imageWidths).then(res => { this.imageBlob = this.b64toBlob(res); this.imageBase64 = res; }));
     }
 
     getBase64() {

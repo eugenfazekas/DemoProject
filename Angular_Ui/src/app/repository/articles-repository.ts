@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ArticleRestDataSourceService } from '../rest-api/article-rest-data-source.service';
 import { ArticleModel } from '../model/article.model';
 import { LogService } from '../shared/services/log.service';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -42,12 +43,9 @@ export class ArticlesRepository {
     );
   }
 
-  saveImage(image?: FormData) {
+  saveImage(image?: FormData) :Observable<string> {
     this.logservice.logDebugMessage(String('ArticlesRepository saveImage() '))
-    this.articleRestDataSource.saveImage(image).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
+    return this.articleRestDataSource.saveImage(image);
   }
 
   deleteArticle(articleId: string){
