@@ -21,6 +21,10 @@ import com.service.UserService;
 import com.util.EmailService;
 import com.util.ProxyServer;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead.Type;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 
 
 @Service
@@ -63,8 +67,10 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByEmail(email);
 	}
 
-	public String registerUser(User user) {
-		
+	@CircuitBreaker(name = "registerService")
+	@Bulkhead(name = "bulkheadregisterService", fallbackMethod = "buildFallbackUser")
+	public String registerUser(User user)  {
+			
 		UUID uuid = UUID.randomUUID();	
 		user.setId(uuid.toString());
 	    user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -138,5 +144,12 @@ public class UserServiceImpl implements UserService{
 		}	
 		
 		return 	"User Not Exist!";
+	}
+	
+	@SuppressWarnings("unused")
+	private String buildFallbackUser(User user, Throwable t){
+
+		log.debug("FallBack..... User not registered");
+		return "User not registered";
 	}
 }

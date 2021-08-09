@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 
 @Service
 public class UserAuthenticationProviderService implements AuthenticationProvider {
@@ -19,6 +20,7 @@ public class UserAuthenticationProviderService implements AuthenticationProvider
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
+	@RateLimiter(name = "authenticationService")
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 	
 		String username = authentication.getName();

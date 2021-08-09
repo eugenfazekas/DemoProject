@@ -28,6 +28,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.model.ProxyUser;
 
+
 @Component
 public class ProxyServer {
 

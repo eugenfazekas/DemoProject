@@ -6,6 +6,36 @@ spring:
     cloud:
         config: 
             uri: http://localhost:8888
+            
+resilience4j.circuitbreaker:
+  instances:
+    registerService:
+      registerHealthIndicator: true
+      ringBufferSizeInClosedState: 5
+      ringBufferSizeInHalfOpenState: 3
+      waitDurationInOpenState: 10s
+      failureRateThreshold: 50
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+        - java.util.concurrent.TimeoutException
+        - org.springframework.web.client.ResourceAccessException
+
+resilience4j.bulkhead:
+  instances:
+    bulkheadregisterService:
+      maxWaitDuration: 2ms
+      maxConcurrentCalls: 16
+     
+resilience4j.ratelimiter:
+  instances:
+    authenticationService:
+      limitForPeriod: 1
+      limitRefreshPeriod: 1000
+      timeoutDuration: 25ms      
+      
+        
+           
 
 
 

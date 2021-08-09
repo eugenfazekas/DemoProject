@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.service.OneTimePasswordService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 
 @Service
 public class OneTimePasswordAuthenticationProviderService implements AuthenticationProvider {
@@ -27,6 +27,7 @@ public class OneTimePasswordAuthenticationProviderService implements Authenticat
 	private OneTimePasswordService oneTimePasswordService;
 	
 	@Override
+	@RateLimiter(name = "authenticationService")
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		
 		String username = authentication.getName();
