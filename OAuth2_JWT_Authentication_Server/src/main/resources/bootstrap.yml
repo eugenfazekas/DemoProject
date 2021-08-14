@@ -30,9 +30,9 @@ resilience4j.bulkhead:
 resilience4j.ratelimiter:
   instances:
     authenticationService:
-      limitForPeriod: 1
-      limitRefreshPeriod: 1000
-      timeoutDuration: 25ms      
+      limitForPeriod: 2
+      limitRefreshPeriod: 1s
+      timeoutDuration: 0      
       
         
            

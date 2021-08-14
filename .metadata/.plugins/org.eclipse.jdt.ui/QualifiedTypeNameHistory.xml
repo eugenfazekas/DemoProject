@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
     <fullyQualifiedTypeName name="org.springframework.web.cors.CorsConfiguration"/>
     <fullyQualifiedTypeName name="org.springframework.web.cors.reactive.CorsWebFilter"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
     <fullyQualifiedTypeName name="org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource"/>
     <fullyQualifiedTypeName name="org.springframework.web.reactive.config.CorsRegistry"/>
     <fullyQualifiedTypeName name="org.springframework.web.reactive.config.WebFluxConfigurer"/>
@@ -17,5 +16,22 @@
     <fullyQualifiedTypeName name="org.springframework.mail.javamail.JavaMailSenderImpl"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="org.springframework.cloud.client.discovery.EnableDiscoveryClient"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.events.source.SimpleSourceBean"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.stream.annotation.StreamListener"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="com.events.model.UserDetailsPrepare"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.SpringBootApplication"/>
     <fullyQualifiedTypeName name="org.springframework.cloud.netflix.eureka.EnableEurekaClient"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.client.loadbalancer.LoadBalanced"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="org.springframework.web.client.RestTemplate"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.SpringApplication"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.stream.annotation.EnableBinding"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.stream.annotation.Input"/>
+    <fullyQualifiedTypeName name="org.springframework.messaging.SubscribableChannel"/>
+    <fullyQualifiedTypeName name="com.events.handler.CustomChannels"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.stream.annotation.Output"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.stream.messaging.Source"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.stream.messaging.Sink"/>
 </qualifiedTypeNameHistroy>
