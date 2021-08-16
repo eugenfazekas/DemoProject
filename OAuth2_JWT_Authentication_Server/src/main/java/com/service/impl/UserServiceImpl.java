@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.events.source.SimpleSourceBean;
 import com.model.AccountKey;
 import com.model.User;
 import com.model.UserUpdate;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService{
 	private UserRepository userRepository;
 	private EmailService emailService;
 	private ProxyServer proxyServer;
+	private SimpleSourceBean simpleSourceBean;
 	
 	@Autowired 
 	private BCryptPasswordEncoder passwordEncoder;
@@ -43,11 +45,14 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private HttpServletRequest request;
 
-	public UserServiceImpl(AccountKeyService accountKeyService, UserRepository userRepository, EmailService emailService, ProxyServer proxyServer) {
+	public UserServiceImpl(AccountKeyService accountKeyService, UserRepository userRepository, EmailService emailService,
+			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean ) {
 		this.accountKeyService = accountKeyService;
 		this.userRepository = userRepository;
 		this.emailService = emailService;
 		this.proxyServer = proxyServer;
+		this.simpleSourceBean = simpleSourceBean;
+		
 	}
 
 	public void createUsersTable() {
@@ -136,10 +141,14 @@ public class UserServiceImpl implements UserService{
 		User user =	userRepository.findByEmail(email);	
 		
 		if(user != null && user.isMfa()) {
+			simpleSourceBean.publisUserAuthenticationId(user.getId());
+			log.debug("UserServiceImpl mfa(): Authentication started for user " + user.getId() );
 			return "true";
 		}
 		
 		else if(user != null && !user.isMfa()) {
+			simpleSourceBean.publisUserAuthenticationId(user.getId());
+			log.debug("UserServiceImpl mfa(): Authentication started for user " + user.getId() );
 			return "false";
 		}	
 		

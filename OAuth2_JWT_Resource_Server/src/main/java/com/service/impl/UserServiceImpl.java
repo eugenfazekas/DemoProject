@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.model.ProxyUser;
 import com.model.User;
+import com.repository.UserRedisRepository;
 import com.repository.UserRepository;
 import com.service.UserService;
 
@@ -29,10 +31,13 @@ import com.service.UserService;
 public class UserServiceImpl implements UserService {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass()); 
+	
 	private UserRepository userRepository;
-
-	public UserServiceImpl(UserRepository userRepository) {
+	private UserRedisRepository userRedisRepository;
+	
+	public UserServiceImpl(UserRepository userRepository, UserRedisRepository userRedisRepository) {
 		this.userRepository = userRepository;
+		this.userRedisRepository = userRedisRepository;
 	}
 
 	@Override
@@ -54,6 +59,9 @@ public class UserServiceImpl implements UserService {
 		userRepository.createUser(newUser);
 		createUserDirPath(newUser.getId());
 		log.debug("New User with id "+ newUser.toString());
+		
+		userRedisRepository.save(newUser);
+		log.debug("UserServiceImpl createUser(): Inserted to redisRepository New User with id "+ newUser.toString());
 	}
 
 	@Override
@@ -85,11 +93,24 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private User findById(String id) {
-		return userRepository.findUserById(id);
+		
+		User user = new User();
+		Optional<User> redisUser = userRedisRepository.findById(id) ;
+		
+			if(redisUser.isPresent()) {
+				user = redisUser.get();
+				log.debug("UserServiceImpl findById(): Succesfully find and returnd redis user cache: " + id);			
+				return user;
+
+			} else {
+				log.debug("UserServiceImpl findById(): Returnd User loaded from mongodb: " + id);
+				return userRepository.findUserById(id);
+		    }
 	}
 	
 	@Override
 	public User getUser() {
+		log.debug("UserServiceImpl getUser(): ");
 		return findById(getUsernameFromSecurityContext());
 	}
 
@@ -102,6 +123,10 @@ public class UserServiceImpl implements UserService {
 		   userForUpdate.setFullName();
 		   userForUpdate.setAddress(user.getAddress());
 		   log.debug(userForUpdate.toString());
+		   
+		   userRedisRepository.save(user);
+		   log.debug("Redis User updated: "+userForUpdate.toString());
+		   
 		return userRepository.updateUser(userForUpdate);
 	}
 
@@ -118,7 +143,7 @@ public class UserServiceImpl implements UserService {
 				ImageIO.write(bImage2, "png", new File("src/main/resources/static/user/" + userId + "/" + title+ ".png") );
 				userRepository.uploadProfilePhoto(userId, title);
 			} catch (IOException e) {
-			log.debug("Erorr on saving imgae"+e.toString());
+			log.debug("Erorr on saving imgae "+e.toString());
 				e.printStackTrace();
 			}
 		
@@ -149,5 +174,26 @@ public class UserServiceImpl implements UserService {
 		userRepository.setActiveProfilePhoto(getUsernameFromSecurityContext(), photoName);
 	}
 
+	@Override
+	public void prepareRedisUser(String id) {
+
+			Optional<User> redisCheckedUser = userRedisRepository.findById(id);
+			if(redisCheckedUser.isEmpty()) {		
+				userRedisRepository.save(findById(id));
+				log.debug("UserServiceImpl prepareRedisUser(): Redis User saved: " + id);
+			}
+	}
+
+	@Override
+	public void deleteRedisUser() {
+		
+		String id = getUsernameFromSecurityContext();
+		Optional<User> redisCheckedUser = userRedisRepository.findById(id);
 	
+		if(redisCheckedUser.isPresent()) {		
+			userRedisRepository.deleteById(id);
+			log.debug("UserServiceImpl deleteRedisUser(): Redis User Succesfully removed: " + id);
+		}
+		
+	}
 }

@@ -36,6 +36,7 @@ import { ManageImagesComponent } from './components/auth/user/manage-images/mana
 import { ArticlesComponent } from './components/auth/common/articles/articles.component';
 import { LoggedUserService } from './shared/services/logged-user.service';
 import { AdminGuard } from './shared/guards/admin-guard';
+import { SignOutService } from './shared/services/sign-out.service';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { AdminGuard } from './shared/guards/admin-guard';
               } 
             },
             UserRepository,
-            ImageService
+            ImageService,
+            SignOutService
             ],
   bootstrap: [AppComponent]
 })

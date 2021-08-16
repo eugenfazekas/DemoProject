@@ -28,4 +28,8 @@ public interface UserService {
 	public String deleteProfilePhoto(String photoName, boolean imageNameActive);
 	
 	public void setActiveProfilePhoto(String photoName);
+	
+	public void prepareRedisUser(String id);
+	
+	public void deleteRedisUser();
 }

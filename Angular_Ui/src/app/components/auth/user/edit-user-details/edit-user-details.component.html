@@ -82,8 +82,8 @@
 
                     </div>
                     <button mat-raised-button color="accent" class="ml-4 mt-2" 
-                    [disabled]="formSubmitted || editUserDetailsForm.invalid"
-                    [class.btn-secondary]="formSubmitted && editUserDetailsForm.invalid"
+                    [disabled]="form_1_Submitted || editUserDetailsForm.invalid"
+                    [class.btn-secondary]="form_1_Submitted && editUserDetailsForm.invalid"
                     >Update Profile</button>
                 </form>
         </div>
@@ -112,7 +112,7 @@
                         <mat-icon matSuffix *ngIf="control.modelProperty == 'confirmPassword'" class="ml-2"  (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         <p class="clearfix"></p>
                     <ul class="text-danger list-unstyled"
-                            *ngIf="(formSubmitted || control.dirty) && control.invalid">
+                            *ngIf="(form_2_Submitted || control.dirty) && control.invalid">
                         <li *ngFor="let error of control.getValidationMessages()">
                          {{error}}
                         </li>
@@ -122,8 +122,8 @@
                 </div>
             
                 <button class="btn btn-primary" type="submit" 
-                    [disabled]="formSubmitted || formGroup.invalid"
-                    [class.btn-secondary]="formSubmitted && formGroup.invalid" >Update
+                    [disabled]="form_2_Submitted || formGroup.invalid"
+                    [class.btn-secondary]="form_2_Submitted && formGroup.invalid" >Update
                 </button>
             </form>
         </div>

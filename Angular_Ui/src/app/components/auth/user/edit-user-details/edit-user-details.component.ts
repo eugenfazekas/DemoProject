@@ -21,7 +21,8 @@ export class EditUserDetailsComponent {
   userModel : UserModel = new UserModel();
   editProfile: boolean = false;
   editAccount: boolean = false;
-  formSubmitted: boolean = false;
+  form_1_Submitted: boolean = false;
+  form_2_Submitted: boolean = false;
   hide = true;
   userAccount: UserAccount = new UserAccount();
   formGroup: AccountUpdateFormModelGroup = new AccountUpdateFormModelGroup();
@@ -75,7 +76,7 @@ export class EditUserDetailsComponent {
       if(this.editUserDetailsForm.valid){
         this.logservice.logDebugMessage(String('EditUserDetailsComponent submitForm() '));
         this.userRepository.updateUser(this.userModel);
-        this.formSubmitted = true;
+        this.form_1_Submitted = true;
         this.editProfile = false;
       } 
     } 
@@ -94,7 +95,7 @@ export class EditUserDetailsComponent {
                },
             err => console.log(err)
           );
-          this.formSubmitted = true;
+          this.form_2_Submitted = true;
           this.editAccount = false;
       }     
     } 

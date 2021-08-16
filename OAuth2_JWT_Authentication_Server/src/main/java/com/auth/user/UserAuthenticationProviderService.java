@@ -21,9 +21,7 @@ public class UserAuthenticationProviderService implements AuthenticationProvider
 	
 	@Autowired 
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	@Autowired
-	private SimpleSourceBean simpleSourceBean;
+
 	
 	@Override
 	@RateLimiter(name = "authenticationService")
@@ -34,8 +32,7 @@ public class UserAuthenticationProviderService implements AuthenticationProvider
 		UserDetailsImpl user = userDetailsService.loadUserByUsername(username);
 
 		if(passwordEncoder.matches(password, user.getPassword()) && user.isEnabled() == true && !user.isMfa() ) {
-			
-			simpleSourceBean.publisUserAuthenticationId(user.getId());
+
 			return new UsernamePasswordAuthenticationToken(
 						user.getId(),
 						password,

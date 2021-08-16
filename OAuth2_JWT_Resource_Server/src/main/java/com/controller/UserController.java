@@ -36,4 +36,10 @@ public class UserController {
 	public User updateUser(@RequestBody User user) {		
     	return userService.updateUser(user);
 	}
+	
+	@RequestMapping(value = "/deleteRedisUser", method = RequestMethod.POST)
+	public String deleteRedisUser() {
+		userService.deleteRedisUser();
+		return "Redis User deleted";
+	}	
 }

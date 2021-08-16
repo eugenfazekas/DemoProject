@@ -28,9 +28,6 @@ public class OneTimePasswordAuthenticationProviderService implements Authenticat
 	@Autowired
 	private OneTimePasswordService oneTimePasswordService;
 	
-	@Autowired
-	private SimpleSourceBean simpleSourceBean;
-	
 	@Override
 	@RateLimiter(name = "authenticationService")
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -41,7 +38,7 @@ public class OneTimePasswordAuthenticationProviderService implements Authenticat
 		
 		if(passwordEncoder.matches(code, otpDetails.getPassword())) {
 			oneTimePasswordService.removeOneTimePassword(username);
-			simpleSourceBean.publisUserAuthenticationId(otpDetails.getId());
+			
 			return new UsernamePasswordAuthenticationToken(
 						otpDetails.getId(),
 						code,

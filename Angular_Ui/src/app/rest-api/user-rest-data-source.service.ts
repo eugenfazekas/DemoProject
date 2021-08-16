@@ -77,5 +77,10 @@ export class UserRestDataSourceService {
     this.logservice.logDebugMessage(String('UserRestDataSourceService updateUser() '));
     return this._http.post(`${this._authURL}/user/updateUserAccount`, user,{responseType: 'text'});
   }
+
+  deleteCache(): Observable<string> {
+    this.logservice.logDebugMessage(String('UserRestDataSourceService deleteCache'));
+    return this._http.post(`${this._resourceURL}/user/deleteRedisUser`, {} ,{'headers': this.loggedUserService.getOptions(), responseType: 'text'});
+  }
 }
  

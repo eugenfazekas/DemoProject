@@ -2,6 +2,9 @@ package com.model;
 
 import java.util.List;
 
+import org.springframework.data.redis.core.RedisHash;
+
+@RedisHash("User")
 public class User {
 
 	private String id;
@@ -13,7 +16,6 @@ public class User {
 	private List<String> articlesId;
 	private List<String> profilePhotos;
 	private Address address;
-
 	
 	public User() {
 	}
@@ -31,11 +33,9 @@ public class User {
 		return firstName;
 	}
 
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 
 	public String getLastName() {
 		return lastName;
@@ -46,14 +46,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-
 	public String getFullName() {
 		return fullName;
 	}
 	public void setFullName() {
 		this.fullName = this.firstName+ " "+ this.lastName;
 	}
-
 
 	public String getDate_registered() {
 		return date_registered;
@@ -64,7 +62,6 @@ public class User {
 		this.date_registered = date_registered;
 	}
 
-
 	public String getActiveProfilePhoto() {
 		return activeProfilePhoto;
 	}
@@ -73,7 +70,6 @@ public class User {
 	public void setActiveProfilePhoto(String activeProfilePhoto) {
 		this.activeProfilePhoto = activeProfilePhoto;
 	}
-
 
 	public List<String> getArticlesId() {
 		return articlesId;
@@ -89,16 +85,13 @@ public class User {
 		return profilePhotos;
 	}
 
-
 	public void setProfilePhotos(List<String> profilePhotos) {
 		this.profilePhotos = profilePhotos;
 	}
 
-
 	public Address getAddress() {
 		return address;
 	}
-
 
 	public void setAddress(Address address) {
 		this.address = address;
