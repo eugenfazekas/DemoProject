@@ -50,4 +50,6 @@
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
     <fullyQualifiedTypeName name="org.springframework.data.redis.core.RedisHash"/>
+    <fullyQualifiedTypeName name="brave.Tracer"/>
+    <fullyQualifiedTypeName name="brave.ScopedSpan"/>
 </qualifiedTypeNameHistroy>

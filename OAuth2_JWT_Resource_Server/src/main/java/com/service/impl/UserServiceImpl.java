@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +27,9 @@ import com.model.User;
 import com.repository.UserRedisRepository;
 import com.repository.UserRepository;
 import com.service.UserService;
+
+import brave.ScopedSpan;
+import brave.Tracer;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -50,8 +54,14 @@ public class UserServiceImpl implements UserService {
 		userRepository.dropCollectionUsers();
 	}
 
+	@Autowired
+	Tracer tracer;
+	
 	@Override
 	public void createUser(ProxyUser user) {
+		
+		ScopedSpan newSpan = tracer.startScopedSpan("createUser");
+		
 		//USER.Id  UNIQUE FIELD !!!
 		User newUser = new User();
 		newUser.setId(user.getId());
@@ -61,7 +71,11 @@ public class UserServiceImpl implements UserService {
 		log.debug("New User with id "+ newUser.toString());
 		
 		userRedisRepository.save(newUser);
-		log.debug("UserServiceImpl createUser(): Inserted to redisRepository New User with id "+ newUser.toString());
+		
+		newSpan.tag("Resource-service UserServiceImpl createUser():", "User create User");
+		newSpan.annotate("User createUser finished");
+		newSpan.finish();
+		log.debug("UserServiceImpl create User(): Inserted to redisRepository New User with id "+ newUser.toString());
 	}
 
 	@Override
@@ -93,29 +107,42 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private User findById(String id) {
-		
+			
 		User user = new User();
 		Optional<User> redisUser = userRedisRepository.findById(id) ;
 		
 			if(redisUser.isPresent()) {
 				user = redisUser.get();
+				ScopedSpan newSpan = tracer.startScopedSpan("findByIdRedis");	
+				newSpan.tag("Resource-service UserServiceImpl findById with redis cache", "User findById Redis");
+				newSpan.annotate("User findById redis finished");
+				newSpan.finish();
 				log.debug("UserServiceImpl findById(): Succesfully find and returnd redis user cache: " + id);			
 				return user;
 
 			} else {
+				ScopedSpan newSpan = tracer.startScopedSpan("findByIdMongo");
+				newSpan.tag("Resource-service UserServiceImpl findById from mongodb", "User findById Mongo");
+				newSpan.annotate("User findById mongo finished");
+				newSpan.finish();
 				log.debug("UserServiceImpl findById(): Returnd User loaded from mongodb: " + id);
 				return userRepository.findUserById(id);
 		    }
+			
+			
 	}
 	
 	@Override
 	public User getUser() {
+		
 		log.debug("UserServiceImpl getUser(): ");
 		return findById(getUsernameFromSecurityContext());
 	}
 
 	@Override
 	public User updateUser(User user) {	
+		
+	  ScopedSpan newSpan = tracer.startScopedSpan("updateUser");	
 		
 	  User userForUpdate = findById(getUsernameFromSecurityContext());  
 		   userForUpdate.setFirstName(user.getFirstName());
@@ -125,6 +152,10 @@ public class UserServiceImpl implements UserService {
 		   log.debug(userForUpdate.toString());
 		   
 		   userRedisRepository.save(user);
+		   
+		   newSpan.tag("Resource-service UserServiceImpl update User", "User update User");
+		   newSpan.annotate("User update User finished");
+		   newSpan.finish();
 		   log.debug("Redis User updated: "+userForUpdate.toString());
 		   
 		return userRepository.updateUser(userForUpdate);
@@ -178,22 +209,32 @@ public class UserServiceImpl implements UserService {
 	public void prepareRedisUser(String id) {
 
 			Optional<User> redisCheckedUser = userRedisRepository.findById(id);
-			if(redisCheckedUser.isEmpty()) {		
+			
+			if(redisCheckedUser.isEmpty()) {
+				ScopedSpan newSpan = tracer.startScopedSpan("prepareRedisUser");
 				userRedisRepository.save(findById(id));
+				newSpan.tag("Resource-service UserServiceImpl prepare RedisUser", "User prepare RedisUser");
+				newSpan.annotate("User prepare RedisUser finished");
+				newSpan.finish();
 				log.debug("UserServiceImpl prepareRedisUser(): Redis User saved: " + id);
 			}
 	}
 
 	@Override
 	public void deleteRedisUser() {
-		
+				
 		String id = getUsernameFromSecurityContext();
 		Optional<User> redisCheckedUser = userRedisRepository.findById(id);
-	
-		if(redisCheckedUser.isPresent()) {		
+		ScopedSpan newSpan = tracer.startScopedSpan("deleteRedisUser");
+		
+		if(redisCheckedUser.isPresent()) {	
+			
 			userRedisRepository.deleteById(id);
+			newSpan.tag("Resource-service UserServiceImpl delete RedisUser", "User delete RedisUser");
+			newSpan.annotate("User deleteRedisUser finished");
+			newSpan.finish();
 			log.debug("UserServiceImpl deleteRedisUser(): Redis User Succesfully removed: " + id);
 		}
-		
+				
 	}
 }

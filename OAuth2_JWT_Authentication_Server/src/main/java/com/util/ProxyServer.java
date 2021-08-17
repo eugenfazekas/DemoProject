@@ -28,6 +28,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.model.ProxyUser;
 
+import brave.ScopedSpan;
+import brave.Tracer;
+
 
 @Component
 public class ProxyServer {
@@ -43,7 +46,12 @@ public class ProxyServer {
 	@Value("${resource.service.base.url}")
 	private String baseURL;
 	
+	@Autowired
+	Tracer tracer;
+	
 	public void sendNewUserId(String id) {
+			
+		ScopedSpan newSpan = tracer.startScopedSpan("sendNewUserId");
 		String url = "http://resource-service/api2/v1/user/createUserResource";
 		
 		var body = new ProxyUser();
@@ -53,6 +61,9 @@ public class ProxyServer {
 		
 		try {		
 			var response = restTemplate.postForEntity(url, request, Void.class);	
+			newSpan.tag("Authentication-service ProxyServer sendNewUserId():", "User sendNewUserId");
+			newSpan.annotate("sendNewUserId finished");
+			newSpan.finish();
 			log.debug("Resource Server Status = "+response.getStatusCode().toString()+ " with Id " +id);
 		}catch (Exception e) {
 			log.debug("Resource Server Not Found");

@@ -35,7 +35,7 @@ services:
           test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u "mongo_admin" -p "admin_password" --quiet | grep 1
           interval: 1s
           timeout:  1s
-          retries: 20
+          retries: 30
           start_period: 20s 
     
     eurekaserver:
@@ -78,7 +78,9 @@ services:
           configserver:
             condition: service_healthy
         ports:
-          - "5555:5555"         
+          - "5555:5555"
+        mem_limit: 1024m
+        mem_reservation: 128M           
             
     authenticationservice:
         image: skybolt83/oauth2_jwt_authorization_server
@@ -112,7 +114,9 @@ services:
         environment: 
             ENCRYPT_KEY: "IMSYMMETRIC"
         ports:
-            - "4880:4880"  
+            - "4880:4880" 
+        mem_limit: 1024m
+        mem_reservation: 128M      
             
     angularui:
         build: ./Angular_Ui
