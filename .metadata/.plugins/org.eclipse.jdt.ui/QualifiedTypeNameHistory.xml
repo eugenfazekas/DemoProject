@@ -52,4 +52,5 @@
     <fullyQualifiedTypeName name="org.springframework.data.redis.core.RedisHash"/>
     <fullyQualifiedTypeName name="brave.Tracer"/>
     <fullyQualifiedTypeName name="brave.ScopedSpan"/>
+    <fullyQualifiedTypeName name="brave.sampler.Sampler"/>
 </qualifiedTypeNameHistroy>

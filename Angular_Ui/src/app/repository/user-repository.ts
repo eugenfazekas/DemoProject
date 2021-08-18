@@ -14,7 +14,7 @@ export class UserRepository {
   public loadedImages :boolean = false;
 
   constructor(private userRestDataSource: UserRestDataSourceService, private loggedUserService: LoggedUserService, private logservice: LogService,private imageService: ImageService,) {
-      userRestDataSource.getUser().subscribe(
+    this.loggedUserService.getToken() == '' ? null: this.userRestDataGetUser().subscribe(
         res => { 
           this.user = res;
           this.user.profilePhotos == null ? this.user.profilePhotos = [] : this.user.profilePhotos = res.profilePhotos;
@@ -22,10 +22,17 @@ export class UserRepository {
         },
         err => console.log(err)
       );
+      
    }
 
    getUser() {
      return this.user;
+   }
+
+   setUser(inputUser: UserModel) { 
+    this.user = inputUser;
+    this.user.profilePhotos == null ? this.user.profilePhotos = [] : this.user.profilePhotos = inputUser.profilePhotos;
+    this.loadedImages = true;
    }
 
    updateUser(user: UserModel) {
@@ -79,5 +86,9 @@ export class UserRepository {
    
    updateAccount(user: UserAccount) : Observable<string> {
     return this.userRestDataSource.updateAccount(user);
+   }
+
+   userRestDataGetUser() :Observable <UserModel> {
+     return this.userRestDataSource.getUser();
    }
 }

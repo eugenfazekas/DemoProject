@@ -6,7 +6,6 @@ import { UserRepository } from 'src/app/repository/user-repository';
 
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-first-steps',
   templateUrl: './first-steps.component.html',
