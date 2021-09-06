@@ -1,7 +1,5 @@
 package com.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.model.OneTimePassword;
 
 public interface OneTimePasswordService {

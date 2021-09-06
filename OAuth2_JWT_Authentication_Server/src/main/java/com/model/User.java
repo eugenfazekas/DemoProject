@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class User {
 	
@@ -71,4 +72,14 @@ public class User {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", active=" + active + ", mfa=" + mfa
 				+ ", authorities=" + authorities + "]";
 	}
+	
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+	        User user = (User) o;
+	        return mfa == user.mfa &&
+	        		Objects.equals(id, user.id) &&
+	                Objects.equals(email, user.email) ;
+	    }
 }

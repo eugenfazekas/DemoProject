@@ -2,8 +2,6 @@ package com.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +35,7 @@ public class UserController {
 	    return user.getEmail();
 	}
 	
-	@RequestMapping(value = "/userExistCheck", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/userExistCheck", method = RequestMethod.POST)
 	public boolean userExistCheck(@RequestParam String email) {
 		return userService.userExistCheck(email);
 	}

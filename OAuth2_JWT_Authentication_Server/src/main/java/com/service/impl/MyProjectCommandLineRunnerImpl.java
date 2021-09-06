@@ -1,8 +1,5 @@
 package com.service.impl;
 
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -20,7 +17,6 @@ public class MyProjectCommandLineRunnerImpl implements CommandLineRunner, MyProj
 	private UserRepository userRepository;
 	private AccountKeyService accountKeyService;
 	private OneTimePasswordService oneTimePasswordService;
-	private ProxyServer proxyServer;
 
 
 
@@ -29,7 +25,6 @@ public class MyProjectCommandLineRunnerImpl implements CommandLineRunner, MyProj
 		this.userRepository = userRepository;
 		this.accountKeyService = accountKeyService;
 		this.oneTimePasswordService = oneTimePasswordService;
-		this.proxyServer = proxyServer;
 	}
 
 	public void run(String... args) throws Exception {
