@@ -10,4 +10,5 @@
     <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
     <fullyQualifiedTypeName name="com.model.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
+    <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
 </qualifiedTypeNameHistroy>

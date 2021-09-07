@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.Objects;
+
 public class UserUpdate {
 
 	private String id;
@@ -45,4 +47,13 @@ public class UserUpdate {
 		return "UserUpdate [id=" + id + ", email=" + email + ", oldPassword=" + oldPassword + ", password=" + password
 				+ ", mfa=" + mfa + "]";
 	}
+	
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+	        UserUpdate user = (UserUpdate) o;
+	        return Objects.equals(id, user.id) &&
+	                Objects.equals(email, user.email) ;     		
+	    }
 }

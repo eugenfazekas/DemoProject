@@ -1,5 +1,6 @@
 package com.model;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class OneTimePassword {
@@ -36,5 +37,14 @@ public class OneTimePassword {
 	@Override
 	public String toString() {
 		return "OneTimePassword [id=" + id + ", email=" + email + ", password=" + password + "]";
-	}	
+	}
+	
+	 @Override
+	 public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OneTimePassword oneTimePassword = (OneTimePassword) o;
+        return Objects.equals(id, oneTimePassword.id) &&
+        	   Objects.equals(email, oneTimePassword.email);
+    }
 }

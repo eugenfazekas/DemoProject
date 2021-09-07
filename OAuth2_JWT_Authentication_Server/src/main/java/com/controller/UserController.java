@@ -48,17 +48,17 @@ public class UserController {
 	
 		 return redirectView;
  }
-	@RequestMapping(value = "/updateUserAccount", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/updateUserAccount", method = RequestMethod.POST)
 	public String updateUserAccount(@RequestBody UserUpdate user) {
 		return userService.updateUser(user);
 	}
 	
-	@PostMapping("/createOneTimePassword")
+	@RequestMapping(path = "/createOneTimePassword", method = RequestMethod.POST)
     public String createOneTimePassword() {
 		return oneTimePasswordService.createOneTimePassword();
     }
 	
-	@PostMapping("/mfaCheck")
+	@RequestMapping(path = "/mfaCheck", method = RequestMethod.POST)
     public String mfaCheck() {
 		return userService.mfaCheck();
     }

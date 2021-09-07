@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.Objects;
+
 public class AccountKey {
 
 	private String accountType;
@@ -33,4 +35,13 @@ public class AccountKey {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	 @Override
+	 public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountKey accountKey = (AccountKey) o;
+        return Objects.equals(key, accountKey.key) &&
+        	   Objects.equals(email, accountKey.email);
+    }
 }
