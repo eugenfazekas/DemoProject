@@ -21,6 +21,7 @@ import com.service.AccountKeyService;
 import com.service.UserService;
 import com.util.EmailService;
 import com.util.ProxyServer;
+import com.util.ServletRequest;
 
 import brave.ScopedSpan;
 import brave.Tracer;
@@ -38,25 +39,24 @@ public class UserServiceImpl implements UserService{
 	private EmailService emailService;
 	private ProxyServer proxyServer;
 	private SimpleSourceBean simpleSourceBean;
+	private ServletRequest servletRequest;
 	
 	@Autowired 
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
 	Tracer tracer;
 
 	public UserServiceImpl(AccountKeyService accountKeyService, UserRepository userRepository, EmailService emailService,
-			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean ) {
+			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean, ServletRequest servletRequest ) {
 		this.accountKeyService = accountKeyService;
 		this.userRepository = userRepository;
 		this.emailService = emailService;
 		this.proxyServer = proxyServer;
 		this.simpleSourceBean = simpleSourceBean;
-		 
+		this.servletRequest = servletRequest; 
 	}
+
 
 	public void createUsersTable() {
 		userRepository.createUsersTable();
@@ -66,20 +66,28 @@ public class UserServiceImpl implements UserService{
 		userRepository.dropUsersTable();
 		
 	}
-	
-	public User findById(String id) {
-		return userRepository.findById(id);
-	}
 
 	public User findByEmail(String email) {
+		
+		if(email == "" || email == null) {
+			throw new RuntimeException(
+			"Authentication_Server.UserService.findByEmail --> email cannot be null or empty string!");
+			}
+		
 		return userRepository.findByEmail(email);
 	}
 
 	@CircuitBreaker(name = "registerService")
-	@Bulkhead(name = "bulkheadregisterService", fallbackMethod = "buildFallbackUser")
+	@Bulkhead(name = "bulkheadregisterService")
 	public String registerUser(User user)  {
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("registerring User");
+		
+		if(user.getEmail() == "" || user.getEmail() == null || user.getPassword() == "" || user.getPassword() == null) {
+			throw new RuntimeException(
+			"Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!");
+			}
+		
 		UUID uuid = UUID.randomUUID();	
 		user.setId(uuid.toString());
 	    user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -101,13 +109,19 @@ public class UserServiceImpl implements UserService{
 		
 		log.debug("New User registered "+user.toString());
 		
-		return null;
+		return "New User registered!";
 	}
 	
 	@Override
 	public boolean userExistCheck(String email) {
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("userExistCheck");
+		
+		if(email == "" || email == null) {
+			throw new RuntimeException(
+			"Authentication_Server.UserService.userExistCheck --> email cannot be null or empty string!");
+			}
+		
 		boolean response = userRepository.userExistCheck(email)  > 0 ? true : false;
 		
 		newSpan.tag("Authentication-service UserServiceImpl userExistCheck():", "User userExistCheck");
@@ -119,10 +133,15 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void userActivation(String key) {
+	public String userActivation(String key) {
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("userActivation");
 	
+		if(key == "" || key == null) {
+			throw new RuntimeException(
+			"Authentication_Server.UserService.userActivation --> key cannot be null or empty string!");
+			}
+		
 		boolean userExist = accountKeyService.keyCheck(key);
 		String activated = userExist == true ? "userActivated" : "notActivated";
 		if(activated == "userActivated") {
@@ -136,13 +155,18 @@ public class UserServiceImpl implements UserService{
 			newSpan.finish();
 			log.debug("User with email: "+account.getEmail() +" "+activated);
 		}
-
+			return "User Successfully activated!";
 	}
 
 	@Override
 	public String updateUser(UserUpdate userUpdate) {
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("updateUser");
+		
+		if(userUpdate.getId() == "" || userUpdate.getId()  == null) {
+			throw new RuntimeException(
+			"Authentication_Server.UserService.updateUser --> updateUser.id cannot be null or empty string!");
+			}
 		
 		User user = userRepository.findById(userUpdate.getId());
 		if(passwordEncoder.matches(userUpdate.getOldPassword(), user.getPassword())) {
@@ -159,7 +183,7 @@ public class UserServiceImpl implements UserService{
 		newSpan.tag("Authentication-service UserServiceImpl updateUser():", "User updateUser");
 		newSpan.annotate("UpdateUser finished");
 		newSpan.finish();
-		return null;
+		return "Update have not been executed!";
 	}
 
 	@Override
@@ -167,9 +191,15 @@ public class UserServiceImpl implements UserService{
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("mfaCheck");
 		
-		String email = request.getHeader("email");
+		if(servletRequest.getEmailHeader() == "" || servletRequest.getEmailHeader()  == null) {
+			throw new RuntimeException(
+			"Authentication_Server.UserService.mfaCheck --> header email cannot be null or empty string!");
+			}
 		
-		User user =	userRepository.findByEmail(email);	
+		String email = servletRequest.getEmailHeader();
+		
+		User user =	null;
+		user = userRepository.findByEmail(email);	
 		
 		if(user != null && user.isMfa()) {
 			simpleSourceBean.publisUserAuthenticationId(user.getId());
@@ -188,12 +218,5 @@ public class UserServiceImpl implements UserService{
 		}	
 		
 		return 	"User Not Exist!";
-	}
-	
-	@SuppressWarnings("unused")
-	private String buildFallbackUser(User user, Throwable t){
-
-		log.debug("FallBack..... User not registered");
-		return "User not registered";
 	}
 }

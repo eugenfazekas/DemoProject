@@ -9,15 +9,13 @@ public interface UserService {
 	
 	void dropUsersTable();
 
-	User findById(String id);
-	
 	User findByEmail(String email);
 	
 	String registerUser(User user);
 	
 	boolean userExistCheck(String email);
 	
-	void userActivation(String key);
+	String userActivation(String key);
 	
 	String updateUser(UserUpdate user);
 	

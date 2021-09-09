@@ -4,7 +4,6 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -18,10 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.model.OneTimePassword;
 import com.model.User;
 import com.model.UserUpdate;
 import com.service.OneTimePasswordService;
@@ -112,7 +109,6 @@ public class UserControllerTests {
     public void createOneTimePassword() throws Exception {
 		
 		String otpCreated = "One time password send";
-		OneTimePassword otp = new OneTimePassword();
 		
 		when(oneTimePasswordService.createOneTimePassword()).thenReturn(otpCreated);
 		

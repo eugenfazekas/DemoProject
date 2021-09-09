@@ -11,4 +11,6 @@
     <fullyQualifiedTypeName name="com.model.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
     <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
+    <fullyQualifiedTypeName name="com.model.AccountKey"/>
+    <fullyQualifiedTypeName name="com.util.ProxyServer"/>
 </qualifiedTypeNameHistroy>
