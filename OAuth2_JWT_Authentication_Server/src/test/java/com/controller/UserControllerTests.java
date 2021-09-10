@@ -1,6 +1,5 @@
 package com.controller;
 
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -78,7 +77,7 @@ public class UserControllerTests {
 		String code = "code";
 		String url = "http://localhost:4200";
 		
-		doNothing().when(mockUserService).userActivation(code);
+		when(mockUserService.userActivation(code)).thenReturn("User Successfully activated!");
 	
 		mvc.perform(get("/api1/v1/user/userKeyCheck/"+code))
 	            .andExpect(redirectedUrl(url));
@@ -130,8 +129,7 @@ public class UserControllerTests {
 		when(mockUserService.mfaCheck()).thenReturn(userExist);
 		
 		mvc.perform(post("/api1/v1/user/mfaCheck")
-                .header("username", "username")
-                .header("password", "password"))
+                .header("email", "eu@fa.hu"))
                 .andExpect(status().isOk())
 	            .andExpect(content().string(userExist));
 

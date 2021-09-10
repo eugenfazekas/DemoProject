@@ -5,9 +5,9 @@ import com.model.UserUpdate;
 
 public interface UserService {
 	
-	void createUsersTable();
+	String createUsersTable();
 	
-	void dropUsersTable();
+	String dropUsersTable();
 
 	User findByEmail(String email);
 	

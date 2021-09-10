@@ -4,15 +4,15 @@ import com.model.AccountKey;
 
 public interface AccountKeyRepository {
 	
-	void createAccountKeyTable();
+	String createAccountKeyTable();
 	
-	void dropAccountKeyTable();
+	String dropAccountKeyTable();
 
-	void createAccountKey(AccountKey account);
+	String createAccountKey(AccountKey account);
 	
 	Integer keyCheck(String key);
 	
-	AccountKey accountKey(String key);
+	AccountKey findAccountKey(String key);
 	
-	void removeKey(String key);
+	String removeKey(String key);
 }

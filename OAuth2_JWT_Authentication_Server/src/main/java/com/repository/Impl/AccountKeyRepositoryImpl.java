@@ -38,29 +38,33 @@ public class AccountKeyRepositoryImpl  implements AccountKeyRepository{
 	};
 	
 	@Override
-	public void createAccountKeyTable() {
+	public String createAccountKeyTable() {
 
 		final String  sql = "CREATE TABLE IF NOT EXISTS ACCOUNTKEYS (accountKey VARCHAR(36) NOT NULL, accountType VARCHAR(36) NOT NULL, email VARCHAR(64) PRIMARY KEY, UNIQUE (email));";
 		jdbc.execute(sql);
 		log.debug("ACCOUNTKEYS Table Created");
+		
+		return "AccountKey table created";
 	}
 	
 	@Override
-	public void dropAccountKeyTable() {
+	public String dropAccountKeyTable() {
 		
 		final String  sql = "DROP TABLE IF EXISTS ACCOUNTKEYS";
 		jdbc.execute(sql);	
 		log.debug("ACCOUNTKEYS Table Deleted");
 		
+		return "AccountKey table dropped";
 	}
 
 	@Override
-	public void createAccountKey(AccountKey account) {
+	public String createAccountKey(AccountKey account) {
 		
 		final String sql = "INSERT INTO ACCOUNTKEYS (accountKey,accountType,email) VALUES (?,?,?)";
 		jdbc.update(sql,account.getKey(),account.getAccountType(),account.getEmail());
 		log.debug("New ACCOUNTKEY:  "+account.toString());
-
+		
+		return "New AccountKey Created";
 	}
 
 	@Override
@@ -73,7 +77,7 @@ public class AccountKeyRepositoryImpl  implements AccountKeyRepository{
 	}
 	
 	@Override
-	public AccountKey accountKey(String key) {
+	public AccountKey findAccountKey(String key) {
 		
 		AccountKey accountKey = null;
 		final String  sql ="SELECT * FROM ACCOUNTKEYS WHERE accountKey = ?";
@@ -87,10 +91,12 @@ public class AccountKeyRepositoryImpl  implements AccountKeyRepository{
 		}
 
 	@Override
-	public void removeKey(String key) {
+	public String removeKey(String key) {
 		final String sql = "DELETE FROM ACCOUNTKEYS WHERE accountKey = ? ";
 		jdbc.update(sql,key);
 		log.debug("AccountKey Deleted: "+key);
+		
+		return "New AccountKey Deleted";
 	}
 }
 

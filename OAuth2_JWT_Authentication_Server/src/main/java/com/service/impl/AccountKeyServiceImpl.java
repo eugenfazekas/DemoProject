@@ -19,23 +19,44 @@ public class AccountKeyServiceImpl implements AccountKeyService {
 	}
 
 	@Override
-	public void createAccountKeyTable() {	
+	public String createAccountKeyTable() {	
 		accountKeyRepository.createAccountKeyTable();
+		return "AccountKey table created";
 	}
 
 	@Override
-	public void dropAccountKeyTable() {		
+	public String dropAccountKeyTable() {		
 		accountKeyRepository.dropAccountKeyTable();
+		return "AccountKey table dropped";
 	}
 
 	@Override
-	public void createAccountKey(AccountKey account) {
-		accountKeyRepository.createAccountKey(account);
+	public String createAccountKey(AccountKey account) {
+		
+		String accountKeyRepositoryResponse = null;
+		
+		if(account.getAccountType() ==  null || account.getKey() == null || account.getEmail() == null) {
+			throw new RuntimeException(
+			"Authentication_Server.AccountKeyService.createAccountKey --> accountkey, email, usertype cannot be null!");
+			}
+				
+		accountKeyRepositoryResponse = accountKeyRepository.createAccountKey(account);
+		
+		if(accountKeyRepositoryResponse != null) {
+			return "New AccountKey Created";
+		}
+		
+		return "AccountKey has not been created";
 	}
 
 	@Override
 	public boolean keyCheck(String key) {
 	
+		if(key == null || key == "") {
+			throw new RuntimeException(
+			"Authentication_Server.AccountKeyService.keyCheck --> key cannot be null or empty String!");
+			}
+		
 		boolean response = accountKeyRepository.keyCheck(key)  > 0 ? true : false;
 		log.debug("AccountKeyCheck "+ key+ " keyExist = " + response);
 		
@@ -43,13 +64,41 @@ public class AccountKeyServiceImpl implements AccountKeyService {
 	}
 
 	@Override
-	public void removeKey(String key) {
-		accountKeyRepository.removeKey(key);
+	public String removeKey(String key) {
+		
+		String accountKeyRepositoryResponse = null;
+		
+		if(key == null || key == "") {
+			throw new RuntimeException(
+			"Authentication_Server.AccountKeyService.removeKey --> key cannot be null or empty String!");
+			}
+		
+		accountKeyRepositoryResponse = accountKeyRepository.removeKey(key);
+		
+		if(accountKeyRepositoryResponse != null) {
+			return "AccountKey Successfully removed";
+		}
+			
+		return "AccountKey has not been removed";
 	}
 
 	@Override
-	public AccountKey accountKey(String key) {
-		return accountKeyRepository.accountKey(key);
+	public AccountKey findAccountKey(String key) {
+		
+		AccountKey accountKeyRepositoryResponse = null;
+		
+		if(key == null || key == "") {
+			throw new RuntimeException(
+			"Authentication_Server.AccountKeyService.findAccountKey --> key cannot be null or empty String!");
+			}
+		
+		accountKeyRepositoryResponse = accountKeyRepository.findAccountKey(key);
+		
+		if(accountKeyRepositoryResponse != null ) {
+			return accountKeyRepositoryResponse;
+		}
+		
+		return null;
 	}
 
 }

@@ -35,7 +35,7 @@ public class EmailService {
 		this.javaMailSender = javaMailSender;
 	}
 	
-public void sendMessageen(String email ,String fullName,String key) throws MessagingException, IOException  {
+public String sendMessageen(String email ,String fullName,String key) throws MessagingException, IOException  {
 	MimeMessage msg = javaMailSender.createMimeMessage();
     MimeMessageHelper messageen = new MimeMessageHelper(msg, false);
 		
@@ -50,6 +50,7 @@ public void sendMessageen(String email ,String fullName,String key) throws Messa
 									"<a style='color: white' href="+validationLink + key+">"+validationLink + key+"  </a>" +
 								"</div>",true);
 			javaMailSender.send(msg);
+			return "message send!";
 		}
 
 

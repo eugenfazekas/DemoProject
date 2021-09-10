@@ -4,9 +4,9 @@ import com.model.User;
 
 public interface UserRepository {
 
-	void createUsersTable();
+	String createUsersTable();
 	
-	void dropUsersTable();
+	String dropUsersTable();
 	
 	User findById(String id);
 	
@@ -16,7 +16,7 @@ public interface UserRepository {
 	
 	public Integer userExistCheck(String email);
 	
-	void setActiveUser(String email);
+	String setActiveUser(String email);
 	
 	String updateUser(User user);
 }

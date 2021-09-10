@@ -41,17 +41,21 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	};
 	
 	@Override
-	public void createUsersTable() {
+	public String createUsersTable() {
 		final String  sql = "CREATE TABLE IF NOT EXISTS USERS (id VARCHAR(36) PRIMARY KEY, email VARCHAR(64) NOT NULL, UNIQUE  (email), password VARCHAR(64) NOT NULL, active BOOLEAN, mfa BOOLEAN, authorities VARCHAR(64) NOT NULL);";
 		jdbc.execute(sql);
 		log.debug("Users Table Created");
+		
+		return "Users Table Created!";	
 	}
 
 	@Override
-	public void dropUsersTable() {
+	public String dropUsersTable() {
 		final String  sql = "DROP TABLE IF EXISTS USERS";
 		jdbc.execute(sql);	
 		log.debug("Users Table Deleted");
+		
+		return "Users Table Dropped!";
 	}
 
 	@Override
@@ -100,10 +104,11 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	}
 
 	@Override
-	public void setActiveUser(String email) {
+	public String setActiveUser(String email) {
 	
 		final String  sql ="UPDATE users SET active = true  where email = ? ";
 		jdbc.update(sql, email);
+		return "User Activated!";
 	}
 
 	@Override

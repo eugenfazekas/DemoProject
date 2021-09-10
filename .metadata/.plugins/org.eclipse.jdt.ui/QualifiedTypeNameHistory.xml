@@ -4,13 +4,23 @@
     <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringRunner"/>
     <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
     <fullyQualifiedTypeName name="com.model.User"/>
-    <fullyQualifiedTypeName name="com.service.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.test.web.servlet.request.MockMvcRequestBuilders"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
     <fullyQualifiedTypeName name="com.model.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
     <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
-    <fullyQualifiedTypeName name="com.model.AccountKey"/>
     <fullyQualifiedTypeName name="com.util.ProxyServer"/>
+    <fullyQualifiedTypeName name="com.model.UserUpdate"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
+    <fullyQualifiedTypeName name="org.mockito.Mockito"/>
+    <fullyQualifiedTypeName name="org.springframework.mock.web.MockHttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.mockito.Spy"/>
+    <fullyQualifiedTypeName name="com.service.UserService"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="com.util.ServletRequest"/>
+    <fullyQualifiedTypeName name="com.service.AccountKeyService"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.model.AccountKey"/>
 </qualifiedTypeNameHistroy>
