@@ -13,14 +13,21 @@
     <fullyQualifiedTypeName name="com.model.UserUpdate"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
-    <fullyQualifiedTypeName name="org.mockito.Mockito"/>
     <fullyQualifiedTypeName name="org.springframework.mock.web.MockHttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.service.AccountKeyService"/>
+    <fullyQualifiedTypeName name="com.model.AccountKey"/>
     <fullyQualifiedTypeName name="org.mockito.Spy"/>
+    <fullyQualifiedTypeName name="org.mockito.Mockito"/>
     <fullyQualifiedTypeName name="com.service.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
-    <fullyQualifiedTypeName name="com.util.ServletRequest"/>
-    <fullyQualifiedTypeName name="com.service.AccountKeyService"/>
+    <fullyQualifiedTypeName name="com.util.Util"/>
+    <fullyQualifiedTypeName name="com.service.OneTimePasswordService"/>
     <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest"/>
+    <fullyQualifiedTypeName name="com.repository.OneTimePasswordRepository"/>
+    <fullyQualifiedTypeName name="com.util.ServletRequest"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
+    <fullyQualifiedTypeName name="com.repository.UserRepository"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.model.AccountKey"/>
 </qualifiedTypeNameHistroy>

@@ -36,19 +36,22 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	};
 
 	@Override
-	public void createOneTimePasswordTable() {
+	public String createOneTimePasswordTable() {
 
 		final String  sql = "CREATE TABLE IF NOT EXISTS ONETIMEPASSWORD (id VARCHAR(36) NOT NULL, email VARCHAR(64) PRIMARY KEY, UNIQUE (email), password VARCHAR(64) NOT NULL)";
 		jdbc.execute(sql);  
 		log.debug("ONETIMEPASSWORD Table Created");
 		
+		return "OneTimePassword Table Created";
 	}
 
 	@Override
-	public void dropOneTimePasswordTable() {
+	public String dropOneTimePasswordTable() {
 		final String  sql = "DROP TABLE IF EXISTS ONETIMEPASSWORD";
 		jdbc.execute(sql);	
-		log.debug("ONETIMEPASSWORD Table Deleted");		
+		log.debug("ONETIMEPASSWORD Table Deleted");	
+		
+		return "OneTimePassword Table Deleted";
 	}
 
 	@Override
@@ -82,9 +85,11 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 		}
 	
 	@Override
-	public void removeOneTimePassword(String email) {		
+	public String removeOneTimePassword(String email) {		
 		final String sql = "DELETE FROM ONETIMEPASSWORD WHERE email = ? ";
 		jdbc.update(sql,email);
-		log.debug("ONETIMEPASSWORD Deleted: "+email);		
+		log.debug("ONETIMEPASSWORD Deleted: "+email);
+		
+		return "OneTimePassword Deleted";
 	}
 }

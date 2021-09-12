@@ -4,9 +4,9 @@ import com.model.OneTimePassword;
 
 public interface OneTimePasswordRepository {
 
-	void createOneTimePasswordTable();
+	String createOneTimePasswordTable();
 	
-	void dropOneTimePasswordTable();
+	String dropOneTimePasswordTable();
 
 	OneTimePassword createOneTimePassword(OneTimePassword oneTimePassword);
 	
@@ -14,5 +14,5 @@ public interface OneTimePasswordRepository {
 	
 	OneTimePassword findOneTimePassword(String email);	
 	
-	void removeOneTimePassword(String email);
+	String removeOneTimePassword(String email);
 }

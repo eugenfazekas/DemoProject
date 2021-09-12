@@ -10,8 +10,12 @@ public class ServletRequest {
 	
 	@Autowired
 	private HttpServletRequest request;
-		
-	public String getEmailHeader() {
-		return request.getHeader("email");
+	
+	public String getUsernameHeader() {
+		return request.getHeader("username");
+	}
+	
+	public String getPasswordHeader() {
+		return request.getHeader("password");
 	}
 }

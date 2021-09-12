@@ -4,15 +4,15 @@ import com.model.OneTimePassword;
 
 public interface OneTimePasswordService {
 
-	void createOneTimePasswordTable();
+	String createOneTimePasswordTable();
 	
-	void dropOneTimePasswordTable();
+	String dropOneTimePasswordTable();
 
 	String createOneTimePassword();
 	
-	//Integer OneTimePasswordCheck(String email);	
+	String getRandomNumberString();	
 	
 	OneTimePassword findOneTimePassword(String email);	
 	
-	void removeOneTimePassword(String email);
+	String removeOneTimePassword(String email);
 }

@@ -2,11 +2,8 @@ package com.service.impl;
 
 import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +12,7 @@ import com.model.User;
 import com.repository.OneTimePasswordRepository;
 import com.service.OneTimePasswordService;
 import com.service.UserService;
+import com.util.ServletRequest;
 
 
 @Service
@@ -25,34 +23,41 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 	private BCryptPasswordEncoder passwordEncoder;
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	@Autowired
-	private HttpServletRequest request;
+	private ServletRequest servletRequest;
 	 
-	public OneTimePasswordServiceImpl(OneTimePasswordRepository oneTimePasswordRepository, UserService userService) {
+	public OneTimePasswordServiceImpl(OneTimePasswordRepository oneTimePasswordRepository, UserService userService, ServletRequest servletRequest) {
 		this.oneTimePasswordRepository = oneTimePasswordRepository;
 		this.userService = userService;
 		this.passwordEncoder =  new BCryptPasswordEncoder();
+		this.servletRequest = servletRequest;
 	}
 
 	@Override
-	public void createOneTimePasswordTable() {
+	public String createOneTimePasswordTable() {
 		oneTimePasswordRepository.createOneTimePasswordTable();
 		
+		return "OneTimePassword Table Created";
 	}
 
 	@Override
-	public void dropOneTimePasswordTable() {
+	public String dropOneTimePasswordTable() {
 		oneTimePasswordRepository.dropOneTimePasswordTable();
 		
+		return "OneTimePassword Table Deleted";
 	}
 
 	@Override
 	public String createOneTimePassword() {
-		
-		String userName = request.getHeader("username");
-		String password = request.getHeader("password");
+
+		String userName = servletRequest.getUsernameHeader();
+		String password = servletRequest.getPasswordHeader();
 		String randomPassword = getRandomNumberString();
-		
+
+		if(userName ==  "" || password== "" || userName ==  null || password== null ) {
+			throw new RuntimeException(
+			"Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!");
+			}
+
 		User user = userService.findByEmail(userName);
 		Integer oneTimePasswords = oneTimePasswordRepository.OneTimePasswordCheck(userName);
 
@@ -60,7 +65,7 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 			oneTimePasswordRepository.removeOneTimePassword(userName);
 			log.debug("OneTimepassword removed "+userName);
 		}
-		
+
 		if(user != null && passwordEncoder.matches(password, user.getPassword()) && user.isActive() == true && user.isMfa()) {
 			
 			OneTimePassword oneTimePassword = new OneTimePassword();
@@ -76,15 +81,44 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 
 	@Override
 	public OneTimePassword findOneTimePassword(String email) {
-		return oneTimePasswordRepository.findOneTimePassword(email);
+		
+		OneTimePassword oneTimePasswordRepositoryFindOTPResponse = null;
+		
+		if(email ==  "" || email == null) {
+			throw new RuntimeException(
+			"Authentication_Server.OneTimePasswordService.findOneTimePassword -->  email cannot be null or empty String!");
+			}
+		
+		oneTimePasswordRepositoryFindOTPResponse = oneTimePasswordRepository.findOneTimePassword(email);
+		
+		if(oneTimePasswordRepositoryFindOTPResponse != null) {
+			return oneTimePasswordRepositoryFindOTPResponse;
+		}
+		 
+		return null;
+		 
 	}
 
 	@Override
-	public void removeOneTimePassword(String email) {
-		oneTimePasswordRepository.removeOneTimePassword(email);
+	public String removeOneTimePassword(String email) {
+		
+		String removeOneTimePassword_removeOneTimePassword_response = null;
+		
+		if(email ==  "" || email == null) {
+			throw new RuntimeException(
+			"Authentication_Server.OneTimePasswordService.removeOneTimePassword -->  email cannot be null or empty String!");
+			}
+		removeOneTimePassword_removeOneTimePassword_response = oneTimePasswordRepository.removeOneTimePassword(email);
+		
+		if(removeOneTimePassword_removeOneTimePassword_response != null ) {
+			return removeOneTimePassword_removeOneTimePassword_response;
+		}
+		
+		return "OneTimePassword has not been deleted";
 	}
 
-	private String getRandomNumberString() {
+	@Override
+	public String getRandomNumberString() {
 
 	    Random rnd = new Random();
 	    int number = rnd.nextInt(999999);

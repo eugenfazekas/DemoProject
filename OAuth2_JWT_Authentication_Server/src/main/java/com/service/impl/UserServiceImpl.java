@@ -129,12 +129,6 @@ public class UserServiceImpl implements UserService{
 						log.debug("New User registered "+user.toString());
 						return "New User registered!";
 						}
-		System.out.println(user.toString());
-		
-		System.out.println("userRepositoryResponse: " +userRepositoryResponse+ 
-				" accountKeyServiceResponse: "+  accountKeyServiceResponse+ 
-				" emailServiceResponse: "+emailServiceResponse+
-				" user.password "+ user.getPassword());	
 		return null;
 	}
 	
@@ -229,12 +223,12 @@ public class UserServiceImpl implements UserService{
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("mfaCheck");
 		
-		if(servletRequest.getEmailHeader() == "" || servletRequest.getEmailHeader()  == null) {
+		if(servletRequest.getUsernameHeader() == "" || servletRequest.getUsernameHeader()  == null) {
 			throw new RuntimeException(
 			"Authentication_Server.UserService.mfaCheck --> header email cannot be null or empty string!");
 			}
 		
-		String email = servletRequest.getEmailHeader();
+		String email = servletRequest.getUsernameHeader();
 		
 		User user =	null;
 		user = userRepository.findByEmail(email);	

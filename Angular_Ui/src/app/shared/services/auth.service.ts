@@ -35,7 +35,7 @@ export class AuthService {
    
   private mfaCheckHeader(email: string) {
     return new HttpHeaders()
-          .set('email', email)
+          .set('username', email)
         }        
 
   constructor(private _http: HttpClient, @Inject(AUTH_URL) _baseURL: string, private loggedUserService: LoggedUserService, private logservice: LogService) { 

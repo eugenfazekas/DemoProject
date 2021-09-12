@@ -78,7 +78,6 @@ public class UserServiceTests {
 	     Assertions.assertThrows(RuntimeException.class, () -> {  userService.findByEmail(null);  });
 
 	     assertEquals(new User(), userService.findByEmail(EMAIL));
-
 	}
 	
 	@Test
@@ -88,31 +87,6 @@ public class UserServiceTests {
 		when(mockUserRepository.findByEmail(EMAIL)).thenReturn(null);	
 
 	    assertEquals(null, userService.findByEmail(EMAIL));
-
-	}
-	
-	@Test
-	void registerUserTest2() throws Exception, IOException  {	
-		
-		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
-				
-		user = new User();	
-	
-		user.setEmail("eu@fa.hu");
-		
-	    user.setPassword("myPassword");
-	    
-	    user.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
-	    
-	    AccountKey account = new AccountKey(user.getId(),"user",user.getEmail());
-	    
-	    when(mockAccountKeyService.createAccountKey(account)).thenReturn("New AccountKey Created");
-		
-		when(mockEmailService.sendMessageen(user.getEmail(), "User! ", user.getId())).thenReturn("message send!");
-	
-		when(mockUserRepository.registerUser(user,"user")).thenReturn("User Registered");
-		
-		assertEquals("New User registered!", userService.registerUser(user));
 	}
 	
 	@Test
@@ -225,7 +199,6 @@ public class UserServiceTests {
 		assertEquals("Update have not been executed!", userService.updateUser(userUpdate));
 	}
 
-
 	@Test
 	void mfaCheckTest1() {
 		
@@ -235,7 +208,7 @@ public class UserServiceTests {
 		user.setId("id");
 		user.setEmail("eu@fa.hu");
 		
-		when(servletRequest.getEmailHeader()).thenReturn(user.getEmail());
+		when(servletRequest.getUsernameHeader()).thenReturn(user.getEmail());
 		when(mockUserRepository.findByEmail(user.getEmail())).thenReturn(user);
 		doNothing().when(simpleSourceBean).publisUserAuthenticationId(user.getId());		
 		assertEquals("false", userService.mfaCheck());
@@ -249,7 +222,7 @@ public class UserServiceTests {
 		user.setEmail("eu@fa.hu");
 		user.setMfa(true);
 		
-		when(servletRequest.getEmailHeader()).thenReturn(user.getEmail());
+		when(servletRequest.getUsernameHeader()).thenReturn(user.getEmail());
 		when(mockUserRepository.findByEmail(user.getEmail())).thenReturn(user);
 		doNothing().when(simpleSourceBean).publisUserAuthenticationId(user.getId());		
 		assertEquals("true", userService.mfaCheck());
@@ -258,7 +231,7 @@ public class UserServiceTests {
 	@Test
 	void mfaCheckTest3() {
 		
-		when(servletRequest.getEmailHeader()).thenReturn("eu@fa.hu");
+		when(servletRequest.getUsernameHeader()).thenReturn("eu@fa.hu");
 		when(mockUserRepository.findByEmail("eu@fa.hu")).thenReturn(null);
 		doNothing().when(simpleSourceBean).publisUserAuthenticationId("eu@fa.hu");		
 		assertEquals("User Not Exist!", userService.mfaCheck());
@@ -283,23 +256,51 @@ public class UserServiceTests {
 		
 		Assertions.assertThrows(RuntimeException.class, () -> {  userService.registerUser(user); });
 	}
-
+		
 	@Test
-	void registerUserTest3() throws Exception, IOException {	
+	void registerUserTest2() throws Exception, IOException  {	
+		
+		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
 				
 		user = new User();	
-		
+	
 		user.setEmail("eu@fa.hu");
 		
 	    user.setPassword("myPassword");
 	    
-	    when(mockEncoder.encode("myPassword")).thenReturn("myPassword");
+	    user.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
+	    
+	    AccountKey account = new AccountKey(user.getId(),"user",user.getEmail());
+	    
+	    when(mockAccountKeyService.createAccountKey(account)).thenReturn("New AccountKey Created");
+		
+		when(mockEmailService.sendMessageen(user.getEmail(), "User! ", user.getId())).thenReturn("message send!");
+	
+		when(mockUserRepository.registerUser(user,"user")).thenReturn("User Registered");
+		
+		assertEquals("New User registered!", userService.registerUser(user));
+	}
 
-	    when(mockUserRepository.registerUser(user,"user")).thenReturn(null);
+	@Test
+	void registerUserTest3() throws Exception, IOException {	
+		
+		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
+		
+		user = new User();	
+	
+		user.setEmail("eu@fa.hu");
+		
+	    user.setPassword("myPassword");
 	    
-	    when(mockAccountKeyService.createAccountKey(new AccountKey("UUID","user","eu@fa.hu"))).thenReturn("New AccountKey Created");
+	    user.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
 	    
-	    when(mockEmailService.sendMessageen("email","fullname","key")).thenReturn("message send!");
+	    AccountKey account = new AccountKey(user.getId(),"user",user.getEmail());
+	    
+	    when(mockAccountKeyService.createAccountKey(account)).thenReturn(null);
+		
+		when(mockEmailService.sendMessageen(user.getEmail(), "User! ", user.getId())).thenReturn("message send!");
+	
+		when(mockUserRepository.registerUser(user,"user")).thenReturn("User Registered");
 
 		assertEquals(null, userService.registerUser(user));
 	}
@@ -307,19 +308,23 @@ public class UserServiceTests {
 	@Test
 	void registerUserTest4() throws Exception, IOException {
 		
-		user = new User();	
+		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
 		
+		user = new User();	
+	
 		user.setEmail("eu@fa.hu");
 		
 	    user.setPassword("myPassword");
 	    
-	    when(mockEncoder.encode("myPassword")).thenReturn("myPassword");
-
-	    when(mockUserRepository.registerUser(user,"user")).thenReturn("User Registered");
+	    user.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
 	    
-	    when(mockAccountKeyService.createAccountKey(new AccountKey("UUID","user","eu@fa.hu"))).thenReturn(null);
+	    AccountKey account = new AccountKey(user.getId(),"user",user.getEmail());
 	    
-	    when(mockEmailService.sendMessageen("email","fullname","key")).thenReturn("message send!");
+	    when(mockAccountKeyService.createAccountKey(account)).thenReturn("New AccountKey Created");
+		
+		when(mockEmailService.sendMessageen(user.getEmail(), "User! ", user.getId())).thenReturn(null);
+	
+		when(mockUserRepository.registerUser(user,"user")).thenReturn("User Registered");
 
 		assertEquals(null, userService.registerUser(user));
 	}
@@ -327,19 +332,23 @@ public class UserServiceTests {
 	@Test
 	void registerUserTest5() throws Exception, IOException {
 		
-		user = new User();	
+		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
 		
+		user = new User();	
+	
 		user.setEmail("eu@fa.hu");
 		
 	    user.setPassword("myPassword");
 	    
-	    when(mockEncoder.encode("myPassword")).thenReturn("myPassword");
-
-	    when(mockUserRepository.registerUser(user,"user")).thenReturn("User Registered");
+	    user.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
 	    
-	    when(mockAccountKeyService.createAccountKey(new AccountKey("UUID","user","eu@fa.hu"))).thenReturn("New AccountKey Created");
+	    AccountKey account = new AccountKey(user.getId(),"user",user.getEmail());
 	    
-	    when(mockEmailService.sendMessageen("email","fullname","key")).thenReturn(null);
+	    when(mockAccountKeyService.createAccountKey(account)).thenReturn("New AccountKey Created");
+		
+		when(mockEmailService.sendMessageen(user.getEmail(), "User! ", user.getId())).thenReturn("message send!");
+	
+		when(mockUserRepository.registerUser(user,"user")).thenReturn(null);
 
 		assertEquals(null, userService.registerUser(user));
 	}
