@@ -15,4 +15,5 @@ public interface OneTimePasswordService {
 	OneTimePassword findOneTimePassword(String email);	
 	
 	String removeOneTimePassword(String email);
+	
 }

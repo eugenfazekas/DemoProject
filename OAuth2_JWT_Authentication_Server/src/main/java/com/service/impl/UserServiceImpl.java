@@ -1,9 +1,5 @@
 package com.service.impl;
 
-import java.io.IOException;
-
-import javax.mail.MessagingException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,27 +105,22 @@ public class UserServiceImpl implements UserService{
 	    user.setActive(false);
 	    
 	    userRepositoryResponse = userRepository.registerUser(user,"user");
+	    
 	    accountKeyServiceResponse = accountKeyService.createAccountKey(new AccountKey(user.getId(),"user",user.getEmail()));
-		
-		try {
-			emailServiceResponse = emailService.sendMessageen(user.getEmail(), "User! ", user.getId());		
-						
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {		
-			newSpan.tag("Authentication-service UserServiceImpl registerUser():", "User regisration");
-			newSpan.annotate("User Registered finished");
-			newSpan.finish();
-		}
-		
+
+		emailServiceResponse = emailService.sendMessageen(user.getEmail(), "User! ", user.getId());		
+
+		newSpan.tag("Authentication-service UserServiceImpl registerUser():", "User regisration");
+		newSpan.annotate("User Registered finished");
+		newSpan.finish();
+	
 		if(userRepositoryResponse != null && accountKeyServiceResponse != null && emailServiceResponse != null)  {
 						
 						log.debug("New User registered "+user.toString());
 						return "New User registered!";
 						}
-		return null;
+		
+			return null;
 	}
 	
 	@Override

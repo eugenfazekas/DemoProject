@@ -106,23 +106,41 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Override
 	public String setActiveUser(String email) {
 	
+		String activated = "User have not been Activated!";		
 		final String  sql ="UPDATE users SET active = true  where email = ? ";
-		jdbc.update(sql, email);
-		return "User Activated!";
+		
+		Integer userExist = userExistCheck(email);
+		
+		if(userExist == 1) {
+					
+			try { 
+				jdbc.update(sql, email);
+				activated = "User have been Activated!" ;
+				log.debug("User have been Activated! "+ email);
+			} catch (Exception e) {
+				log.debug("User have not been Activated!"+ email);
+			}
+		}
+		return activated;
 	}
 
 	@Override
 	public String updateUser(User user) {
 		
-		String update = "User not updated!";
-		try {
-			final String  sql ="UPDATE users SET email = ?, password = ?, mfa = ?  where id = ? ";
-			jdbc.update(sql, user.getEmail(), user.getPassword(), user.isMfa(), user.getId() );
-			update = "User have been updated!";
-			log.debug("User have been Updated"+user.toString());
-		} catch(Exception e) {
-			log.debug("Update have not been executed "+ e);
-		}
+		String update = "User not updated!";	
+		User userExist = null;
+		userExist = findById(user.getId());
+		
+		if(userExist != null) {
+				try {
+					final String  sql ="UPDATE users SET email = ?, password = ?, mfa = ?  where id = ? ";
+					jdbc.update(sql, user.getEmail(), user.getPassword(), user.isMfa(), user.getId() );
+					update = "User have been updated!";
+					log.debug("User have been Updated"+user.toString());
+				} catch(Exception e) {
+					log.debug("Update have not been executed "+ e);
+				}
+			}
 		return update;
 	}
 }

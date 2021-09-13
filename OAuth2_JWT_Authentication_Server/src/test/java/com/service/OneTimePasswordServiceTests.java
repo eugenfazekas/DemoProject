@@ -86,7 +86,7 @@ public class OneTimePasswordServiceTests {
 	     user.setMfa(true);
 	     
 	     when(userService.findByEmail("eu@fa.hu")).thenReturn(user);
-	     when(oneTimePasswordRepository.OneTimePasswordCheck("eu@fa.hu")).thenReturn(0);
+	     when(oneTimePasswordRepository.OneTimePasswordCheck("eu@fa.hu")).thenReturn(1);
 	     when(oneTimePasswordRepository.createOneTimePassword(new OneTimePassword())).thenReturn(new OneTimePassword());
 	     
 	     assertEquals("Invalid username or password", oneTimePasswordService.createOneTimePassword());

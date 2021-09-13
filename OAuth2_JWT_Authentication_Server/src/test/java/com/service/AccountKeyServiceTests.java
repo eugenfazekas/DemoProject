@@ -37,10 +37,13 @@ public class AccountKeyServiceTests {
 	void createAccountKeyTest1() {
 		
 		AccountKey account = new AccountKey();
-		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.createAccountKey(null); });
-		
+			
 		account.setKey("key");
+		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.createAccountKey(account); });
+		
 		account.setAccountType("user");
+		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.createAccountKey(account); });
+		
 		account.setEmail("eu@fa.hu");
 		
 		when(accountKeyRepository.createAccountKey(account)).thenReturn("New AccountKey Created");	
@@ -51,11 +54,13 @@ public class AccountKeyServiceTests {
 	void createAccountKeyTest2() {
 		
 		AccountKey account = new AccountKey();
-		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.createAccountKey(null); });
+		
+		account.setEmail("eu@fa.hu");
+		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.createAccountKey(account); });
 		
 		account.setKey("key");
 		account.setAccountType("user");
-		account.setEmail("eu@fa.hu");
+	
 		
 		when(accountKeyRepository.createAccountKey(account)).thenReturn(null);	
 		assertEquals("AccountKey has not been created", accountKeyService.createAccountKey(account));
@@ -91,26 +96,29 @@ public class AccountKeyServiceTests {
 	@Test
 	void removeKeyTest2() {
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.removeKey(null); });
+		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.removeKey(""); });
 		
 		when(accountKeyRepository.removeKey("key")).thenReturn(null);
 		assertEquals("AccountKey has not been removed", accountKeyService.removeKey("key"));	
 	}
 	
+	@Test
 	void findAccountKeyTest1() {
 		
 		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.findAccountKey(null); });
-		
+
 		when(accountKeyRepository.findAccountKey("key")).thenReturn(new AccountKey());
 		assertEquals(new AccountKey(), accountKeyService.findAccountKey("key"));	
 	}
 	
+	
 	@Test
 	void findAccountKeyTest2() {
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.findAccountKey(null); });
+		Assertions.assertThrows(RuntimeException.class, () -> {  accountKeyService.findAccountKey(""); });
 		
 		when(accountKeyRepository.findAccountKey("key")).thenReturn(null);
 		assertEquals(null, accountKeyService.findAccountKey("key"));	
 	}
+	
 }
