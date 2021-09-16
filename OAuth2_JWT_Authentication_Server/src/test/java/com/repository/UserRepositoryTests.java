@@ -28,7 +28,6 @@ public class UserRepositoryTests {
 	@Test
 	void a2() {
 		
-		System.out.println("test 2");
 		assertEquals("Users Table Created!", userRepository.createUsersTable()); 
 	}
 	
@@ -79,36 +78,43 @@ public class UserRepositoryTests {
 		assertEquals(user, userRepository.findByEmail("eu1@fa.hu")); 
 		
 	}
-
+	
 	@Test
 	void a6() {
+
+		assertEquals(null, userRepository.findByEmail("eu2@fa.hu"));
+		
+	}
+
+	@Test
+	void a7() {
 
 		assertEquals(1, userRepository.userExistCheck("eu1@fa.hu"));
 		
 	}
 	
 	@Test
-	void a7() {
+	void a8() {
 
 		assertEquals(0, userRepository.userExistCheck("eu2@fa.hu"));
 	}	
 
 	
 	@Test
-	void a8() {
+	void a9() {
 		
 		assertEquals("User have been Activated!", userRepository.setActiveUser("eu1@fa.hu")); 	
 		
 	}
 	
 	@Test
-	void a9() {
+	void a10() {
 		
 		assertEquals("User have not been Activated!", userRepository.setActiveUser("eu212@fa.hu")); 			
 	}
 	
 	@Test
-	void a10() {
+	void a11() {
 		
 		List<String> authorities = new ArrayList<>();
 		authorities.add("user");
@@ -124,7 +130,7 @@ public class UserRepositoryTests {
 	}
 	
 	@Test
-	void a11() {
+	void a12() {
 
 		List<String> authorities = new ArrayList<>();
 		authorities.add("user");

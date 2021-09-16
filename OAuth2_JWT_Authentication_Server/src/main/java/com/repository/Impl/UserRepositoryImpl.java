@@ -112,14 +112,9 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 		Integer userExist = userExistCheck(email);
 		
 		if(userExist == 1) {
-					
-			try { 
 				jdbc.update(sql, email);
 				activated = "User have been Activated!" ;
 				log.debug("User have been Activated! "+ email);
-			} catch (Exception e) {
-				log.debug("User have not been Activated!"+ email);
-			}
 		}
 		return activated;
 	}
@@ -131,15 +126,11 @@ private final Logger log = LoggerFactory.getLogger(this.getClass());
 		User userExist = null;
 		userExist = findById(user.getId());
 		
-		if(userExist != null) {
-				try {
+		if(userExist != null) {			
 					final String  sql ="UPDATE users SET email = ?, password = ?, mfa = ?  where id = ? ";
 					jdbc.update(sql, user.getEmail(), user.getPassword(), user.isMfa(), user.getId() );
 					update = "User have been updated!";
 					log.debug("User have been Updated"+user.toString());
-				} catch(Exception e) {
-					log.debug("Update have not been executed "+ e);
-				}
 			}
 		return update;
 	}
