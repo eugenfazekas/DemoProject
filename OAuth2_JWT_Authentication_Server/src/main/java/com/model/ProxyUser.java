@@ -21,4 +21,9 @@ public class ProxyUser {
         ProxyUser user = (ProxyUser) o;
         return Objects.equals(id, user.id);  		
     }
+
+	@Override
+	public String toString() {
+		return "ProxyUser [id=" + id + "]";
+	}	 
 }

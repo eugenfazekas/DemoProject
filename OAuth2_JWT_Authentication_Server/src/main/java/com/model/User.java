@@ -12,12 +12,7 @@ public class User {
 	private boolean mfa;
 	private List<String> authorities;
 
-	public User() {}
-		
-	public User(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
+	public User() {}		
 
 	public String getId() {
 		return id;

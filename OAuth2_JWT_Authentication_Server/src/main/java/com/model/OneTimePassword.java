@@ -1,7 +1,6 @@
 package com.model;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class OneTimePassword {
 
@@ -28,12 +27,7 @@ public class OneTimePassword {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	String generateCode() {	
-	  Random rnd = new Random();
-	  int number = rnd.nextInt(999999);
-	    return String.format("%06d", number);
-	}
+
 	@Override
 	public String toString() {
 		return "OneTimePassword [id=" + id + ", email=" + email + ", password=" + password + "]";
