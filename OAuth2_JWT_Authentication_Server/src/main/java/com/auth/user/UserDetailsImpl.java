@@ -2,6 +2,7 @@ package com.auth.user;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -66,4 +67,12 @@ public class UserDetailsImpl  implements UserDetails{
 	public boolean isMfa() {
 		return user.isMfa();
 	}
+	
+	 @Override
+	    public boolean equals(Object o) {
+		 UserDetailsImpl userDetails = (UserDetailsImpl) o;
+	        return                 user.getEmail() == userDetails.getUsername() &&
+	        		Objects.equals(user.getPassword(), userDetails.getPassword()) &&
+	                Objects.equals(user.getId(), userDetails.getId());
+	    }
 }

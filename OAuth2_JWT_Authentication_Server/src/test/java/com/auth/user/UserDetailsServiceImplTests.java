@@ -1,4 +1,4 @@
-package com.auth.password;
+package com.auth.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -13,22 +13,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.model.OneTimePassword;
 import com.model.User;
-import com.repository.OneTimePasswordRepository;
 import com.repository.UserRepository;
 
 @SpringBootTest
-public class OneTimePasswordDetailsServiceImplTests {
+public class UserDetailsServiceImplTests {
 	
 	@Autowired
-	private OneTimePasswordDetailsServiceImpl oneTimePasswordDetailsServiceImpl;
+	private UserDetailsServiceImpl userDetailsServiceImpl;
 	
 	@MockBean
 	private UserRepository userRepository;
-	
-	@MockBean 
-	private OneTimePasswordRepository oneTimePasswordRepository;
 	
 	@Test
 	void loadUserByUsernameTest1() {
@@ -41,23 +36,17 @@ public class OneTimePasswordDetailsServiceImplTests {
 		user.setMfa(true);
 		user.setAuthorities(authorities);
 		
-		OneTimePassword otp = new OneTimePassword();
-		otp.setId("id");
-		otp.setPassword("012345");
-		otp.setEmail("eu@fa.hu");
-		
 		when(userRepository.findByEmail("eu@fa.hu")).thenReturn(user);
 		
-		when(oneTimePasswordRepository.findOneTimePassword("eu@fa.hu")).thenReturn(otp); 
-		
-		assertEquals(new OneTimePasswordDetailsImpl(otp, user.getAuthorities()), oneTimePasswordDetailsServiceImpl.loadUserByUsername("eu@fa.hu"));
+		assertEquals(new UserDetailsImpl(user), userDetailsServiceImpl.loadUserByUsername("eu@fa.hu"));
 	}
 	
 	@Test
 	void loadUserByUsernameTest2() {
-				
+		
 		// wrong username
 		
-		 Assertions.assertThrows(UsernameNotFoundException.class, () -> {  oneTimePasswordDetailsServiceImpl.loadUserByUsername("eu1@fa.hu");    }); 
+		Assertions.assertThrows(UsernameNotFoundException.class, () -> {  userDetailsServiceImpl.loadUserByUsername("eu1@fa.hu");    });	
 	}
+
 }

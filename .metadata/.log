@@ -13222,3 +13222,583 @@ java.util.concurrent.TimeoutException
 
 !ENTRY org.eclipse.ui 2 2 2021-09-18 17:02:18.238
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:16.213
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.feUaYGmL
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:16.214
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.feUaYGmL
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:16.214
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:16.214
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.feUaYGmL => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:36.228
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:36.229
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@21594e7d[org.springframework.tooling.boot.ls:1.27.0.202108151936(id=559)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:36.229
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.412
+!MESSAGE Boot LS startup time from start to initialized: 4183ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.478
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.OenuBEJAisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.478
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.479
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.479
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.479
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.480
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.OenuBEJA => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.489
+!MESSAGE classpath=232 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.496
+!MESSAGE buffering callback sts4.classpath.OenuBEJA OAuth2_JWT_Authentication_Server false 232
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.497
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.502
+!MESSAGE classpath=128 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.506
+!MESSAGE buffering callback sts4.classpath.OenuBEJA Configuration_Server false 128
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.506
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.511
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.516
+!MESSAGE buffering callback sts4.classpath.OenuBEJA Eureka_Server false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.517
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.524
+!MESSAGE classpath=190 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.530
+!MESSAGE buffering callback sts4.classpath.OenuBEJA Gateway_Server false 190
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.531
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.540
+!MESSAGE classpath=235 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.547
+!MESSAGE buffering callback sts4.classpath.OenuBEJA OAuth2_JWT_Resource_Server false 235
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.547
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.551
+!MESSAGE classpath=92 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.554
+!MESSAGE buffering callback sts4.classpath.OenuBEJA SpringBoot_JUnit_Practice_09_Rest false 92
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:40.554
+!MESSAGE executing callback sts4.classpath.OenuBEJA 6 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:14:42.565
+!MESSAGE executing callback sts4.classpath.OenuBEJA FAILED
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2021-09-18 17:14:42.565
+!MESSAGE 
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1956)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2091)
+	at org.springframework.tooling.ls.eclipse.commons.LSP4ECommandExecutor.executeClientCommand(LSP4ECommandExecutor.java:37)
+	at org.springframework.tooling.jdt.ls.commons.classpath.SendClasspathNotificationsJob.flush(SendClasspathNotificationsJob.java:178)
+	at org.springframework.tooling.jdt.ls.commons.classpath.SendClasspathNotificationsJob.run(SendClasspathNotificationsJob.java:149)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface 2 0 2021-09-18 17:53:51.085
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-09-18 17:53:51.085
+!MESSAGE A conflict occurred for CTRL+SHIFT+C:
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.tm4e.languageconfiguration.togglelinecommentcommand,Toggle Line Comment,
+		,
+		Category(org.eclipse.tm4e.languageconfiguration.category,TM4E Language Configuration,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4568e45d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.springframework.tooling.boot.ls.ToggleComment,Toggle Comment,
+		,
+		Category(org.springframework.ide.eclipse.commands,Spring Generic Text Editor,Spring Language Server Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@73ad2ac6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:57:53.803
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.OenuBEJA
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:57:53.803
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.OenuBEJA
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:57:53.803
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-18 17:57:53.804
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.OenuBEJA => OK
+!SESSION 2021-09-19 00:57:02.774 -----------------------------------------------
+eclipse.buildId=4.11.1.202108151956
+java.version=16.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+
+!ENTRY org.eclipse.jface 2 0 2021-09-19 00:57:17.098
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-09-19 00:57:17.098
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@760c777d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7ea039b4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2021-09-19 00:57:21.844
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\john'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:12.866
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:12.866
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@390ed452[org.springframework.tooling.boot.ls:1.27.0.202108151936(id=559)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:12.875
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:12.921
+!MESSAGE Instantiating ReusableClasspathListenerHandler
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.311
+!MESSAGE Boot LS startup time from start to initialized: 2426ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.814
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.jcoviXJlisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.816
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.817
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.818
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.818
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.819
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.jcoviXJl => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.842
+!MESSAGE classpath=232 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.849
+!MESSAGE buffering callback sts4.classpath.jcoviXJl OAuth2_JWT_Authentication_Server false 232
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.850
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.858
+!MESSAGE classpath=128 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.862
+!MESSAGE buffering callback sts4.classpath.jcoviXJl Configuration_Server false 128
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.862
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.868
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.872
+!MESSAGE buffering callback sts4.classpath.jcoviXJl Eureka_Server false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.873
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.883
+!MESSAGE classpath=190 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.888
+!MESSAGE buffering callback sts4.classpath.jcoviXJl Gateway_Server false 190
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.889
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.909
+!MESSAGE classpath=235 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.916
+!MESSAGE buffering callback sts4.classpath.jcoviXJl OAuth2_JWT_Resource_Server false 235
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.917
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.922
+!MESSAGE classpath=92 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.925
+!MESSAGE buffering callback sts4.classpath.jcoviXJl SpringBoot_JUnit_Practice_09_Rest false 92
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:15.926
+!MESSAGE executing callback sts4.classpath.jcoviXJl 6 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 00:58:16.589
+!MESSAGE executing callback sts4.classpath.jcoviXJl SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:46.453
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.jcoviXJl
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:46.454
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.jcoviXJl
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:46.454
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:46.454
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.jcoviXJl => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:50.233
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:50.233
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@390ed452[org.springframework.tooling.boot.ls:1.27.0.202108151936(id=559)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:50.234
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.894
+!MESSAGE Boot LS startup time from start to initialized: 1660ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.960
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.KOlbZQrHisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.961
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.961
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.962
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.962
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.962
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.KOlbZQrH => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.971
+!MESSAGE classpath=232 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.978
+!MESSAGE buffering callback sts4.classpath.KOlbZQrH OAuth2_JWT_Authentication_Server false 232
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.979
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.984
+!MESSAGE classpath=128 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.988
+!MESSAGE buffering callback sts4.classpath.KOlbZQrH Configuration_Server false 128
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.988
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.993
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.998
+!MESSAGE buffering callback sts4.classpath.KOlbZQrH Eureka_Server false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:51.998
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.005
+!MESSAGE classpath=190 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.011
+!MESSAGE buffering callback sts4.classpath.KOlbZQrH Gateway_Server false 190
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.012
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.020
+!MESSAGE classpath=235 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.028
+!MESSAGE buffering callback sts4.classpath.KOlbZQrH OAuth2_JWT_Resource_Server false 235
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.028
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.032
+!MESSAGE classpath=92 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.035
+!MESSAGE buffering callback sts4.classpath.KOlbZQrH SpringBoot_JUnit_Practice_09_Rest false 92
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.036
+!MESSAGE executing callback sts4.classpath.KOlbZQrH 6 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:06:52.555
+!MESSAGE executing callback sts4.classpath.KOlbZQrH SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:16.637
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.KOlbZQrH
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:16.638
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.KOlbZQrH
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:16.638
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:16.638
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.KOlbZQrH => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:18.107
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:18.107
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@390ed452[org.springframework.tooling.boot.ls:1.27.0.202108151936(id=559)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:18.108
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.761
+!MESSAGE Boot LS startup time from start to initialized: 1653ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.827
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.xhiEUPLZisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.827
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.828
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.828
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.828
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.828
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.xhiEUPLZ => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.837
+!MESSAGE classpath=232 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.844
+!MESSAGE buffering callback sts4.classpath.xhiEUPLZ OAuth2_JWT_Authentication_Server false 232
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.844
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.849
+!MESSAGE classpath=128 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.853
+!MESSAGE buffering callback sts4.classpath.xhiEUPLZ Configuration_Server false 128
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.854
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.859
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.863
+!MESSAGE buffering callback sts4.classpath.xhiEUPLZ Eureka_Server false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.863
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.871
+!MESSAGE classpath=190 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.876
+!MESSAGE buffering callback sts4.classpath.xhiEUPLZ Gateway_Server false 190
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.877
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.886
+!MESSAGE classpath=235 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.893
+!MESSAGE buffering callback sts4.classpath.xhiEUPLZ OAuth2_JWT_Resource_Server false 235
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.894
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.898
+!MESSAGE classpath=92 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.901
+!MESSAGE buffering callback sts4.classpath.xhiEUPLZ SpringBoot_JUnit_Practice_09_Rest false 92
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:19.901
+!MESSAGE executing callback sts4.classpath.xhiEUPLZ 6 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:07:20.418
+!MESSAGE executing callback sts4.classpath.xhiEUPLZ SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:05.855
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.xhiEUPLZ
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:05.856
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.xhiEUPLZ
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:05.856
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:05.856
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.xhiEUPLZ => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:07.933
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:07.933
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@390ed452[org.springframework.tooling.boot.ls:1.27.0.202108151936(id=559)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:07.934
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.590
+!MESSAGE Boot LS startup time from start to initialized: 1656ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.655
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.sKHdtAAMisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.655
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.656
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.656
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.656
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.656
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.sKHdtAAM => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.664
+!MESSAGE classpath=232 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.671
+!MESSAGE buffering callback sts4.classpath.sKHdtAAM OAuth2_JWT_Authentication_Server false 232
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.672
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.677
+!MESSAGE classpath=128 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.681
+!MESSAGE buffering callback sts4.classpath.sKHdtAAM Configuration_Server false 128
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.681
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.686
+!MESSAGE classpath=134 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.690
+!MESSAGE buffering callback sts4.classpath.sKHdtAAM Eureka_Server false 134
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.691
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.698
+!MESSAGE classpath=190 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.704
+!MESSAGE buffering callback sts4.classpath.sKHdtAAM Gateway_Server false 190
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.704
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.713
+!MESSAGE classpath=235 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.720
+!MESSAGE buffering callback sts4.classpath.sKHdtAAM OAuth2_JWT_Resource_Server false 235
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.720
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.724
+!MESSAGE classpath=92 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.737
+!MESSAGE buffering callback sts4.classpath.sKHdtAAM SpringBoot_JUnit_Practice_09_Rest false 92
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:09.738
+!MESSAGE executing callback sts4.classpath.sKHdtAAM 6 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-19 01:09:10.246
+!MESSAGE executing callback sts4.classpath.sKHdtAAM SUCCESS [done]
+
+!ENTRY org.eclipse.ui 2 2 2021-09-19 01:21:33.684
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+
+!ENTRY org.eclipse.lsp4e 2 0 2021-09-19 01:34:37.025
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:385)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2092)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
