@@ -11,10 +11,6 @@ public class OneTimePasswordTests {
 	
 	private OneTimePassword oneTimePassword;
 	
-		
-		
-		
-	
 	@Test
 	void getterSetterTest() {
 

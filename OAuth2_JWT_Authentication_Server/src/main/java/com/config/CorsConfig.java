@@ -1,17 +1,9 @@
 package com.config;
 
-import java.util.Collections;
-
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.Ordered;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 //@Configuration
 public class CorsConfig {
-	 
+	/* 
 	 @Bean
 	    public FilterRegistrationBean<CorsFilter> customCorsFilter() {
 	        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -27,4 +19,5 @@ public class CorsConfig {
 	        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	        return bean;
 	    }
+	    */
 }

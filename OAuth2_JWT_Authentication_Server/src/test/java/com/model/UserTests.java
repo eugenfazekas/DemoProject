@@ -35,8 +35,7 @@ public class UserTests {
 	    		 () -> assertEquals(true, user.isMfa()),
 	    		 () -> assertEquals(authorities.get(0), user.getAuthorities().get(0))
 	    		);		
-	}
-	
+	}	
 	
 	@Test
 	void equals1() {

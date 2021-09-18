@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UserUpdateTests {
 	
 	private UserUpdate userUpdate;
-
 	
 	@Test
 	void getterSetterTest() {
@@ -21,9 +20,7 @@ public class UserUpdateTests {
 		userUpdate.setOldPassword("test");
 		userUpdate.setPassword("test2");
 		userUpdate.setMfa(true);
-		
-		
-		
+						
 		assertAll(		
 	    		 () -> assertEquals("id", userUpdate.getId()),
 	    		 () -> assertEquals("eu@fa.hu",userUpdate.getEmail()),
@@ -51,7 +48,6 @@ public class UserUpdateTests {
 		userUpdate2.setMfa(true);
 		
 		assertEquals(true,userUpdate.equals(userUpdate2));
-
 	}
 	
 	@Test
@@ -85,7 +81,6 @@ public class UserUpdateTests {
 		
 		userUpdate2.setId("id");
 		assertEquals(true ,userUpdate.equals(userUpdate2));
-
 	}
 	
 	@Test
@@ -101,5 +96,4 @@ public class UserUpdateTests {
 		assertEquals("UserUpdate [id=" + userUpdate.getId() + ", email=" + userUpdate.getEmail() + ", oldPassword=" + userUpdate.getOldPassword() + ", password=" + userUpdate.getPassword()
 		+ ", mfa=" + userUpdate.isMfa() + "]",userUpdate.toString());
 	}
-
 }

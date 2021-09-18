@@ -3,6 +3,7 @@ package com.auth.password;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -63,4 +64,12 @@ public class OneTimePasswordDetailsImpl  implements UserDetails{
 	public String getId() {
 		return oneTimePassword.getId();
 	}
+	
+	 @Override
+	    public boolean equals(Object o) {
+		 OneTimePasswordDetailsImpl otp = (OneTimePasswordDetailsImpl) o;
+	        return                 oneTimePassword.getEmail() == otp.getUsername() &&
+	        		Objects.equals(oneTimePassword.getPassword(), otp.getPassword()) &&
+	                Objects.equals(oneTimePassword.getId(), otp.getId());
+	    }
 }

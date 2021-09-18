@@ -21,8 +21,7 @@ public class AccountKeyTests {
 		accountKey.setAccountType("user");
 		accountKey.setEmail("eu@fa.hu");
 		
-		assertEquals(accountKey, new AccountKey("key","user","eu@fa.hu"));
-		
+		assertEquals(accountKey, new AccountKey("key","user","eu@fa.hu"));		
 	}
 	
 	@Test
@@ -98,5 +97,4 @@ public class AccountKeyTests {
 		
 		assertEquals( "AccountKey [accountType=" + accountKey.getAccountType() + ", key=" + accountKey.getKey() + ", email=" + accountKey.getEmail() + "]" , accountKey.toString());
 	}
-
 }

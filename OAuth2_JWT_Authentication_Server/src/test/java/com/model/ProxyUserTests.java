@@ -33,8 +33,7 @@ public class ProxyUserTests {
 		proxyUser2.setId("id");
 		
 		assertEquals(true, proxyUser.equals(proxyUser2));
-	}
-	
+	}	
 	
 	@Test
 	void toStringTest() {
@@ -44,5 +43,4 @@ public class ProxyUserTests {
 		
 		assertEquals("ProxyUser [id=" + proxyUser.getId() + "]" , proxyUser.toString());
 	}
-
 }

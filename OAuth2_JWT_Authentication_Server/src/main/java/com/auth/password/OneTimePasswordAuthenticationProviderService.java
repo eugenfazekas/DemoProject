@@ -35,7 +35,7 @@ public class OneTimePasswordAuthenticationProviderService implements Authenticat
 		String username = authentication.getName();
 		String code = authentication.getCredentials().toString();	
 		OneTimePasswordDetailsImpl otpDetails = oneTimePasswordDetailsServiceImpl.loadUserByUsername(username);
-		
+		System.out.println(code+otpDetails.getPassword()); System.out.println(passwordEncoder.matches(code, otpDetails.getPassword())); System.out.println(otpDetails.getUsername()+otpDetails.getPassword());
 		if(passwordEncoder.matches(code, otpDetails.getPassword())) {
 			oneTimePasswordService.removeOneTimePassword(username);
 			
