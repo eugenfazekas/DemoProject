@@ -20,7 +20,7 @@ import com.model.UserUpdate;
 import com.repository.UserRepository;
 import com.util.EmailService;
 import com.util.ProxyServer;
-import com.util.ServletRequest;
+import com.util.Util_ServletRequest;
 import com.util.Util;
 
 
@@ -51,7 +51,7 @@ public class UserServiceTests {
 	private SimpleSourceBean simpleSourceBean;	
 	
 	@MockBean
-	private ServletRequest servletRequest;
+	private Util_ServletRequest servletRequest;
 	
 	@MockBean
 	private Util util;
@@ -129,7 +129,7 @@ public class UserServiceTests {
 		
 		when(mockUserRepository.setActiveUser(user.getEmail())).thenReturn("User Activated!");
 		when(mockAccountKeyService.removeKey(key)).thenReturn("AccountKey Successfully removed");
-		doNothing().when(mockProxyServer).sendNewUserId(user.getId());
+		when(mockProxyServer.sendNewUserId(user.getId())).thenReturn("Resource Server Status 200 user activated");
 		
 		assertEquals("User Successfully activated!", userService.userActivation(key));
 	}
@@ -144,7 +144,7 @@ public class UserServiceTests {
 		when(mockAccountKeyService.findAccountKey(key)).thenReturn(null);
 		when(mockUserRepository.setActiveUser("eu@fa.hu")).thenReturn(null);
 		when(mockAccountKeyService.removeKey(key)).thenReturn(null);
-		doNothing().when(mockProxyServer).sendNewUserId("userID");
+		when(mockProxyServer.sendNewUserId("userId")).thenReturn(null);
 		
 		assertEquals("User have not been activated!", userService.userActivation(key));
 	}

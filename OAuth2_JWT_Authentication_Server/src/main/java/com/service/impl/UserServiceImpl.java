@@ -15,7 +15,7 @@ import com.service.AccountKeyService;
 import com.service.UserService;
 import com.util.EmailService;
 import com.util.ProxyServer;
-import com.util.ServletRequest;
+import com.util.Util_ServletRequest;
 import com.util.Util;
 
 import brave.ScopedSpan;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
 	private EmailService emailService;
 	private ProxyServer proxyServer;
 	private SimpleSourceBean simpleSourceBean;
-	private ServletRequest servletRequest;
+	private Util_ServletRequest servletRequest;
 	
 	@Autowired
 	private Util util;
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
 	Tracer tracer;
 
 	public UserServiceImpl(AccountKeyService accountKeyService, UserRepository userRepository, EmailService emailService,
-			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean, ServletRequest servletRequest ) {
+			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean, Util_ServletRequest servletRequest ) {
 		this.accountKeyService = accountKeyService;
 		this.userRepository = userRepository;
 		this.emailService = emailService;
@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService{
 		this.simpleSourceBean = simpleSourceBean;
 		this.servletRequest = servletRequest; 
 	}
-
 
 	public String createUsersTable() {
 		userRepository.createUsersTable();
@@ -150,6 +149,7 @@ public class UserServiceImpl implements UserService{
 		String userRepositorySetActiveResponse = null;
 		String userRepositoryRemoveKeyResponse = null;
 		User userRepositoryFindByEmailyResponse  = null;
+		String proxyServerResponse = null;
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("userActivation");
 	
@@ -165,7 +165,7 @@ public class UserServiceImpl implements UserService{
 			userRepositorySetActiveResponse = userRepository.setActiveUser(accountKeyServiceResponse.getEmail());
 			userRepositoryRemoveKeyResponse = accountKeyService.removeKey(key);
 		    userRepositoryFindByEmailyResponse = userRepository.findByEmail(accountKeyServiceResponse.getEmail());
-			proxyServer.sendNewUserId(userRepositoryFindByEmailyResponse.getId());
+		    proxyServerResponse = proxyServer.sendNewUserId(userRepositoryFindByEmailyResponse.getId());
 					
 			newSpan.tag("Authentication-service UserServiceImpl userActivation():", "User userActivation");
 			newSpan.annotate("UserActivation finished");
@@ -175,7 +175,8 @@ public class UserServiceImpl implements UserService{
 			if(accountKeyServiceResponse != null &&
 				userRepositorySetActiveResponse != null && 
 				userRepositoryRemoveKeyResponse != null && 
-				userRepositoryFindByEmailyResponse != null)
+				userRepositoryFindByEmailyResponse != null &&
+				proxyServerResponse != null)
 			return "User Successfully activated!";
 		}
 		return "User have not been activated!";

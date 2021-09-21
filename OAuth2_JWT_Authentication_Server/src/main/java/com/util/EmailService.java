@@ -34,6 +34,7 @@ public class EmailService {
 	}
 	
 public String sendMessageen(String email ,String fullName,String key)  {
+	String returnMessage = "Message Has Not Been Sent!";
 	MimeMessage msg = javaMailSender.createMimeMessage();
     MimeMessageHelper messageen;
 	try {
@@ -49,11 +50,12 @@ public String sendMessageen(String email ,String fullName,String key)  {
 								"<a style='color: white' href="+validationLink + key+">"+validationLink + key+"  </a>" +
 							"</div>",true);
 		javaMailSender.send(msg);
+		returnMessage ="message send!";
 	} catch (MessagingException e) {
 
 		e.printStackTrace();
 	}
-			return "message send!";
+			return returnMessage;
 		}
 
 

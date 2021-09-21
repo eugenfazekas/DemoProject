@@ -26,7 +26,6 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 
 @Configuration
 @EnableAuthorizationServer
-
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());

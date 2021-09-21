@@ -12,7 +12,7 @@ import com.model.User;
 import com.repository.OneTimePasswordRepository;
 import com.service.OneTimePasswordService;
 import com.service.UserService;
-import com.util.ServletRequest;
+import com.util.Util_ServletRequest;
 
 
 @Service
@@ -23,13 +23,13 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 	private BCryptPasswordEncoder passwordEncoder;
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	private ServletRequest servletRequest;
+	private Util_ServletRequest util_ServletRequest;
 	 
-	public OneTimePasswordServiceImpl(OneTimePasswordRepository oneTimePasswordRepository, UserService userService, ServletRequest servletRequest) {
+	public OneTimePasswordServiceImpl(OneTimePasswordRepository oneTimePasswordRepository, UserService userService, Util_ServletRequest util_ServletRequest) {
 		this.oneTimePasswordRepository = oneTimePasswordRepository;
 		this.userService = userService;
 		this.passwordEncoder =  new BCryptPasswordEncoder();
-		this.servletRequest = servletRequest;
+		this.util_ServletRequest = util_ServletRequest;
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 	@Override
 	public String createOneTimePassword() {
 
-		String userName = servletRequest.getUsernameHeader();
-		String password = servletRequest.getPasswordHeader();
+		String userName = util_ServletRequest.getUsernameHeader();
+		String password = util_ServletRequest.getPasswordHeader();
 		String randomPassword = getRandomNumberString();
 
 		if(userName ==  "" || password== "" || userName ==  null || password== null ) {

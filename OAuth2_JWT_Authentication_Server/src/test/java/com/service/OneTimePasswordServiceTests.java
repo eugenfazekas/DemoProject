@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.model.OneTimePassword;
 import com.model.User;
 import com.repository.OneTimePasswordRepository;
-import com.util.ServletRequest;
+import com.util.Util_ServletRequest;
 
 @SpringBootTest
 public class OneTimePasswordServiceTests {
@@ -31,7 +31,7 @@ public class OneTimePasswordServiceTests {
 	private UserService userService;
 		
 	@MockBean
-	private ServletRequest servletRequest;
+	private Util_ServletRequest servletRequest;
 	
 	private User user;
 	
