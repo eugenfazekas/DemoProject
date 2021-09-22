@@ -19,5 +19,5 @@ public interface UserService {
 	
 	String updateUser(UserUpdate user);
 	
-	String mfaCheck();
+	String mfaCheck(String email);
 }

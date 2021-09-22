@@ -109,15 +109,15 @@ public class UserControllerTests {
 		
 		String otpCreated = "One time password send";
 		
-		when(oneTimePasswordService.createOneTimePassword()).thenReturn(otpCreated);
+		when(oneTimePasswordService.createOneTimePassword("eu@fa.hu", "pass")).thenReturn(otpCreated);
 		
 		mvc.perform(post("/api1/v1/user/createOneTimePassword")
-                .header("username", "username")
-                .header("password", "password"))
+                .header("username", "eu@fa.hu")
+                .header("password", "pass"))
                 .andExpect(status().isOk())
 	            .andExpect(content().string(otpCreated));
 
-	 verify(oneTimePasswordService, times(1)).createOneTimePassword();
+	 verify(oneTimePasswordService, times(1)).createOneTimePassword("eu@fa.hu", "pass");
 
     }
 	
@@ -126,14 +126,14 @@ public class UserControllerTests {
 		
 		String userExist = "true";
 		
-		when(mockUserService.mfaCheck()).thenReturn(userExist);
+		when(mockUserService.mfaCheck("eu@fa.hu")).thenReturn(userExist);
 		
 		mvc.perform(post("/api1/v1/user/mfaCheck")
-                .header("email", "eu@fa.hu"))
+                .header("username", "eu@fa.hu"))
                 .andExpect(status().isOk())
 	            .andExpect(content().string(userExist));
 
-	 verify(mockUserService, times(1)).mfaCheck();
+	 verify(mockUserService, times(1)).mfaCheck("eu@fa.hu");
     }
 
 }

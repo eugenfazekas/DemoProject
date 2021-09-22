@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,12 +54,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(path = "/createOneTimePassword", method = RequestMethod.POST)
-    public String createOneTimePassword() {
-		return oneTimePasswordService.createOneTimePassword();
+    public String createOneTimePassword(@RequestHeader("username") String username, @RequestHeader("password") String password) {
+		return oneTimePasswordService.createOneTimePassword(username, password);
     }
 	
 	@RequestMapping(path = "/mfaCheck", method = RequestMethod.POST)
-    public String mfaCheck() {
-		return userService.mfaCheck();
+    public String mfaCheck(@RequestHeader("username") String username) {
+		return userService.mfaCheck(username);
     }
 }

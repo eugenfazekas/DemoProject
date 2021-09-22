@@ -8,7 +8,7 @@ public interface OneTimePasswordService {
 	
 	String dropOneTimePasswordTable();
 
-	String createOneTimePassword();
+	String createOneTimePassword(String username, String password);
 	
 	String getRandomNumberString();	
 	

@@ -21,10 +21,20 @@ public class SimpleSourceBean {
         this.source = source;
     }
 
-    public void publisUserAuthenticationId(String id){
+    public boolean publisUserAuthenticationId(String id){
+    	
+       boolean sent = false;
+    	
+       if(id ==  "" ||  id ==  null ) {
+			throw new RuntimeException(
+			"Authentication_Server.SimpleSourceBean --> id cannot be null or empty!");
+			}
+       
        logger.debug("Sending Kafka message {} for Resource-Server Id: {}", id);
-        UserDetailsPrepare change =  new UserDetailsPrepare(id);
-
-        source.output().send(MessageBuilder.withPayload(change).build());
+       UserDetailsPrepare change =  new UserDetailsPrepare(id);
+       
+       sent = source.output().send(MessageBuilder.withPayload(change).build());
+        
+      return sent;
     }
 }

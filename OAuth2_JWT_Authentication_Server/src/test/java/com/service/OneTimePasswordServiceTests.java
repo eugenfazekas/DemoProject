@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.model.OneTimePassword;
 import com.model.User;
 import com.repository.OneTimePasswordRepository;
-import com.util.Util_ServletRequest;
 
 @SpringBootTest
 public class OneTimePasswordServiceTests {
@@ -29,9 +28,6 @@ public class OneTimePasswordServiceTests {
 	
 	@MockBean
 	private UserService userService;
-		
-	@MockBean
-	private Util_ServletRequest servletRequest;
 	
 	private User user;
 	
@@ -50,13 +46,9 @@ public class OneTimePasswordServiceTests {
 	@Test
 	void createOneTimePasswordTest1() {
 		
-		 Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.createOneTimePassword();  });
-	     Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.createOneTimePassword();  });
-	     
-	     when(servletRequest.getUsernameHeader()).thenReturn("eu@fa.hu");
-	     when(servletRequest.getPasswordHeader()).thenReturn("myPassword");
-	     
-	     
+		 Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.createOneTimePassword(null,null);  });
+	     Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.createOneTimePassword("","");  });
+     
 	     user = new User();
 	     user.setId("id");
 	     user.setEmail("eu@fa.hu");
@@ -68,15 +60,11 @@ public class OneTimePasswordServiceTests {
 	     when(oneTimePasswordRepository.OneTimePasswordCheck("eu@fa.hu")).thenReturn(0);
 	     when(oneTimePasswordRepository.createOneTimePassword(new OneTimePassword())).thenReturn(new OneTimePassword());
 	     
-	     assertEquals("One time password send", oneTimePasswordService.createOneTimePassword());
+	     assertEquals("One time password send", oneTimePasswordService.createOneTimePassword("eu@fa.hu","myPassword"));
 	}
 	
 	@Test
 	void createOneTimePasswordTest2() {
-	     
-	     when(servletRequest.getUsernameHeader()).thenReturn("eu@fa.hu");
-	     when(servletRequest.getPasswordHeader()).thenReturn("myPassword1");//wrong password
-	     
 	     
 	     user = new User();
 	     user.setId("id");
@@ -89,17 +77,13 @@ public class OneTimePasswordServiceTests {
 	     when(oneTimePasswordRepository.OneTimePasswordCheck("eu@fa.hu")).thenReturn(1);
 	     when(oneTimePasswordRepository.createOneTimePassword(new OneTimePassword())).thenReturn(new OneTimePassword());
 	     
-	     assertEquals("Invalid username or password", oneTimePasswordService.createOneTimePassword());
+	     assertEquals("Invalid username or password", oneTimePasswordService.createOneTimePassword("eu@fa.hu","myPassword1"));
 		
 	}
 	
 	@Test
 	void createOneTimePasswordTest3() {
-	     
-	     when(servletRequest.getUsernameHeader()).thenReturn("eu@fa.hu");
-	     when(servletRequest.getPasswordHeader()).thenReturn("myPassword");//wrong password
-	     
-	     
+	     	     
 	     user = new User();
 	     user.setId("id");
 	     user.setEmail("eu@fa.hu");
@@ -111,7 +95,7 @@ public class OneTimePasswordServiceTests {
 	     when(oneTimePasswordRepository.OneTimePasswordCheck("eu@fa.hu")).thenReturn(0);
 	     when(oneTimePasswordRepository.createOneTimePassword(new OneTimePassword())).thenReturn(new OneTimePassword());
 	     
-	     assertEquals("Invalid username or password", oneTimePasswordService.createOneTimePassword());
+	     assertEquals("Invalid username or password", oneTimePasswordService.createOneTimePassword("eu@fa.hu","myPassword"));
 		
 	}
 

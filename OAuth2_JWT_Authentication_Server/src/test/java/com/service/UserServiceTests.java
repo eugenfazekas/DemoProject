@@ -1,7 +1,6 @@
 package com.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -20,7 +19,6 @@ import com.model.UserUpdate;
 import com.repository.UserRepository;
 import com.util.EmailService;
 import com.util.ProxyServer;
-import com.util.Util_ServletRequest;
 import com.util.Util;
 
 
@@ -49,9 +47,6 @@ public class UserServiceTests {
 	
 	@MockBean
 	private SimpleSourceBean simpleSourceBean;	
-	
-	@MockBean
-	private Util_ServletRequest servletRequest;
 	
 	@MockBean
 	private Util util;
@@ -202,16 +197,15 @@ public class UserServiceTests {
 	@Test
 	void mfaCheckTest1() {
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.mfaCheck(); });	
+		Assertions.assertThrows(RuntimeException.class, () -> {  userService.mfaCheck(null); });	
 		
 		User user = new User();
 		user.setId("id");
 		user.setEmail("eu@fa.hu");
-		
-		when(servletRequest.getUsernameHeader()).thenReturn(user.getEmail());
+
 		when(mockUserRepository.findByEmail(user.getEmail())).thenReturn(user);
-		doNothing().when(simpleSourceBean).publisUserAuthenticationId(user.getId());		
-		assertEquals("false", userService.mfaCheck());
+		when(simpleSourceBean.publisUserAuthenticationId(user.getId())).thenReturn(true);	
+		assertEquals("false", userService.mfaCheck("eu@fa.hu"));
 	}
 	
 	@Test
@@ -221,20 +215,17 @@ public class UserServiceTests {
 		user.setId("id");
 		user.setEmail("eu@fa.hu");
 		user.setMfa(true);
-		
-		when(servletRequest.getUsernameHeader()).thenReturn(user.getEmail());
+
 		when(mockUserRepository.findByEmail(user.getEmail())).thenReturn(user);
-		doNothing().when(simpleSourceBean).publisUserAuthenticationId(user.getId());		
-		assertEquals("true", userService.mfaCheck());
+		when(simpleSourceBean.publisUserAuthenticationId(user.getId())).thenReturn(true);			
+		assertEquals("true", userService.mfaCheck("eu@fa.hu"));
 	}
 	
 	@Test
 	void mfaCheckTest3() {
-		
-		when(servletRequest.getUsernameHeader()).thenReturn("eu@fa.hu");
-		when(mockUserRepository.findByEmail("eu@fa.hu")).thenReturn(null);
-		doNothing().when(simpleSourceBean).publisUserAuthenticationId("eu@fa.hu");		
-		assertEquals("User Not Exist!", userService.mfaCheck());
+
+		when(mockUserRepository.findByEmail("eu@fa.hu")).thenReturn(null);		
+		assertEquals("User Not Exist!", userService.mfaCheck("eu@fa.hu"));
 	}
 
 	@Test

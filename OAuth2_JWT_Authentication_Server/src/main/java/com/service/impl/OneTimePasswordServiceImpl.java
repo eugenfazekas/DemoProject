@@ -12,8 +12,6 @@ import com.model.User;
 import com.repository.OneTimePasswordRepository;
 import com.service.OneTimePasswordService;
 import com.service.UserService;
-import com.util.Util_ServletRequest;
-
 
 @Service
 public class OneTimePasswordServiceImpl implements OneTimePasswordService {
@@ -22,14 +20,11 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 	private UserService userService;
 	private BCryptPasswordEncoder passwordEncoder;
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
-	private Util_ServletRequest util_ServletRequest;
 	 
-	public OneTimePasswordServiceImpl(OneTimePasswordRepository oneTimePasswordRepository, UserService userService, Util_ServletRequest util_ServletRequest) {
+	public OneTimePasswordServiceImpl(OneTimePasswordRepository oneTimePasswordRepository, UserService userService) {
 		this.oneTimePasswordRepository = oneTimePasswordRepository;
 		this.userService = userService;
 		this.passwordEncoder =  new BCryptPasswordEncoder();
-		this.util_ServletRequest = util_ServletRequest;
 	}
 
 	@Override
@@ -47,30 +42,28 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 	}
 
 	@Override
-	public String createOneTimePassword() {
+	public String createOneTimePassword(String username, String password) {
 
-		String userName = util_ServletRequest.getUsernameHeader();
-		String password = util_ServletRequest.getPasswordHeader();
 		String randomPassword = getRandomNumberString();
 
-		if(userName ==  "" || password== "" || userName ==  null || password== null ) {
+		if(username ==  "" || password== "" || username ==  null || password== null ) {
 			throw new RuntimeException(
 			"Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!");
 			}
 
-		User user = userService.findByEmail(userName);
-		Integer oneTimePasswords = oneTimePasswordRepository.OneTimePasswordCheck(userName);
+		User user = userService.findByEmail(username);
+		Integer oneTimePasswords = oneTimePasswordRepository.OneTimePasswordCheck(username);
 
 		if(oneTimePasswords > 0) {
-			oneTimePasswordRepository.removeOneTimePassword(userName);
-			log.debug("OneTimepassword removed "+userName);
+			oneTimePasswordRepository.removeOneTimePassword(username);
+			log.debug("OneTimepassword removed "+username);
 		}
 
 		if(user != null && passwordEncoder.matches(password, user.getPassword()) && user.isActive() == true && user.isMfa()) {
 			
 			OneTimePassword oneTimePassword = new OneTimePassword();
 			oneTimePassword.setId(user.getId());
-			oneTimePassword.setEmail(userName);
+			oneTimePassword.setEmail(username);
 			oneTimePassword.setPassword(new BCryptPasswordEncoder().encode(randomPassword));
 			oneTimePasswordRepository.createOneTimePassword(oneTimePassword);
 			log.debug(randomPassword);

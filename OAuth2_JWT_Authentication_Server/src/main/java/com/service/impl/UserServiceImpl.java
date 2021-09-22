@@ -15,7 +15,6 @@ import com.service.AccountKeyService;
 import com.service.UserService;
 import com.util.EmailService;
 import com.util.ProxyServer;
-import com.util.Util_ServletRequest;
 import com.util.Util;
 
 import brave.ScopedSpan;
@@ -34,7 +33,6 @@ public class UserServiceImpl implements UserService{
 	private EmailService emailService;
 	private ProxyServer proxyServer;
 	private SimpleSourceBean simpleSourceBean;
-	private Util_ServletRequest servletRequest;
 	
 	@Autowired
 	private Util util;
@@ -46,13 +44,12 @@ public class UserServiceImpl implements UserService{
 	Tracer tracer;
 
 	public UserServiceImpl(AccountKeyService accountKeyService, UserRepository userRepository, EmailService emailService,
-			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean, Util_ServletRequest servletRequest ) {
+			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean) {
 		this.accountKeyService = accountKeyService;
 		this.userRepository = userRepository;
 		this.emailService = emailService;
 		this.proxyServer = proxyServer;
 		this.simpleSourceBean = simpleSourceBean;
-		this.servletRequest = servletRequest; 
 	}
 
 	public String createUsersTable() {
@@ -211,16 +208,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String mfaCheck() {
+	public String mfaCheck(String email) {
 		
 		ScopedSpan newSpan = tracer.startScopedSpan("mfaCheck");
 		
-		if(servletRequest.getUsernameHeader() == "" || servletRequest.getUsernameHeader()  == null) {
+		if(email == "" || email  == null) {
 			throw new RuntimeException(
 			"Authentication_Server.UserService.mfaCheck --> header email cannot be null or empty string!");
 			}
-		
-		String email = servletRequest.getUsernameHeader();
 		
 		User user =	null;
 		user = userRepository.findByEmail(email);	

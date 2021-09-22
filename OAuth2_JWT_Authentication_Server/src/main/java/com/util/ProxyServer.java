@@ -32,7 +32,7 @@ public class ProxyServer {
 	@Value("${resourceService.createUserResourceUrl}")
 	private String createUserResourceUrl;
 	
-	public String sendNewUserId(String id) {
+	public String sendNewUserId(String id)  {
 			
 		ScopedSpan newSpan = tracer.startScopedSpan("sendNewUserId");		
 		String httpResponse = null;
@@ -42,6 +42,7 @@ public class ProxyServer {
 			newSpan.annotate("sendNewUserId finished");
 			newSpan.finish();
 			log.debug("Resource Server Status = "+response.getStatusCode().toString()+ " with Id " + response.getBody());
+		
 			httpResponse = response.getStatusCode().toString();
 		} catch (Exception e) {
 			log.debug("Resource Server Not Found " + e);
