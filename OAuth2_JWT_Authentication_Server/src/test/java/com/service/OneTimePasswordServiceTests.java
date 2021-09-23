@@ -1,6 +1,7 @@
 package com.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Assertions;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.exception.NoUsernameOrPasswordException;
 import com.model.OneTimePassword;
 import com.model.User;
 import com.repository.OneTimePasswordRepository;
@@ -46,10 +48,19 @@ public class OneTimePasswordServiceTests {
 	@Test
 	void createOneTimePasswordTest1() {
 		
-		 Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.createOneTimePassword(null,null);  });
-	     Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.createOneTimePassword("","");  });
+		 Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.createOneTimePassword(null,null));
+		 assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!", throwable1.getMessage());
      
-	     user = new User();
+		 Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.createOneTimePassword("",null));
+		 assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!", throwable2.getMessage());
+		 
+		 Throwable throwable3 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.createOneTimePassword("",""));
+		 assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!", throwable3.getMessage());
+		 
+		 Throwable throwable4 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.createOneTimePassword(null,""));
+		 assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!", throwable4.getMessage());
+	    
+		 user = new User();
 	     user.setId("id");
 	     user.setEmail("eu@fa.hu");
 	     user.setPassword(encoder.encode("myPassword"));
@@ -102,8 +113,11 @@ public class OneTimePasswordServiceTests {
 	@Test
 	void findOneTimePasswordTest1() {
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.findOneTimePassword("");  });
-	    Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.findOneTimePassword(null);  });
+		 Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.findOneTimePassword(null));
+		 assertEquals("Authentication_Server.OneTimePasswordService.findOneTimePassword -->  email cannot be null or empty String!", throwable1.getMessage());
+     
+		 Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.findOneTimePassword(""));
+		 assertEquals("Authentication_Server.OneTimePasswordService.findOneTimePassword -->  email cannot be null or empty String!", throwable2.getMessage());
 	    
 	    when(oneTimePasswordRepository.findOneTimePassword("eu@fa.hu")).thenReturn(new OneTimePassword());
 	    assertEquals(new OneTimePassword(), oneTimePasswordService.findOneTimePassword("eu@fa.hu"));
@@ -121,8 +135,11 @@ public class OneTimePasswordServiceTests {
 	@Test
 	void removeOneTimePasswordTest1() {
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.removeOneTimePassword("");  });
-	    Assertions.assertThrows(RuntimeException.class, () -> {  oneTimePasswordService.removeOneTimePassword(null);  });
+		 Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.removeOneTimePassword(null));
+		 assertEquals("Authentication_Server.OneTimePasswordService.removeOneTimePassword -->  email cannot be null or empty String!", throwable1.getMessage());
+    
+		 Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> oneTimePasswordService.removeOneTimePassword(""));
+		 assertEquals("Authentication_Server.OneTimePasswordService.removeOneTimePassword -->  email cannot be null or empty String!", throwable2.getMessage());
 	    
 	    when(oneTimePasswordRepository.removeOneTimePassword("eu@fa.hu")).thenReturn("OneTimePassword Deleted");
 	    assertEquals("OneTimePassword Deleted", oneTimePasswordService.removeOneTimePassword("eu@fa.hu"));

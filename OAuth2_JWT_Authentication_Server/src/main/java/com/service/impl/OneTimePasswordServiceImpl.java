@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.exception.NoUsernameOrPasswordException;
 import com.model.OneTimePassword;
 import com.model.User;
 import com.repository.OneTimePasswordRepository;
@@ -47,7 +48,7 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 		String randomPassword = getRandomNumberString();
 
 		if(username ==  "" || password== "" || username ==  null || password== null ) {
-			throw new RuntimeException(
+			throw new NoUsernameOrPasswordException(
 			"Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!");
 			}
 
@@ -78,7 +79,7 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 		OneTimePassword oneTimePasswordRepositoryFindOTPResponse = null;
 		
 		if(email ==  "" || email == null) {
-			throw new RuntimeException(
+			throw new NoUsernameOrPasswordException(
 			"Authentication_Server.OneTimePasswordService.findOneTimePassword -->  email cannot be null or empty String!");
 			}
 		
@@ -98,7 +99,7 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 		String removeOneTimePassword_removeOneTimePassword_response = null;
 		
 		if(email ==  "" || email == null) {
-			throw new RuntimeException(
+			throw new NoUsernameOrPasswordException(
 			"Authentication_Server.OneTimePasswordService.removeOneTimePassword -->  email cannot be null or empty String!");
 			}
 		removeOneTimePassword_removeOneTimePassword_response = oneTimePasswordRepository.removeOneTimePassword(email);

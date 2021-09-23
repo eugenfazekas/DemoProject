@@ -7,6 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.events.source.SimpleSourceBean;
+import com.exception.DuplicateUserException;
+import com.exception.NoUserActivationKeyException;
+import com.exception.NoUserIdException;
+import com.exception.NoUsernameOrPasswordException;
 import com.model.AccountKey;
 import com.model.User;
 import com.model.UserUpdate;
@@ -67,7 +71,7 @@ public class UserServiceImpl implements UserService{
 		User repositoryResponse = null;
 		
 		if(email == "" || email == null) {
-			throw new RuntimeException(
+			throw new NoUsernameOrPasswordException(
 			"Authentication_Server.UserService.findByEmail --> email cannot be null or empty string!");
 			}
 		
@@ -91,10 +95,14 @@ public class UserServiceImpl implements UserService{
 		ScopedSpan newSpan = tracer.startScopedSpan("registerring User");
 		
 		if(user.getEmail() == "" || user.getEmail() == null || user.getPassword() == "" || user.getPassword() == null) {
-			throw new RuntimeException(
+			throw new NoUsernameOrPasswordException(
 			"Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!");
 			}
 
+		if(userExistCheck(user.getEmail())) {
+			throw new DuplicateUserException("Authentication_Server.UserService.registerUser --> User with this username allready exist!");
+		}
+		
 		String uuid = util.UUID_generator();
 		user.setId(uuid);
 	    user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -125,7 +133,7 @@ public class UserServiceImpl implements UserService{
 		ScopedSpan newSpan = tracer.startScopedSpan("userExistCheck");
 		
 		if(email == "" || email == null) {
-			throw new RuntimeException(
+			throw new NoUsernameOrPasswordException(
 			"Authentication_Server.UserService.userExistCheck --> email cannot be null or empty string!");
 			}
 		
@@ -151,7 +159,7 @@ public class UserServiceImpl implements UserService{
 		ScopedSpan newSpan = tracer.startScopedSpan("userActivation");
 	
 		if(key == "" || key == null) {
-			throw new RuntimeException(
+			throw new NoUserActivationKeyException(
 			"Authentication_Server.UserService.userActivation --> key cannot be null or empty string!");
 			}
 		
@@ -185,7 +193,7 @@ public class UserServiceImpl implements UserService{
 		ScopedSpan newSpan = tracer.startScopedSpan("updateUser");
 		
 		if(userUpdate.getId() == "" || userUpdate.getId()  == null) {
-			throw new RuntimeException(
+			throw new NoUserIdException(
 			"Authentication_Server.UserService.updateUser --> updateUser.id cannot be null or empty string!");
 			}
 		

@@ -11,8 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.events.source.SimpleSourceBean;
+import com.exception.DuplicateUserException;
+import com.exception.NoUserActivationKeyException;
+import com.exception.NoUserIdException;
+import com.exception.NoUsernameOrPasswordException;
 import com.model.AccountKey;
 import com.model.User;
 import com.model.UserUpdate;
@@ -66,12 +70,15 @@ public class UserServiceTests {
 	@Test
 	void findByEmailTest1() {
 		
-		String EMAIL = "eu@fa.hu";
-		when(mockUserRepository.findByEmail(EMAIL)).thenReturn(new User());	
+		Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.findByEmail(null));
+		 assertEquals("Authentication_Server.UserService.findByEmail --> email cannot be null or empty string!", throwable1.getMessage());
 		
-		 Assertions.assertThrows(RuntimeException.class, () -> {  userService.findByEmail("");    });
-	     Assertions.assertThrows(RuntimeException.class, () -> {  userService.findByEmail(null);  });
-
+		Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.findByEmail(""));
+		 assertEquals("Authentication_Server.UserService.findByEmail --> email cannot be null or empty string!", throwable2.getMessage());
+		
+		String EMAIL = "eu@fa.hu";
+		
+		when(mockUserRepository.findByEmail(EMAIL)).thenReturn(new User());	
 	     assertEquals(new User(), userService.findByEmail(EMAIL));
 	}
 	
@@ -87,7 +94,12 @@ public class UserServiceTests {
 	@Test
 	void userExistCheckTest1() {
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.userExistCheck(null); });
+		Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.userExistCheck(null));
+		 assertEquals("Authentication_Server.UserService.userExistCheck --> email cannot be null or empty string!", throwable1.getMessage());
+		 
+		Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.userExistCheck(""));
+		 assertEquals("Authentication_Server.UserService.userExistCheck --> email cannot be null or empty string!", throwable2.getMessage());
+		 
 		String EMAIL = "eu@fa.hu";
 		when(mockUserRepository.userExistCheck(EMAIL)).thenReturn(1) ;	
 		assertEquals(true, userService.userExistCheck(EMAIL));
@@ -95,8 +107,7 @@ public class UserServiceTests {
 	
 	@Test
 	void userExistCheckTest2() {
-		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.userExistCheck(""); });
+
 		String EMAIL = "eu@fa.hu";
 		when(mockUserRepository.userExistCheck(EMAIL)).thenReturn(0) ;	
 		assertEquals(false, userService.userExistCheck(EMAIL));
@@ -105,7 +116,11 @@ public class UserServiceTests {
 	@Test
 	void userActivation1() {
 				
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.userActivation(""); });
+		Throwable throwable1 = assertThrows(NoUserActivationKeyException.class, () -> userService.userActivation(null));
+		 assertEquals("Authentication_Server.UserService.userActivation --> key cannot be null or empty string!", throwable1.getMessage());
+		 
+		 Throwable throwable2 = assertThrows(NoUserActivationKeyException.class, () -> userService.userActivation(""));
+		 assertEquals("Authentication_Server.UserService.userActivation --> key cannot be null or empty string!", throwable2.getMessage());
 		
 		String key = "key";
 		
@@ -147,8 +162,10 @@ public class UserServiceTests {
 	@Test
 	void updateUserTest1() {
 		
-		UserUpdate userUpdate = new UserUpdate();		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.updateUser(userUpdate); });
+		UserUpdate userUpdate = new UserUpdate();	
+		
+		Throwable throwable = assertThrows(NoUserIdException.class, () -> userService.updateUser(userUpdate));
+		 assertEquals("Authentication_Server.UserService.updateUser --> updateUser.id cannot be null or empty string!", throwable.getMessage());
 		
 		userUpdate.setId("id");
 		userUpdate.setEmail("eu@fa.hu");
@@ -174,8 +191,11 @@ public class UserServiceTests {
 	@Test
 	void updateUserTest2() {
 		
-		UserUpdate userUpdate = new UserUpdate();		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.updateUser(userUpdate); });
+		UserUpdate userUpdate = new UserUpdate();			
+		userUpdate.setId("");
+		
+		Throwable throwable = assertThrows(NoUserIdException.class, () -> userService.updateUser(userUpdate));
+		 assertEquals("Authentication_Server.UserService.updateUser --> updateUser.id cannot be null or empty string!", throwable.getMessage());
 		
 		userUpdate.setId("id");
 		userUpdate.setEmail("eu@fa.hu");
@@ -233,19 +253,24 @@ public class UserServiceTests {
 		
 		user = new User();	
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.registerUser(user); });
-		
+		Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.registerUser(user));
+		 assertEquals("Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!", throwable1.getMessage());
+		 	
 		user.setEmail("");
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.registerUser(user); });
+		Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.registerUser(user));
+		 assertEquals("Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!", throwable2.getMessage());
 		
-		user.setEmail("eu@fa.hu");
+		user.setEmail("eu@fa1.hu");
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.registerUser(user); });
+		Throwable throwable3 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.registerUser(user));
+		 assertEquals("Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!", throwable3.getMessage());
 		
 		user.setPassword("");
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.registerUser(user); });
+		Throwable throwable4 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.registerUser(user));
+		 assertEquals("Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!", throwable4.getMessage());
+	 
 	}
 		
 	@Test

@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.exception.CreateAccountKeyException;
+import com.exception.NoUserActivationKeyException;
 import com.model.AccountKey;
 import com.repository.AccountKeyRepository;
 import com.service.AccountKeyService;
@@ -36,7 +38,7 @@ public class AccountKeyServiceImpl implements AccountKeyService {
 		String accountKeyRepositoryResponse = null;
 		
 		if(account.getAccountType() ==  null || account.getKey() == null || account.getEmail() == null) {
-			throw new RuntimeException(
+			throw new CreateAccountKeyException(
 			"Authentication_Server.AccountKeyService.createAccountKey --> accountkey, email, usertype cannot be null!");
 			}
 				
@@ -53,7 +55,7 @@ public class AccountKeyServiceImpl implements AccountKeyService {
 	public boolean keyCheck(String key) {
 	
 		if(key == null || key == "") {
-			throw new RuntimeException(
+			throw new NoUserActivationKeyException(
 			"Authentication_Server.AccountKeyService.keyCheck --> key cannot be null or empty String!");
 			}
 		
@@ -69,7 +71,7 @@ public class AccountKeyServiceImpl implements AccountKeyService {
 		String accountKeyRepositoryResponse = null;
 		
 		if(key == null || key == "") {
-			throw new RuntimeException(
+			throw new NoUserActivationKeyException(
 			"Authentication_Server.AccountKeyService.removeKey --> key cannot be null or empty String!");
 			}
 		
@@ -88,7 +90,7 @@ public class AccountKeyServiceImpl implements AccountKeyService {
 		AccountKey accountKeyRepositoryResponse = null;
 		
 		if(key == null || key == "") {
-			throw new RuntimeException(
+			throw new NoUserActivationKeyException(
 			"Authentication_Server.AccountKeyService.findAccountKey --> key cannot be null or empty String!");
 			}
 		

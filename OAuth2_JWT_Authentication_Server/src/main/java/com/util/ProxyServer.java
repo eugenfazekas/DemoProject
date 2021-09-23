@@ -33,7 +33,7 @@ public class ProxyServer {
 	private String createUserResourceUrl;
 	
 	public String sendNewUserId(String id)  {
-			
+		
 		ScopedSpan newSpan = tracer.startScopedSpan("sendNewUserId");		
 		String httpResponse = null;
 		try {		
