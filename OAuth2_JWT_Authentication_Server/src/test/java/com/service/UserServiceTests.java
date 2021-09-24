@@ -5,6 +5,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
+import javax.mail.MessagingException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -261,7 +263,7 @@ public class UserServiceTests {
 		Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.registerUser(user));
 		 assertEquals("Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!", throwable2.getMessage());
 		
-		user.setEmail("eu@fa1.hu");
+		user.setEmail("eu@fa.hu");
 		
 		Throwable throwable3 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.registerUser(user));
 		 assertEquals("Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!", throwable3.getMessage());
@@ -270,6 +272,14 @@ public class UserServiceTests {
 		
 		Throwable throwable4 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.registerUser(user));
 		 assertEquals("Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!", throwable4.getMessage());
+		 
+		 user.setPassword("password");
+		 user.setEmail("eu@fa.hu");
+		 
+		 when(mockUserRepository.userExistCheck("eu@fa.hu")).thenReturn(1);
+		 
+		 Throwable throwable5 = assertThrows(DuplicateUserException.class, () -> userService.registerUser(user));
+		 assertEquals("Authentication_Server.UserService.registerUser --> User with this username allready exist!", throwable5.getMessage());	
 	 
 	}
 		
@@ -365,6 +375,30 @@ public class UserServiceTests {
 		when(mockEmailService.sendMessageen(user.getEmail(), "User! ", user.getId())).thenReturn("message send!");
 	
 		when(mockUserRepository.registerUser(user,"user")).thenReturn(null);
+
+		assertEquals(null, userService.registerUser(user));
+	}
+	
+	@Test
+	void registerUserTest6() throws MessagingException {
+		
+		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
+		
+		user = new User();	
+	
+		user.setEmail("eu@fa.hu");
+		
+	    user.setPassword("myPassword");
+	    
+	    user.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
+	    
+	    AccountKey account = new AccountKey(user.getId(),"user",user.getEmail());
+	    
+	    when(mockAccountKeyService.createAccountKey(account)).thenReturn("New AccountKey Created");
+		
+		when(mockEmailService.sendMessageen(user.getEmail(), "User! ", user.getId())).thenThrow(MessagingException.class);
+	
+		when(mockUserRepository.registerUser(user,"user")).thenReturn("User Registered");
 
 		assertEquals(null, userService.registerUser(user));
 	}

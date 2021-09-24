@@ -14,7 +14,8 @@ import com.model.User;
 @SpringBootTest
 public class UserDetailsImplTests {
 	
-	private UserDetailsImpl userDetailsImpl;
+	private UserDetailsImpl userDetailsImpl1;
+	private UserDetailsImpl userDetailsImpl2;
 	
 	@Test
 	void UserDetailsImplTest() {
@@ -29,18 +30,45 @@ public class UserDetailsImplTests {
 		user.setMfa(false);
 		user.setAuthorities(authorities);
 		
-		userDetailsImpl = new UserDetailsImpl(user);
+		userDetailsImpl1 = new UserDetailsImpl(user);
 		
 		assertAll(		
-	    		 () -> assertEquals("eu@fa.hu", userDetailsImpl.getUsername()),
-	    		 () -> assertEquals("pass", userDetailsImpl.getPassword()),
-	    		 () -> assertEquals(true, userDetailsImpl.isAccountNonExpired()),
-	    		 () -> assertEquals(true, userDetailsImpl.isAccountNonLocked()),
-	    		 () -> assertEquals(true, userDetailsImpl.isCredentialsNonExpired()),
-	    		 () -> assertEquals(true, userDetailsImpl.isEnabled()),
-	    		 () -> assertEquals(false, userDetailsImpl.isMfa()),
-	    		 () -> assertEquals("id", userDetailsImpl.getId())	    		 
+	    		 () -> assertEquals("eu@fa.hu", userDetailsImpl1.getUsername()),
+	    		 () -> assertEquals("pass", userDetailsImpl1.getPassword()),
+	    		 () -> assertEquals(true, userDetailsImpl1.isAccountNonExpired()),
+	    		 () -> assertEquals(true, userDetailsImpl1.isAccountNonLocked()),
+	    		 () -> assertEquals(true, userDetailsImpl1.isCredentialsNonExpired()),
+	    		 () -> assertEquals(true, userDetailsImpl1.isEnabled()),
+	    		 () -> assertEquals(false, userDetailsImpl1.isMfa()),
+	    		 () -> assertEquals("id", userDetailsImpl1.getId())	    		 
 	    		);
+	}
+	
+	@Test
+	void equalsTest1() {
+		
+		List<String> authorities = new ArrayList<String>();
+		authorities.add("user");
+		User user = new User();
+		user.setId("id");
+		user.setEmail("eu@fa.hu");
+		user.setPassword("pass");
+
+		user.setAuthorities(authorities);
+		
+		userDetailsImpl1 = new UserDetailsImpl(user);
+		
+		User user2 = new User();
+		user2.setId("id");
+		user2.setEmail("eu@fa.hu");
+		user2.setPassword("pass");
+
+		user2.setAuthorities(authorities);
+		
+		userDetailsImpl2 = new UserDetailsImpl(user2);
+				
+		assertEquals(true, userDetailsImpl1.equals(userDetailsImpl2));
+		
 	}
 
 }

@@ -45,7 +45,8 @@ public class ProxyServer {
 		
 			httpResponse = response.getStatusCode().toString();
 		} catch (Exception e) {
-			log.debug("Resource Server Not Found " + e);
+			log.debug("Resource Server Not Found " + e.getMessage());
+			httpResponse = "Resource Server Not Found " + e.getMessage();
 		}	
 		return httpResponse;
 	}

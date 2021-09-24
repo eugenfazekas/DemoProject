@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.util.ServletRequest"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
-    <fullyQualifiedTypeName name="jdk.internal.misc.FileSystemOption"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Order"/>
-    <fullyQualifiedTypeName name="com.model.AccountKey"/>
-    <fullyQualifiedTypeName name="com.model.DummyTestModel"/>
-    <fullyQualifiedTypeName name="com.auth.password.OneTimePasswordDetailsImpl"/>
-    <fullyQualifiedTypeName name="com.model.User"/>
-    <fullyQualifiedTypeName name="com.auth.password.OneTimePasswordAuthenticationProviderService"/>
-    <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
@@ -19,11 +9,9 @@
     <fullyQualifiedTypeName name="com.auth.user.UserAuthenticationProviderService"/>
     <fullyQualifiedTypeName name="com.auth.user.UserDetailsServiceImpl"/>
     <fullyQualifiedTypeName name="com.repository.UserRepository"/>
-    <fullyQualifiedTypeName name="com.auth.user.UserDetailsImpl"/>
     <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.TestInstance"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpEntity"/>
     <fullyQualifiedTypeName name="com.util.ProxyServer"/>
@@ -53,11 +41,23 @@
     <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest"/>
     <fullyQualifiedTypeName name="com.service.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.service.OneTimePasswordService"/>
     <fullyQualifiedTypeName name="com.exception.NoUserIdException"/>
     <fullyQualifiedTypeName name="com.exception.NoUsernameOrPasswordException"/>
     <fullyQualifiedTypeName name="com.exception.CreateAccountKeyException"/>
     <fullyQualifiedTypeName name="com.exception.NoUserActivationKeyException"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="com.exception.DuplicateUserException"/>
+    <fullyQualifiedTypeName name="com.service.OneTimePasswordService"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalStateException"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
+    <fullyQualifiedTypeName name="org.springframework.mail.javamail.JavaMailSender"/>
+    <fullyQualifiedTypeName name="javax.mail.internet.MimeMessage"/>
+    <fullyQualifiedTypeName name="org.junit.rules.ExpectedException"/>
+    <fullyQualifiedTypeName name="org.junit.Rule"/>
+    <fullyQualifiedTypeName name="javax.mail.MessagingException"/>
+    <fullyQualifiedTypeName name="com.model.AccountKey"/>
+    <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
+    <fullyQualifiedTypeName name="com.model.DummyTestModel"/>
+    <fullyQualifiedTypeName name="com.auth.password.OneTimePasswordDetailsImpl"/>
+    <fullyQualifiedTypeName name="com.auth.user.UserDetailsImpl"/>
 </qualifiedTypeNameHistroy>

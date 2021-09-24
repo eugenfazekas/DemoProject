@@ -70,6 +70,8 @@ public class UserDetailsImpl  implements UserDetails{
 	
 	 @Override
 	    public boolean equals(Object o) {
+		 if (this == o) return true;
+		 if (o == null || getClass() != o.getClass()) return false;
 		 UserDetailsImpl userDetails = (UserDetailsImpl) o;
 	        return                 user.getEmail() == userDetails.getUsername() &&
 	        		Objects.equals(user.getPassword(), userDetails.getPassword()) &&

@@ -33,7 +33,7 @@ public class ProxyServerTests {
 
 	  
 	@Test
-	void sendNewUserIdTest() {
+	void sendNewUserIdTest1() {
 		
 		String uuid =  UUID.randomUUID().toString();
 
@@ -46,6 +46,20 @@ public class ProxyServerTests {
 	    when(restTemplate.postForEntity(url, httpEntity, String.class)).thenReturn(responseEntity);
 
 	    assertEquals("200 OK", proxyServer.sendNewUserId(uuid));		
+	} 
+	
+	@Test
+	void sendNewUserIdTest2() {
+		
+		String uuid =  UUID.randomUUID().toString();
+
+		String url = proxyServer.getCreateUserResourceUrl();
+		
+		HttpEntity<ProxyUser> httpEntity = proxyServer.httpIdRequestEntity(uuid);
+
+	    when(restTemplate.postForEntity(url, httpEntity, String.class)).thenThrow(IllegalStateException.class);
+
+	    assertEquals("Resource Server Not Found "+null, proxyServer.sendNewUserId(uuid));		
 	} 
 	
 	@Test

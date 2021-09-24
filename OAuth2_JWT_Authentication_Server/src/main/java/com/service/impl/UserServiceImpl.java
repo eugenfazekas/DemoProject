@@ -1,5 +1,7 @@
 package com.service.impl;
 
+import javax.mail.MessagingException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +101,7 @@ public class UserServiceImpl implements UserService{
 			"Authentication_Server.UserService.registerUser --> email or password cannot be null or empty string!");
 			}
 
-		if(userExistCheck(user.getEmail())) {
+		if(userRepository.userExistCheck(user.getEmail()) > 0) {
 			throw new DuplicateUserException("Authentication_Server.UserService.registerUser --> User with this username allready exist!");
 		}
 		
@@ -112,7 +114,12 @@ public class UserServiceImpl implements UserService{
 	    
 	    accountKeyServiceResponse = accountKeyService.createAccountKey(new AccountKey(user.getId(),"user",user.getEmail()));
 
-		emailServiceResponse = emailService.sendMessageen(user.getEmail(), "User! ", user.getId());		
+		try {
+			emailServiceResponse = emailService.sendMessageen(user.getEmail(), "User! ", user.getId());
+		} catch (MessagingException e) {
+
+			log.debug("Email has not sent to user ! " +user.getEmail()+ " "+e);
+		}		
 
 		newSpan.tag("Authentication-service UserServiceImpl registerUser():", "User regisration");
 		newSpan.annotate("User Registered finished");

@@ -9,91 +9,96 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class UserUpdateTests {
 	
-	private UserUpdate userUpdate;
+	private UserUpdate userUpdate1;
+	private UserUpdate userUpdate2;
+	private DummyTestModel dummyTestModel;
 	
 	@Test
 	void getterSetterTest() {
 		
-		userUpdate = new UserUpdate();
-		userUpdate.setId("id");
-		userUpdate.setEmail("eu@fa.hu");
-		userUpdate.setOldPassword("test");
-		userUpdate.setPassword("test2");
-		userUpdate.setMfa(true);
+		userUpdate1 = new UserUpdate();
+		userUpdate1.setId("id");
+		userUpdate1.setEmail("eu@fa.hu");
+		userUpdate1.setOldPassword("test");
+		userUpdate1.setPassword("test2");
+		userUpdate1.setMfa(true);
 						
 		assertAll(		
-	    		 () -> assertEquals("id", userUpdate.getId()),
-	    		 () -> assertEquals("eu@fa.hu",userUpdate.getEmail()),
-	    		 () -> assertEquals("test",userUpdate.getOldPassword()),
-	    		 () -> assertEquals("test2",userUpdate.getPassword()),
-	    		 () -> assertEquals(true, userUpdate.isMfa())
+	    		 () -> assertEquals("id", userUpdate1.getId()),
+	    		 () -> assertEquals("eu@fa.hu",userUpdate1.getEmail()),
+	    		 () -> assertEquals("test",userUpdate1.getOldPassword()),
+	    		 () -> assertEquals("test2",userUpdate1.getPassword()),
+	    		 () -> assertEquals(true, userUpdate1.isMfa())
 	    		);		
 	}
 	
 	@Test
 	void equalsTest1() {
 		
-		userUpdate = new UserUpdate();
-		userUpdate.setId("id");
-		userUpdate.setEmail("eu@fa.hu");
-		userUpdate.setOldPassword("test");
-		userUpdate.setPassword("test2");
-		userUpdate.setMfa(true);
+		userUpdate1 = new UserUpdate();
+		userUpdate1.setId("id");
+		userUpdate1.setEmail("eu@fa.hu");
+		userUpdate1.setOldPassword("test");
+		userUpdate1.setPassword("test2");
+		userUpdate1.setMfa(true);
 		
 		UserUpdate userUpdate2 = new UserUpdate();
-		userUpdate2.setId("id");
-		userUpdate2.setEmail("eu@fa.hu");
-		userUpdate2.setOldPassword("test");
-		userUpdate2.setPassword("test2");
-		userUpdate2.setMfa(true);
+		userUpdate2 = userUpdate1;
 		
-		assertEquals(true,userUpdate.equals(userUpdate2));
+		assertEquals(true,userUpdate1.equals(userUpdate2));
 	}
 	
 	@Test
 	void equalsTest2() {
 		
-		userUpdate = new UserUpdate();
-		userUpdate.setId("id");
-		userUpdate.setEmail("eu@fa.hu");
+		userUpdate1 = new UserUpdate();
+		userUpdate1.setId("id");
+		userUpdate1.setEmail("eu@fa.hu");
 		
 		UserUpdate userUpdate2 = new UserUpdate();
-		assertEquals(false ,userUpdate.equals(userUpdate2));
 		
-		userUpdate2.setId("id");
-		assertEquals(false ,userUpdate.equals(userUpdate2));
-		
-		userUpdate2.setEmail("eu@fa.hu");
-		assertEquals(true ,userUpdate.equals(userUpdate2));
+		assertEquals(false ,userUpdate1.equals(userUpdate2));
 	}
 	
 	@Test
 	void equalsTest3() {
 		
-		userUpdate = new UserUpdate();
-		userUpdate.setId("id");
-		userUpdate.setEmail("eu@fa.hu");
+		userUpdate1 = new UserUpdate();
+		userUpdate1.setId("id");
+		userUpdate1.setEmail("eu@fa.hu");
+		
+		dummyTestModel = new DummyTestModel();
+		dummyTestModel.setId("id");
+		dummyTestModel.setEmail("eu@fa.hu");
+		
+		assertEquals(false ,userUpdate1.equals(dummyTestModel));
+	}
+	
+	@Test
+	void equalsTest4() {
+		
+		userUpdate1 = new UserUpdate();
+		userUpdate1.setId("id");
+		userUpdate1.setEmail("eu@fa.hu");
 
 		UserUpdate userUpdate2 = new UserUpdate();
-		
-		userUpdate2.setEmail("eu@fa.hu");
-		assertEquals(false ,userUpdate.equals(userUpdate2));
-		
 		userUpdate2.setId("id");
-		assertEquals(true ,userUpdate.equals(userUpdate2));
+		userUpdate2.setEmail("eu@fa.hu");
+		
+		assertEquals(true ,userUpdate1.equals(userUpdate2));
 	}
 	
 	@Test
 	void toStringTest() {
 
-		userUpdate = new UserUpdate();
-		userUpdate.setId("id");
-		userUpdate.setEmail("eu@fa.hu");
-		userUpdate.setOldPassword("test");
-		userUpdate.setPassword("test2");
-		userUpdate.setMfa(true);
+		userUpdate1 = new UserUpdate();
+		userUpdate1.setId("id");
+		userUpdate1.setEmail("eu@fa.hu");
+		userUpdate1.setOldPassword("test");
+		userUpdate1.setPassword("test2");
+		userUpdate1.setMfa(true);
 		
-		assertEquals("UserUpdate [id=" + userUpdate.getId() + ", email=" + userUpdate.getEmail() + ", oldPassword=" + userUpdate.getOldPassword() + ", password=" + userUpdate.getPassword()
-		+ ", mfa=" + userUpdate.isMfa() + "]",userUpdate.toString());
+		assertEquals("UserUpdate [id=" + userUpdate1.getId() + ", email=" + userUpdate1.getEmail() + ", oldPassword=" + userUpdate1.getOldPassword() + ", password=" + userUpdate1.getPassword()
+		+ ", mfa=" + userUpdate1.isMfa() + "]",userUpdate1.toString());
 	}
 }

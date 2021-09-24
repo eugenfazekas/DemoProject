@@ -6,6 +6,7 @@ public class DummyTestModel {
 	private String key;
 	private String email;
 	private String id;
+	private String password;
 	
 	public String getAccountType() {
 		return accountType;
@@ -31,7 +32,10 @@ public class DummyTestModel {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
-
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

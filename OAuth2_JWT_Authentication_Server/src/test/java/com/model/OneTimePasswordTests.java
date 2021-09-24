@@ -9,48 +9,92 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class OneTimePasswordTests {
 	
-	private OneTimePassword oneTimePassword;
+	private OneTimePassword oneTimePassword1;
+	private OneTimePassword oneTimePassword2;
+	private DummyTestModel dummyTestModel;
+	
 	
 	@Test
 	void getterSetterTest() {
 
-		oneTimePassword = new OneTimePassword();
-		oneTimePassword.setId("id");
-		oneTimePassword.setPassword("myPassword");
-		oneTimePassword.setEmail("eu@fa.hu");
+		oneTimePassword1 = new OneTimePassword();
+		oneTimePassword1.setId("id");
+		oneTimePassword1.setPassword("myPassword");
+		oneTimePassword1.setEmail("eu@fa.hu");
 		
 		assertAll(		
-	    		 () -> assertEquals("id", oneTimePassword.getId()),
-	    		 () -> assertEquals("myPassword",oneTimePassword.getPassword()),
-	    		 () -> assertEquals("eu@fa.hu",oneTimePassword.getEmail())
+	    		 () -> assertEquals("id", oneTimePassword1.getId()),
+	    		 () -> assertEquals("myPassword",oneTimePassword1.getPassword()),
+	    		 () -> assertEquals("eu@fa.hu",oneTimePassword1.getEmail())
 	    		);		
 	}
 	
 	@Test
-	void equalsTest() {
+	void equalsTest1() {
 		
-		oneTimePassword = new OneTimePassword();
-		oneTimePassword.setId("id");
-		oneTimePassword.setPassword("myPassword");
-		oneTimePassword.setEmail("eu@fa.hu");
+		oneTimePassword1 = new OneTimePassword();
+		oneTimePassword1.setId("id");
+		oneTimePassword1.setPassword("myPassword");
+		oneTimePassword1.setEmail("eu@fa.hu");
 		
-		OneTimePassword oneTimePassword2 = new OneTimePassword();
+		oneTimePassword2 = new OneTimePassword();
+		oneTimePassword2 = oneTimePassword1;
+		
+		assertEquals(true, oneTimePassword1.equals(oneTimePassword2));
+	}
+	
+	@Test
+	void equalsTest2() {
+		
+		oneTimePassword1 = new OneTimePassword();
+		oneTimePassword1.setId("id");
+		oneTimePassword1.setPassword("myPassword");
+		oneTimePassword1.setEmail("eu@fa.hu");
+		
+		oneTimePassword2 = new OneTimePassword();
+		
+		assertEquals(false, oneTimePassword1.equals(oneTimePassword2));
+	}
+	
+	@Test
+	void equalsTest3() {
+		
+		oneTimePassword1 = new OneTimePassword();
+		oneTimePassword1.setId("id");
+		oneTimePassword1.setPassword("myPassword");
+		oneTimePassword1.setEmail("eu@fa.hu");
+		
+		dummyTestModel = new DummyTestModel();
+		dummyTestModel.setId("id");
+		dummyTestModel.setPassword("myPassword");
+		dummyTestModel.setEmail("eu@fa.hu");	
+		
+		assertEquals(false, oneTimePassword1.equals(dummyTestModel));
+	}
+	
+	@Test
+	void equalsTest4() {
+		
+		oneTimePassword1 = new OneTimePassword();
+		oneTimePassword1.setId("id");
+		oneTimePassword1.setPassword("myPassword");
+		oneTimePassword1.setEmail("eu@fa.hu");
+		
+		oneTimePassword2 = new OneTimePassword();
 		oneTimePassword2.setId("id");
-		
-		assertEquals(false, oneTimePassword.equals(oneTimePassword2));
-		
+		oneTimePassword2.setPassword("myPassword");
 		oneTimePassword2.setEmail("eu@fa.hu");
 		
-		assertEquals(true, oneTimePassword.equals(oneTimePassword2));
+		assertEquals(true, oneTimePassword1.equals(oneTimePassword2));
 	}
 
 	@Test
 	void toStringTest() {
 		
-		oneTimePassword = new OneTimePassword();
-		oneTimePassword.setId("id");
-		oneTimePassword.setPassword("myPassword");
-		oneTimePassword.setEmail("eu@fa.hu");
-		assertEquals("OneTimePassword [id=" + oneTimePassword.getId() + ", email=" + oneTimePassword.getEmail() + ", password=" + oneTimePassword.getPassword() + "]",oneTimePassword.toString());
+		oneTimePassword1 = new OneTimePassword();
+		oneTimePassword1.setId("id");
+		oneTimePassword1.setPassword("myPassword");
+		oneTimePassword1.setEmail("eu@fa.hu");
+		assertEquals("OneTimePassword [id=" + oneTimePassword1.getId() + ", email=" + oneTimePassword1.getEmail() + ", password=" + oneTimePassword1.getPassword() + "]",oneTimePassword1.toString());
 	}
 }

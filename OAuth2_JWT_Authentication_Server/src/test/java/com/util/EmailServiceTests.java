@@ -3,6 +3,8 @@ package com.util;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import javax.mail.MessagingException;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,10 +14,9 @@ public class EmailServiceTests {
 
 	@Autowired
 	private EmailService emailService;
-	
-	
+		
 	@Test
-	void messageSendTest() {
+	void messageSendTest() throws MessagingException {
 		
 		assertEquals("message send!", emailService.sendMessageen("skybolt83@gmail.com", "Eugen Fazekas", "key")); 
 	}

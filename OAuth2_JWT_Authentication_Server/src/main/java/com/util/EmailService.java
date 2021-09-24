@@ -33,11 +33,11 @@ public class EmailService {
 		this.javaMailSender = javaMailSender;
 	}
 	
-public String sendMessageen(String email ,String fullName,String key)  {
-	String returnMessage = "Message Has Not Been Sent!";
+public String sendMessageen(String email ,String fullName,String key) throws MessagingException  {
+	String returnMessage = null;
 	MimeMessage msg = javaMailSender.createMimeMessage();
     MimeMessageHelper messageen;
-	try {
+
 		messageen = new MimeMessageHelper(msg, false);
 		messageen.setTo(email);
 		messageen.setSubject(subjecten);
@@ -51,13 +51,9 @@ public String sendMessageen(String email ,String fullName,String key)  {
 							"</div>",true);
 		javaMailSender.send(msg);
 		returnMessage ="message send!";
-	} catch (MessagingException e) {
 
-		e.printStackTrace();
-	}
 			return returnMessage;
 		}
-
 
 	public String getSubjecten() {
 		return subjecten;
