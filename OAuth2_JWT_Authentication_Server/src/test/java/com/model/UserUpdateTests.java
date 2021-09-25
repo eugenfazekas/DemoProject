@@ -42,7 +42,7 @@ public class UserUpdateTests {
 		userUpdate1.setPassword("test2");
 		userUpdate1.setMfa(true);
 		
-		UserUpdate userUpdate2 = new UserUpdate();
+	    userUpdate2 = new UserUpdate();
 		userUpdate2 = userUpdate1;
 		
 		assertEquals(true,userUpdate1.equals(userUpdate2));
@@ -81,7 +81,7 @@ public class UserUpdateTests {
 		userUpdate1.setId("id");
 		userUpdate1.setEmail("eu@fa.hu");
 
-		UserUpdate userUpdate2 = new UserUpdate();
+	    userUpdate2 = new UserUpdate();
 		userUpdate2.setId("id");
 		userUpdate2.setEmail("eu@fa.hu");
 		

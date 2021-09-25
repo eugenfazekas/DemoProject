@@ -72,9 +72,7 @@ public class UserDetailsImpl  implements UserDetails{
 	    public boolean equals(Object o) {
 		 if (this == o) return true;
 		 if (o == null || getClass() != o.getClass()) return false;
-		 UserDetailsImpl userDetails = (UserDetailsImpl) o;
-	        return                 user.getEmail() == userDetails.getUsername() &&
-	        		Objects.equals(user.getPassword(), userDetails.getPassword()) &&
-	                Objects.equals(user.getId(), userDetails.getId());
+		 UserDetailsImpl userDetailsImpl = (UserDetailsImpl) o;
+	        return  Objects.equals(getId(), userDetailsImpl.getId());
 	    }
 }

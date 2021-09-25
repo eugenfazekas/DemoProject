@@ -15,4 +15,6 @@ public interface MyProjectCommandLineRunnner {
 	void createOtpTable();
 	
 	void dropOtpTable();
+	
+	void createdummyAccountKey();
 }

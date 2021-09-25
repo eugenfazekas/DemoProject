@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
 import com.model.OneTimePassword;
 
 
@@ -67,9 +68,9 @@ public class OneTimePasswordDetailsImpl  implements UserDetails{
 	
 	 @Override
 	    public boolean equals(Object o) {
-		 OneTimePasswordDetailsImpl otp = (OneTimePasswordDetailsImpl) o;
-	        return                 oneTimePassword.getEmail() == otp.getUsername() &&
-	        		Objects.equals(oneTimePassword.getPassword(), otp.getPassword()) &&
-	                Objects.equals(oneTimePassword.getId(), otp.getId());
+		 if (this == o) return true;
+		 if (o == null || getClass() != o.getClass()) return false;
+		 OneTimePasswordDetailsImpl oneTimePasswordDetailsImpl = (OneTimePasswordDetailsImpl) o;
+	        return  Objects.equals(getId(), oneTimePasswordDetailsImpl.getId());
 	    }
 }

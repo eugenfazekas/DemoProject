@@ -47,7 +47,7 @@ public class UserTests {
 		user1.setId("id");
 		user1.setEmail("eu@fa.hu");
 		
-		User user2 = new User();
+	    user2 = new User();
 		user2 = user1;
 		
 		assertEquals(true,user1.equals(user2));
@@ -60,7 +60,7 @@ public class UserTests {
 		user1.setId("id");
 		user1.setEmail("eu@fa.hu");
 		
-		User user2 = new User();
+	    user2 = new User();
 
 		assertEquals(false,user1.equals(user2));
 	}
@@ -86,7 +86,7 @@ public class UserTests {
 		user1.setId("id");
 		user1.setEmail("eu@fa.hu");
 		
-		User user2 = new User();
+	    user2 = new User();
 		user2.setId("id");
 		user2.setEmail("eu@fa.hu");
 		assertEquals(true,user1.equals(user2));
