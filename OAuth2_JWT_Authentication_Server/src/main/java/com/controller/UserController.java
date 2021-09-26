@@ -42,11 +42,9 @@ public class UserController {
 	
 	@RequestMapping(path = "/userKeyCheck/{code}", method = RequestMethod.GET)
     public RedirectView codeCheckUser(@PathVariable("code") String code, HttpServletResponse response) {
-		 userService.userActivation(code);
-		 RedirectView redirectView = new RedirectView();
-		 redirectView.setUrl("http://localhost:4200");
-	
-		 return redirectView;
+		
+		return userService.userActivation(code);
+
  }
 	@RequestMapping(value = "/updateUserAccount", method = RequestMethod.POST)
 	public String updateUserAccount(@RequestBody UserUpdate user) {

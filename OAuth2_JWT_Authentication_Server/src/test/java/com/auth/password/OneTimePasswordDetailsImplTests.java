@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,6 +22,7 @@ public class OneTimePasswordDetailsImplTests {
 	private DummyTestModel dummyTestModel;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordDetailsImpl basic getters and setters")
 	void oneTimePasswordDetailsImplTest() {
 		
 		List<String> authorities = new ArrayList<String>();
@@ -45,6 +47,7 @@ public class OneTimePasswordDetailsImplTests {
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordDetailsImpl equals function with cloned object")
 	void equalsTest1() {
 		
 		List<String> authorities = new ArrayList<String>();
@@ -64,6 +67,7 @@ public class OneTimePasswordDetailsImplTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordDetailsImpl equals function with null object")
 	void equalsTest2() {
 		
 		List<String> authorities = new ArrayList<String>();
@@ -80,6 +84,7 @@ public class OneTimePasswordDetailsImplTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordDetailsImpl equals function with other class object")
 	void equalsTest3() {
 
 	
@@ -99,6 +104,7 @@ public class OneTimePasswordDetailsImplTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordDetailsImpl equals function with same class but other instance")
 	void equalsTest4() {
 
 		List<String> authorities = new ArrayList<String>();

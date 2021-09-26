@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,6 +39,7 @@ public class OneTimePasswordAuthenticationProviderServiceTests {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordProviderService authenticate function with valid user")
 	void authenticateTest1() {
 		
 		TestingAuthenticationToken token = new TestingAuthenticationToken("username","password");
@@ -63,6 +65,7 @@ public class OneTimePasswordAuthenticationProviderServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordProviderService authenticate function with invalid user credentials")
 	void authenticateTest2() {
 		
 		TestingAuthenticationToken token = new TestingAuthenticationToken("username","password");
@@ -88,6 +91,7 @@ public class OneTimePasswordAuthenticationProviderServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordProviderService support function")
 	void supportTest() {
 		
 		assertEquals(true, oneTimePasswordAuthenticationProviderService.supports(UsernamePasswordAuthenticationToken.class));

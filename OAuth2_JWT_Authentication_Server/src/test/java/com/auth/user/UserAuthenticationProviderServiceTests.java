@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,6 +35,7 @@ public class UserAuthenticationProviderServiceTests {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserAuthenticationProviderService authenticate function with valid user")
 	void authenticateTest1() {
 		
 		TestingAuthenticationToken token = new TestingAuthenticationToken("username","password");
@@ -59,6 +61,7 @@ public class UserAuthenticationProviderServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserAuthenticationProviderService authenticate function with multi phase authentication activated")
 	void authenticateTest2() {
 		
 		TestingAuthenticationToken token = new TestingAuthenticationToken("username","password");
@@ -84,6 +87,7 @@ public class UserAuthenticationProviderServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserAuthenticationProviderService authenticate function with wrong credentials")
 	void authenticateTest3() {
 		
 		TestingAuthenticationToken token = new TestingAuthenticationToken("username","password");
@@ -109,6 +113,7 @@ public class UserAuthenticationProviderServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserAuthenticationProviderService support function")
 	void supportTest() {
 		
 		assertEquals(true, authenticationProviderService.supports(UsernamePasswordAuthenticationToken.class));

@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.User;
@@ -40,7 +42,8 @@ public class UserControllerTests {
 	private User user; 
 	
 	@Test
-	public void registerUser() throws Exception {
+	@DisplayName("Testing Authentication_Service UserController registerUser function endpoint and UserService.registerUser function if called with valid user")
+	public void registerUserTest() throws Exception {
 		user = new User();
 		user.setEmail("eu@fa.hu");
 		user.setPassword("myPassword2");
@@ -57,8 +60,9 @@ public class UserControllerTests {
 		 verify(mockUserService, times(1)).registerUser(user);
 	}
 	
-	@Test	
-	public void userExistCheck() throws Exception {
+	@Test
+	@DisplayName("Testing Authentication_Service UserController userExistCheck function endpoint and UserService.userExistCheck function if called with a valid username")
+	public void userExistCheckTest() throws Exception {
 	
 	String email = "eu@fa.hu";
 	when(mockUserService.userExistCheck(email)).thenReturn(true);
@@ -72,22 +76,26 @@ public class UserControllerTests {
 	}
 	
 	@Test
-    public void codeCheckUser() throws Exception {
+	@DisplayName("Testing Authentication_Service UserController userActivation function endpoint and UserService.userActivation function if called with a valid code")
+    public void codeCheckUserTest() throws Exception {
 		
 		String code = "code";
 		String url = "http://localhost:4200";
 		
-		when(mockUserService.userActivation(code)).thenReturn("User Successfully activated!");
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl(url);
+		 
+		when(mockUserService.userActivation(code)).thenReturn(redirectView);
 	
 		mvc.perform(get("/api1/v1/user/userKeyCheck/"+code))
 	            .andExpect(redirectedUrl(url));
 
 		verify(mockUserService, times(1)).userActivation(code);
- }
-	
+	}
 	  
 	@Test
-	public void updateUserAccount() throws Exception{
+	@DisplayName("Testing Authentication_Service UserController updateUserAccount function endpoint and UserService.updateUser function if called with a valid user")
+	public void updateUserAccountTest() throws Exception{
 		
 		UserUpdate userUpdate = new UserUpdate();
 		String updateSuccess = "User have been updated!";
@@ -105,7 +113,8 @@ public class UserControllerTests {
 	}
 	
 	@Test
-    public void createOneTimePassword() throws Exception {
+	@DisplayName("Testing Authentication_Service UserController createOneTimePassword function endpoint and OneTimePasswordService.createOneTimePassword function if called with a valid user")
+    public void createOneTimePasswordTest() throws Exception {
 		
 		String otpCreated = "One time password send";
 		
@@ -122,7 +131,8 @@ public class UserControllerTests {
     }
 	
 	@Test
-    public void mfaCheck() throws Exception {
+	@DisplayName("Testing Authentication_Service UserController mfaChec function endpoint and UserService.mfaCheck function if called with a valid user")
+    public void mfaCheckTest() throws Exception {
 		
 		String userExist = "true";
 		

@@ -1,5 +1,7 @@
 package com.service;
 
+import org.springframework.web.servlet.view.RedirectView;
+
 import com.model.User;
 import com.model.UserUpdate;
 
@@ -15,7 +17,7 @@ public interface UserService {
 	
 	boolean userExistCheck(String email);
 	
-	String userActivation(String key);
+	RedirectView userActivation(String key);
 	
 	String updateUser(UserUpdate user);
 	

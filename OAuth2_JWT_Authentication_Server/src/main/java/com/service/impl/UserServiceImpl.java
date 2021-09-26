@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.events.source.SimpleSourceBean;
 import com.exception.DuplicateUserException;
@@ -155,7 +156,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String userActivation(String key) {
+	public RedirectView userActivation(String key) {
+		
+		String mainResponse = "User have not been activated!";
 		
 		AccountKey accountKeyServiceResponse = null;
 		String userRepositorySetActiveResponse = null;
@@ -189,9 +192,9 @@ public class UserServiceImpl implements UserService{
 				userRepositoryRemoveKeyResponse != null && 
 				userRepositoryFindByEmailyResponse != null &&
 				proxyServerResponse != null)
-			return "User Successfully activated!";
+				mainResponse = "User Successfully activated!";
 		}
-		return "User have not been activated!";
+		return util.redirectView(mainResponse);
 	}
 	
 	@Override
@@ -228,7 +231,7 @@ public class UserServiceImpl implements UserService{
 		ScopedSpan newSpan = tracer.startScopedSpan("mfaCheck");
 		
 		if(email == "" || email  == null) {
-			throw new RuntimeException(
+			throw new NoUsernameOrPasswordException(
 			"Authentication_Server.UserService.mfaCheck --> header email cannot be null or empty string!");
 			}
 		
@@ -253,5 +256,4 @@ public class UserServiceImpl implements UserService{
 		
 		return 	"User Not Exist!";
 	}
-
 }

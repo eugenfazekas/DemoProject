@@ -1,19 +1,20 @@
 package com.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
 import javax.mail.MessagingException;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.springframework.web.servlet.view.RedirectView;
+
 import com.events.source.SimpleSourceBean;
 import com.exception.DuplicateUserException;
 import com.exception.NoUserActivationKeyException;
@@ -130,6 +131,9 @@ public class UserServiceTests {
 		user.setId("id");
 		user.setEmail("eu@fa.hu");
 		
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl("http://localhost:4200");
+		
 		AccountKey accountKey = new AccountKey();
 		accountKey.setEmail(user.getEmail());
 		
@@ -142,14 +146,13 @@ public class UserServiceTests {
 		when(mockUserRepository.setActiveUser(user.getEmail())).thenReturn("User Activated!");
 		when(mockAccountKeyService.removeKey(key)).thenReturn("AccountKey Successfully removed");
 		when(mockProxyServer.sendNewUserId(user.getId())).thenReturn("Resource Server Status 200 user activated");
+		when(util.redirectView("User Successfully activated!")).thenReturn(redirectView);
 		
-		assertEquals("User Successfully activated!", userService.userActivation(key));
+		assertEquals(redirectView, userService.userActivation(key));
 	}
 	
 	@Test
 	void userActivation2() {
-		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.userActivation(null); });
 		
 		String key = "key";
 		when(mockAccountKeyService.keyCheck(key)).thenReturn(false);
@@ -158,7 +161,33 @@ public class UserServiceTests {
 		when(mockAccountKeyService.removeKey(key)).thenReturn(null);
 		when(mockProxyServer.sendNewUserId("userId")).thenReturn(null);
 		
-		assertEquals("User have not been activated!", userService.userActivation(key));
+		assertEquals(null, userService.userActivation(key));
+	}
+	
+	@Test
+	void userActivation3() {
+		
+		String key = "key";
+		
+		user = new User();
+		user.setId("id");
+		user.setEmail("eu@fa.hu");
+		
+		AccountKey accountKey = new AccountKey();
+		accountKey.setEmail(user.getEmail());
+		
+		when(mockAccountKeyService.keyCheck(key)).thenReturn(true);
+		
+		when(mockAccountKeyService.findAccountKey(key)).thenReturn(accountKey);
+		
+		when(mockUserRepository.findByEmail(accountKey.getEmail())).thenReturn(user);
+		
+		when(mockUserRepository.setActiveUser(user.getEmail())).thenReturn("User Activated!");
+		when(mockAccountKeyService.removeKey(key)).thenReturn("AccountKey Successfully removed");
+		when(mockProxyServer.sendNewUserId(user.getId())).thenReturn("Resource Server Status 200 user activated");
+		when(util.redirectView("key")).thenReturn(null);
+		
+		assertEquals(null, userService.userActivation(key));
 	}
 
 	@Test
@@ -219,8 +248,12 @@ public class UserServiceTests {
 	@Test
 	void mfaCheckTest1() {
 		
-		Assertions.assertThrows(RuntimeException.class, () -> {  userService.mfaCheck(null); });	
-		
+		Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.mfaCheck(null));
+		 assertEquals("Authentication_Server.UserService.mfaCheck --> header email cannot be null or empty string!", throwable1.getMessage());
+				 
+		 Throwable throwable2 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.mfaCheck(""));
+		 assertEquals("Authentication_Server.UserService.mfaCheck --> header email cannot be null or empty string!", throwable2.getMessage());
+				 
 		User user = new User();
 		user.setId("id");
 		user.setEmail("eu@fa.hu");

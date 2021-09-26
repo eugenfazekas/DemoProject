@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +27,7 @@ public class UserDetailsServiceImplTests {
 	private UserRepository userRepository;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserDetailsServiceImpl loadUserByUsername function with valid user ")
 	void loadUserByUsernameTest1() {
 		
 		List<String> authorities = new ArrayList<String>();
@@ -42,10 +44,9 @@ public class UserDetailsServiceImplTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserDetailsServiceImpl loadUserByUsername function with invalid user credentials")
 	void loadUserByUsernameTest2() {
-		
-		// wrong username
-		
+
 		Assertions.assertThrows(UsernameNotFoundException.class, () -> {  userDetailsServiceImpl.loadUserByUsername("eu1@fa.hu");    });	
 	}
 

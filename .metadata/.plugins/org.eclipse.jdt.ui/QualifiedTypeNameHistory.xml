@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
     <fullyQualifiedTypeName name="org.springframework.security.authentication.TestingAuthenticationToken"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.GrantedAuthority"/>
     <fullyQualifiedTypeName name="org.springframework.security.authentication.BadCredentialsException"/>
@@ -37,20 +35,14 @@
     <fullyQualifiedTypeName name="org.mockito.junit.jupiter.MockitoExtension"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.extension.ExtendWith"/>
     <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest"/>
-    <fullyQualifiedTypeName name="com.service.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.exception.NoUserIdException"/>
     <fullyQualifiedTypeName name="com.exception.CreateAccountKeyException"/>
-    <fullyQualifiedTypeName name="com.exception.NoUserActivationKeyException"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
-    <fullyQualifiedTypeName name="com.exception.DuplicateUserException"/>
     <fullyQualifiedTypeName name="com.service.OneTimePasswordService"/>
     <fullyQualifiedTypeName name="java.lang.IllegalStateException"/>
     <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
     <fullyQualifiedTypeName name="org.springframework.mail.javamail.JavaMailSender"/>
     <fullyQualifiedTypeName name="javax.mail.internet.MimeMessage"/>
-    <fullyQualifiedTypeName name="org.junit.rules.ExpectedException"/>
-    <fullyQualifiedTypeName name="org.junit.Rule"/>
     <fullyQualifiedTypeName name="javax.mail.MessagingException"/>
     <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
     <fullyQualifiedTypeName name="com.auth.password.OneTimePasswordDetailsImpl"/>
@@ -58,6 +50,14 @@
     <fullyQualifiedTypeName name="com.model.DummyTestModel"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="com.model.AccountKey"/>
+    <fullyQualifiedTypeName name="org.junit.Rule"/>
+    <fullyQualifiedTypeName name="org.junit.rules.ExpectedException"/>
     <fullyQualifiedTypeName name="com.exception.NoUsernameOrPasswordException"/>
+    <fullyQualifiedTypeName name="com.service.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.web.util.NestedServletException"/>
+    <fullyQualifiedTypeName name="com.exception.DuplicateUserException"/>
+    <fullyQualifiedTypeName name="com.exception.NoUserIdException"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.view.RedirectView"/>
+    <fullyQualifiedTypeName name="com.exception.NoUserActivationKeyException"/>
 </qualifiedTypeNameHistroy>

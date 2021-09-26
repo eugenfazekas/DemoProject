@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,6 +32,7 @@ public class OneTimePasswordDetailsServiceImplTests {
 	private OneTimePasswordRepository oneTimePasswordRepository;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordDetailsServiceImpl loadUserByUsername function with valid user and valid otp")
 	void loadUserByUsernameTest1() {
 		
 		List<String> authorities = new ArrayList<String>();
@@ -54,10 +56,9 @@ public class OneTimePasswordDetailsServiceImplTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordDetailsServiceImpl loadUserByUsername function with invalid user")
 	void loadUserByUsernameTest2() {
-				
-		// wrong username
-		
+
 		 Assertions.assertThrows(UsernameNotFoundException.class, () -> {  oneTimePasswordDetailsServiceImpl.loadUserByUsername("eu1@fa.hu");    }); 
 	}
 }
