@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -40,40 +41,70 @@ public class AccountKeyRepositoryImpl  implements AccountKeyRepository{
 	@Override
 	public String createAccountKeyTable() {
 
+		String repositoryResponse = null;
 		final String  sql = "CREATE TABLE IF NOT EXISTS ACCOUNTKEYS (accountKey VARCHAR(36) NOT NULL, accountType VARCHAR(36) NOT NULL, email VARCHAR(64) PRIMARY KEY, UNIQUE (email));";
-		jdbc.execute(sql);
-		log.debug("ACCOUNTKEYS Table Created");
 		
-		return "AccountKey table created";
+		try {
+			jdbc.execute(sql);
+			repositoryResponse = "AccountKey table created";
+			log.debug("ACCOUNTKEYS Table Created");
+		
+		} catch (DataAccessException e)  {
+			log.debug("ACCOUNTKEYS Table has not been created " +e);
+		}
+		
+		return repositoryResponse ;
 	}
 	
 	@Override
 	public String dropAccountKeyTable() {
 		
+		String repositoryResponse = null;
 		final String  sql = "DROP TABLE IF EXISTS ACCOUNTKEYS";
-		jdbc.execute(sql);	
-		log.debug("ACCOUNTKEYS Table Deleted");
 		
-		return "AccountKey table dropped";
+		try {
+			jdbc.execute(sql);	
+			repositoryResponse = "AccountKey table dropped";
+			log.debug("ACCOUNTKEYS Table Deleted");
+		
+		}  catch (DataAccessException e)  {
+			log.debug("ACCOUNTKEYS Table has not been dropped " +e);
+		}
+		
+		return repositoryResponse;
 	}
 
 	@Override
 	public String createAccountKey(AccountKey account) {
 		
+		String repositoryResponse = null;
 		final String sql = "INSERT INTO ACCOUNTKEYS (accountKey,accountType,email) VALUES (?,?,?)";
-		jdbc.update(sql,account.getKey(),account.getAccountType(),account.getEmail());
-		log.debug("New ACCOUNTKEY:  "+account.toString());
 		
-		return "New AccountKey Created";
+		try {
+			jdbc.update(sql,account.getKey(),account.getAccountType(),account.getEmail());
+			repositoryResponse = "New AccountKey Created";
+			log.debug("New ACCOUNTKEY:  "+account.toString());
+		
+		}  catch (DataAccessException e)  {
+		   log.debug("New AccountKey has not been created " +e);
+		}		
+			return repositoryResponse;
 	}
 
 	@Override
 	public Integer keyCheck(String key) {
 		
+		Integer repositoryResponse = null;
 		final String  sql = "SELECT COUNT(*) FROM ACCOUNTKEYS WHERE accountKey = ?";
-		int keysFound = jdbc.queryForObject(sql, new Object[] {key}, Integer.class); 
-		if(keysFound > 0) { log.debug("AccountKey Found "+ key); }
-		return keysFound;
+		
+		try {
+			 repositoryResponse = jdbc.queryForObject(sql, new Object[] {key}, Integer.class); 
+			if(repositoryResponse > 0) { log.debug("AccountKey Found "+ key); }
+		
+		} catch (DataAccessException e)  {
+			   log.debug("AccountKey not found " +e);
+		}	
+			return repositoryResponse;
 	}
 	
 	@Override
@@ -81,22 +112,34 @@ public class AccountKeyRepositoryImpl  implements AccountKeyRepository{
 		
 		AccountKey accountKey = null;
 		final String  sql ="SELECT * FROM ACCOUNTKEYS WHERE accountKey = ?";
+		
 		try {
 			accountKey = jdbc.queryForObject(sql, mapper, key);
 			log.debug("AccountKey: "+key);
-		}catch(EmptyResultDataAccessException e) {
-			log.debug("AccountKey: "+key+" Not Fonud!");
-			}
+			
+		} catch (DataAccessException e)  {
+			   log.debug("New AccountKey has not been created " +e);
+		}	
+		
 		return accountKey;
-		}
+	}
 
 	@Override
 	public String removeKey(String key) {
-		final String sql = "DELETE FROM ACCOUNTKEYS WHERE accountKey = ? ";
-		jdbc.update(sql,key);
-		log.debug("AccountKey Deleted: "+key);
 		
-		return "New AccountKey Deleted";
+		String repositoryResponse = null;
+		final String sql = "DELETE FROM ACCOUNTKEYS WHERE accountKey = ?";
+		
+		try {
+			jdbc.update(sql,key);
+			repositoryResponse = "New AccountKey Deleted";
+			log.debug("AccountKey Deleted: "+key);
+			
+		} catch (DataAccessException e)  {
+			   log.debug("New AccountKey has not been created " +e);
+			} 
+		
+		return repositoryResponse;
 	}
 }
 

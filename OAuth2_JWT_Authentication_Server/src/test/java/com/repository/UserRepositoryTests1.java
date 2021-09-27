@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.model.User;
 
 @SpringBootTest
-public class UserRepositoryTests {
+public class UserRepositoryTests1 {
 	
 	@Autowired 
 	private UserRepository userRepository;

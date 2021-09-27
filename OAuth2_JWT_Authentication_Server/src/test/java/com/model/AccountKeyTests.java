@@ -3,6 +3,7 @@ package com.model;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,6 +15,7 @@ public class AccountKeyTests {
 	private DummyTestModel dummyTestModel;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service AccountKey constructor test")
 	void constructorTest () {
 		
 		accountKey1 = new AccountKey();
@@ -25,6 +27,7 @@ public class AccountKeyTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service AccountKey getter-setter tests")
 	void getterSetterTest() {
 		
 		accountKey1 = new AccountKey();
@@ -40,6 +43,7 @@ public class AccountKeyTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service AccountKey equals function with cloned object")
 	void equalTest1() {
 		
 		accountKey1 = new AccountKey();
@@ -55,6 +59,7 @@ public class AccountKeyTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service AccountKey equals function with null object")
 	void equalTest2() {
 		
 		accountKey1 = new AccountKey();
@@ -68,6 +73,7 @@ public class AccountKeyTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service AccountKey equals function with other class object")
 	void equalTest3() {
 		
 		accountKey1 = new AccountKey();
@@ -84,6 +90,7 @@ public class AccountKeyTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service AccountKey equals function with same class but other instance")
 	void equalTest4() {
 		
 		accountKey1 = new AccountKey();
@@ -98,6 +105,7 @@ public class AccountKeyTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service AccountKey toString function")
 	void toStringTest() {
 		
 		accountKey1 = new AccountKey();

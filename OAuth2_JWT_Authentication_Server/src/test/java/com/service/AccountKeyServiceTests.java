@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,18 +26,21 @@ public class AccountKeyServiceTests {
 	private AccountKeyRepository accountKeyRepository;
 
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService createAccountKeyTable function")
 	void createAccountKeyTableTest() {
 		when(accountKeyRepository.createAccountKeyTable()).thenReturn("AccountKey table created");	
 		assertEquals("AccountKey table created", accountKeyService.createAccountKeyTable());
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService dropAccountKeyTable function")
 	void dropAccountKeyTableTest() {
 		when(accountKeyRepository.dropAccountKeyTable()).thenReturn("AccountKey table dropped");	
 		assertEquals("AccountKey table dropped", accountKeyService.dropAccountKeyTable());
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService createAccountKey function; testing EXCEPTION-s, then valid ACCOUNTKEY")
 	void createAccountKeyTest1() {
 		
 		AccountKey account = new AccountKey();
@@ -64,6 +68,7 @@ public class AccountKeyServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService createAccountKey function; with null return value from repository")
 	void createAccountKeyTest2() {
 		
 		AccountKey account = new AccountKey();
@@ -80,6 +85,7 @@ public class AccountKeyServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService keyCheck function return value")
 	void keyCheckTest1() {
 		
 		Throwable throwable1 = assertThrows(NoUserActivationKeyException.class, () -> accountKeyService.keyCheck(null));
@@ -93,6 +99,7 @@ public class AccountKeyServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService keyCheck function return value")
 	void keyCheckTest2() {
 		
 		when(accountKeyRepository.keyCheck("key")).thenReturn(1);
@@ -100,6 +107,7 @@ public class AccountKeyServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService removeKey function return value")
 	void removeKeyTest1() {
 		
 		Throwable throwable1 = assertThrows(NoUserActivationKeyException.class, () -> accountKeyService.removeKey(null));
@@ -113,6 +121,7 @@ public class AccountKeyServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService removeKey function return value")
 	void removeKeyTest2() {
 		
 		when(accountKeyRepository.removeKey("key")).thenReturn(null);
@@ -120,6 +129,7 @@ public class AccountKeyServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService findAccountKey function return value")
 	void findAccountKeyTest1() {
 		
 		Throwable throwable1 = assertThrows(NoUserActivationKeyException.class, () -> accountKeyService.findAccountKey(null));
@@ -134,6 +144,7 @@ public class AccountKeyServiceTests {
 	
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyService findAccountKey function return value")
 	void findAccountKeyTest2() {
 		
 		when(accountKeyRepository.findAccountKey("key")).thenReturn(null);

@@ -2,6 +2,7 @@ package com.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.model.AccountKey;
 
 @SpringBootTest
-public class AccountKeyRepositoryTest {
+public class AccountKeyRepositoryTest1 {
 	
 	@Autowired
 	private AccountKeyRepository accountKeyRepository;
@@ -18,52 +19,49 @@ public class AccountKeyRepositoryTest {
 	private AccountKey accountKey;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository dropAccountKeyTable function")
 	void a1() {
 
-		//dropAccountKeyTableTest
 		assertEquals("AccountKey table dropped", accountKeyRepository.dropAccountKeyTable());
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository createAccountKeyTable function")
 	void a2() {
 
-		//createAccountKeyTableTest
 		assertEquals("AccountKey table created", accountKeyRepository.createAccountKeyTable());
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository createAccountKey function")
 	void a3() {
-	
-		//createAccountKeyTest
-		
+
 		accountKey = new AccountKey();
 		accountKey.setKey("key1");
 		accountKey.setAccountType("user");
 		accountKey.setEmail("eu@fa.hu");
 		
-		assertEquals("New AccountKey Created", accountKeyRepository.createAccountKey(accountKey));
-		
+		assertEquals("New AccountKey Created", accountKeyRepository.createAccountKey(accountKey));		
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository keyCheck function; counting inserted keys with this key")
 	void a4() {
-
-		//keyCheckTest
 		
 		assertEquals(1, accountKeyRepository.keyCheck("key1"));
 	}
+	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository keyCheck function; counting inserted keys with this key")
 	void a5() {
 
-		//keyCheckTest
-		
 		assertEquals(0, accountKeyRepository.keyCheck("key2"));
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository findAccountKey function with valid inserted key (getting DAO object)")
 	void a6() {
 
-		//findAccountKeyTest
 		accountKey = new AccountKey();
 		accountKey.setKey("key1");
 		accountKey.setAccountType("user");
@@ -73,26 +71,23 @@ public class AccountKeyRepositoryTest {
 		}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository findAccountKey function with invalid, not inserted key")
 	void a7() {
 
-		//findAccountKeyTest
-		
-		assertEquals(null, accountKeyRepository.findAccountKey("key2"));
+			assertEquals(null, accountKeyRepository.findAccountKey("key2"));
 		}
 
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository removeKey function; removing inserted key")
 	void a8() {
 
-		//removeKeyTest
-		
 		assertEquals("New AccountKey Deleted", accountKeyRepository.removeKey("key1"));
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service accountKeyRepository verifying  if key was removed")
 	void a9() {
 
-		//verify removeKeyTest
-		
 		assertEquals(0, accountKeyRepository.keyCheck("key1"));
 	}
 }

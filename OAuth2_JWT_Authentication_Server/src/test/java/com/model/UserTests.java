@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,6 +20,7 @@ public class UserTests {
 	List<String> authorities = new ArrayList<String>();
 	
 	@Test
+	@DisplayName("Testing Authentication_Service User getter-setter tests")
 	void getterSetterTest() {
 		
 		authorities.add("user");
@@ -41,6 +43,7 @@ public class UserTests {
 	}	
 	
 	@Test
+	@DisplayName("Testing Authentication_Service User equals function with cloned object")
 	void equalsTest1() {
 		
 		user1 = new User();
@@ -54,6 +57,7 @@ public class UserTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service User equals function with null object")
 	void equalsTest2() {
 		
 		user1 = new User();
@@ -66,6 +70,7 @@ public class UserTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service User equals function with other class object")
 	void equalsTest3() {
 		
 		user1 = new User();
@@ -80,6 +85,7 @@ public class UserTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service User equals function with same class and values but other instances")
 	void equalsTest4() {
 		
 		user1 = new User();
@@ -93,6 +99,7 @@ public class UserTests {
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service User toString function")
 	void toStringTest() {
 
 		authorities.add("user");

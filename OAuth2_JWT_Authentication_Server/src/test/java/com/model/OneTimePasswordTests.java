@@ -3,6 +3,7 @@ package com.model;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,6 +16,7 @@ public class OneTimePasswordTests {
 	
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePassword getter-setter tests")
 	void getterSetterTest() {
 
 		oneTimePassword1 = new OneTimePassword();
@@ -30,6 +32,7 @@ public class OneTimePasswordTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePassword equals function with cloned object")
 	void equalsTest1() {
 		
 		oneTimePassword1 = new OneTimePassword();
@@ -44,6 +47,7 @@ public class OneTimePasswordTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePassword equals function with null object")
 	void equalsTest2() {
 		
 		oneTimePassword1 = new OneTimePassword();
@@ -57,6 +61,7 @@ public class OneTimePasswordTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePassword equals function with other class object")
 	void equalsTest3() {
 		
 		oneTimePassword1 = new OneTimePassword();
@@ -73,6 +78,7 @@ public class OneTimePasswordTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePassword equals function with same class but other instance")
 	void equalsTest4() {
 		
 		oneTimePassword1 = new OneTimePassword();
@@ -89,6 +95,7 @@ public class OneTimePasswordTests {
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePassword toString function")
 	void toStringTest() {
 		
 		oneTimePassword1 = new OneTimePassword();

@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.model.OneTimePassword;
 
 @SpringBootTest
-public class OneTimePasswordTests {
+public class OneTimePasswordTests1 {
 	
 	@Autowired
 	private OneTimePasswordRepository oneTimePasswordRepository;

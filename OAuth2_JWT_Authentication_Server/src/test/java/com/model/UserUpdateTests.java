@@ -3,6 +3,7 @@ package com.model;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,6 +15,7 @@ public class UserUpdateTests {
 	private DummyTestModel dummyTestModel;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserUpdate getter-setter tests")
 	void getterSetterTest() {
 		
 		userUpdate1 = new UserUpdate();
@@ -33,6 +35,7 @@ public class UserUpdateTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserUpdate equals function with cloned object")
 	void equalsTest1() {
 		
 		userUpdate1 = new UserUpdate();
@@ -49,18 +52,20 @@ public class UserUpdateTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserUpdate equals function with null object")
 	void equalsTest2() {
 		
 		userUpdate1 = new UserUpdate();
 		userUpdate1.setId("id");
 		userUpdate1.setEmail("eu@fa.hu");
 		
-		UserUpdate userUpdate2 = new UserUpdate();
+        userUpdate2 = new UserUpdate();
 		
 		assertEquals(false ,userUpdate1.equals(userUpdate2));
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserUpdate equals function with other class object")
 	void equalsTest3() {
 		
 		userUpdate1 = new UserUpdate();
@@ -75,6 +80,7 @@ public class UserUpdateTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserUpdate equals function with same class and values but other instances")
 	void equalsTest4() {
 		
 		userUpdate1 = new UserUpdate();
@@ -89,6 +95,7 @@ public class UserUpdateTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserUpdate toString function")
 	void toStringTest() {
 
 		userUpdate1 = new UserUpdate();
