@@ -10,7 +10,7 @@ import com.repository.UserRepository;
 import com.service.AccountKeyService;
 import com.service.MyProjectCommandLineRunnner;
 import com.service.OneTimePasswordService;
-import com.util.ProxyServer;
+import com.util.Util_ProxyServer;
 
 @Component
 public class MyProjectCommandLineRunnerImpl implements CommandLineRunner, MyProjectCommandLineRunnner{
@@ -20,7 +20,7 @@ public class MyProjectCommandLineRunnerImpl implements CommandLineRunner, MyProj
 	private OneTimePasswordService oneTimePasswordService;
 	
 	public MyProjectCommandLineRunnerImpl(UserRepository userRepository, AccountKeyService accountKeyService,
-			OneTimePasswordService oneTimePasswordService, ProxyServer proxyServer) {
+			OneTimePasswordService oneTimePasswordService, Util_ProxyServer proxyServer) {
 		this.userRepository = userRepository;
 		this.accountKeyService = accountKeyService;
 		this.oneTimePasswordService = oneTimePasswordService;

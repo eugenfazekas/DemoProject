@@ -20,10 +20,10 @@ import org.springframework.web.client.RestTemplate;
 import com.model.ProxyUser;
 
 @SpringBootTest
-public class ProxyServerTests {
+public class Util_ProxyServerTests {
 	
 	@Autowired
-	private ProxyServer proxyServer;
+	private Util_ProxyServer proxyServer;
 	
 	@MockBean
 	private RestTemplate restTemplate;

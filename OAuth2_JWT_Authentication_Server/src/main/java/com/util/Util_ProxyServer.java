@@ -16,7 +16,7 @@ import brave.ScopedSpan;
 import brave.Tracer;
 
 @Component
-public class ProxyServer {
+public class Util_ProxyServer {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass()); 
 	

@@ -2,9 +2,7 @@ package com.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import com.model.AccountKey;
+import com.util.Util_JdbcTemplateAccountkey;
 
 @SpringBootTest
 public class AccountKeyRepositoryTest2 {
@@ -24,7 +21,7 @@ public class AccountKeyRepositoryTest2 {
 	private AccountKeyRepository accountKeyRepository;
 
 	@MockBean
-	private JdbcTemplate jdbc;
+	private Util_JdbcTemplateAccountkey jdbc;
 	
 	private AccountKey accountKey;
 	
@@ -32,9 +29,8 @@ public class AccountKeyRepositoryTest2 {
 	@DisplayName("Testing Authentication_Service accountKeyRepository dropAccountKeyTable function when dropping DataAccessException")
 	void a1() {
 		
-		final String  sql = "DROP TABLE IF EXISTS ACCOUNTKEYS";
-		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).execute(sql);
+
+		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).dropAccountKeyTable();
 
 		assertEquals(null, accountKeyRepository.dropAccountKeyTable());	
 	}
@@ -43,9 +39,7 @@ public class AccountKeyRepositoryTest2 {
 	@DisplayName("Testing Authentication_Service accountKeyRepository createAccountKeyTable function when dropping DataAccessException")
 	void a2() {
 		
-		String  sql = "CREATE TABLE IF NOT EXISTS ACCOUNTKEYS (accountKey VARCHAR(36) NOT NULL, accountType VARCHAR(36) NOT NULL, email VARCHAR(64) PRIMARY KEY, UNIQUE (email));";
-		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).execute(sql);
+		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).createAccountKeyTable();
 
 		assertEquals(null, accountKeyRepository.createAccountKeyTable());
 	}
@@ -58,9 +52,8 @@ public class AccountKeyRepositoryTest2 {
 		accountKey.setKey("key1");
 		accountKey.setAccountType("user");
 		accountKey.setEmail("eu@fa.hu");
-		final String sql = "INSERT INTO ACCOUNTKEYS (accountKey,accountType,email) VALUES (?,?,?)";
 		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).update(sql,accountKey.getKey(),accountKey.getAccountType(),accountKey.getEmail());
+		when(jdbc.createAccountKey(accountKey)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 
 		assertEquals(null, accountKeyRepository.createAccountKey(accountKey));		
 	}
@@ -68,11 +61,10 @@ public class AccountKeyRepositoryTest2 {
 	@Test
 	@DisplayName("Testing Authentication_Service accountKeyRepository keyCheck function when dropping DataAccessException")
 	void a4() {
-		
-		String  sql = "SELECT COUNT(*) FROM ACCOUNTKEYS WHERE accountKey = ?";
+
 		String  key = "key";
 		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).queryForObject(sql, new Object[] {key}, Integer.class);;
+		when(jdbc.keyCheck(key)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 		
 		assertEquals(null, accountKeyRepository.keyCheck(key));
 	}
@@ -80,24 +72,10 @@ public class AccountKeyRepositoryTest2 {
 	@Test
 	@DisplayName("Testing Authentication_Service accountKeyRepository findAccountKey function when dropping DataAccessException")
 	void a5() {
-			
-		RowMapper<AccountKey> mapper = new RowMapper<AccountKey>() {
 
-			public AccountKey mapRow(ResultSet rs ,int rowNum) throws SQLException {
-				
-				AccountKey n = new AccountKey();
-				
-				n.setAccountType(rs.getString("accountType"));
-				n.setEmail(rs.getString("email"));
-				n.setKey(rs.getString("accountKey"));
-			
-				return n;
-			}
-		};
-		
-		String  sql = "SELECT * FROM ACCOUNTKEYS WHERE accountKey = ?";
 		String  key = "key3";
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).queryForObject(sql, mapper, key);
+		
+		when(jdbc.findAccountKey(key)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 
 		assertEquals(null, accountKeyRepository.findAccountKey(key));
 	}
@@ -105,11 +83,10 @@ public class AccountKeyRepositoryTest2 {
 	@Test
 	@DisplayName("Testing Authentication_Service accountKeyRepository removeKey function when dropping DataAccessException")
 	void a6() {
-		
-		String  sql = "DELETE FROM ACCOUNTKEYS WHERE accountKey = ?";
+
 		String  key = "key3";
 		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).update(sql,key);
+		when(jdbc.removeKey(key)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 		
 		assertEquals(null, accountKeyRepository.removeKey(key));
 		}	

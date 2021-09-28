@@ -24,8 +24,8 @@ import com.model.AccountKey;
 import com.model.User;
 import com.model.UserUpdate;
 import com.repository.UserRepository;
-import com.util.EmailService;
-import com.util.ProxyServer;
+import com.util.Util_EmailService;
+import com.util.Util_ProxyServer;
 import com.util.Util;
 
 
@@ -44,13 +44,13 @@ public class UserServiceTests {
 	private AccountKeyService mockAccountKeyService;
 	
 	@MockBean
-	private EmailService mockEmailService;
+	private Util_EmailService mockEmailService;
 	
 	@MockBean
     private BCryptPasswordEncoder mockEncoder;
 	
 	@MockBean
-	private ProxyServer mockProxyServer;
+	private Util_ProxyServer mockProxyServer;
 	
 	@MockBean
 	private SimpleSourceBean simpleSourceBean;	

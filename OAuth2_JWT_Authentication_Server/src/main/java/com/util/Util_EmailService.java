@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmailService {
+public class Util_EmailService {
 
 	@Value("${emailservice.subjecten}")
 	  private String subjecten;
@@ -29,7 +29,7 @@ public class EmailService {
 	
 	private JavaMailSender javaMailSender;
 
-	public EmailService(JavaMailSender javaMailSender) {
+	public Util_EmailService(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
 	

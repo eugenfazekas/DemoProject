@@ -2,6 +2,7 @@ package com.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.model.OneTimePassword;
+import com.util.Util_JdbcTemplateOneTimePassword;
 
 @SpringBootTest
 public class OneTimePasswordTests2 {
@@ -24,7 +26,7 @@ public class OneTimePasswordTests2 {
 	private OneTimePasswordRepository oneTimePasswordRepository;
 	
 	@MockBean
-	private JdbcTemplate jdbc;
+	private Util_JdbcTemplateOneTimePassword jdbc;
 	
 	private OneTimePassword oneTimePassword;
 	
@@ -34,7 +36,7 @@ public class OneTimePasswordTests2 {
 	
 		final String  sql = "DROP TABLE IF EXISTS ONETIMEPASSWORD";
 		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).execute(sql);
+		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).dropOneTimePasswordTable();
 
 		assertEquals(null, oneTimePasswordRepository.dropOneTimePasswordTable());	
 	}
@@ -45,7 +47,7 @@ public class OneTimePasswordTests2 {
 		
 		final String  sql = "CREATE TABLE IF NOT EXISTS ONETIMEPASSWORD (id VARCHAR(36) NOT NULL, email VARCHAR(64) PRIMARY KEY, UNIQUE (email), password VARCHAR(64) NOT NULL)";
 		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).execute(sql);
+		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).createOneTimePasswordTable();
 
 		assertEquals(null, oneTimePasswordRepository.createOneTimePasswordTable());	
 	}
@@ -61,19 +63,18 @@ public class OneTimePasswordTests2 {
 		oneTimePassword.setEmail("eu1@fa.hu");
 		oneTimePassword.setPassword("012345");
 		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).update(sql,oneTimePassword.getId(),oneTimePassword.getEmail(),oneTimePassword.getPassword());;
+		when(jdbc.createOneTimePassword(oneTimePassword)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 
 		assertEquals(null, oneTimePasswordRepository.createOneTimePassword(oneTimePassword));	
 	}
-
+	
 	@Test
 	@DisplayName("Testing Authentication_Service oneTimePasswordRepository OneTimePasswordCheck function when dropping DataAccessException")
 	void a4() {
 		
 		String email = "eu2@fa.hu";
-		final String  sql = "SELECT COUNT(*) FROM ONETIMEPASSWORD WHERE email = ?";
 			
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).queryForObject(sql, new Object[] {email}, Integer.class);
+		when(jdbc.OneTimePasswordCheck(email)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 		
 		assertEquals(null, oneTimePasswordRepository.OneTimePasswordCheck(email));		
 	}
@@ -83,22 +84,8 @@ public class OneTimePasswordTests2 {
 	void a5() {
 		
 		String email = "eu2@fa.hu";
-		final String  sql = "SELECT * FROM ONETIMEPASSWORD WHERE email = ?";
 		
-		RowMapper<OneTimePassword> mapper = new RowMapper<OneTimePassword>() {
-
-			public OneTimePassword mapRow(ResultSet rs ,int rowNum) throws SQLException {
-				
-				OneTimePassword n = new OneTimePassword();
-				n.setId(rs.getString("id"));
-				n.setEmail(rs.getString("email"));
-				n.setPassword(rs.getString("password"));
-			
-				return n;
-			}
-		};
-		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).queryForObject(sql, mapper, email);
+		when(jdbc.findOneTimePassword(email)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 
 		assertEquals(null, oneTimePasswordRepository.findOneTimePassword(email));
 	}
@@ -108,9 +95,8 @@ public class OneTimePasswordTests2 {
 	void a6() {
 
 		String email = "eu2@fa.hu";
-		final String  sql = "DELETE FROM ONETIMEPASSWORD WHERE email = ?";
 		
-		doThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; }).when(jdbc).update(sql,email);
+		when(jdbc.removeOneTimePassword(email)).thenThrow(new DataAccessException("..."){  private static final long serialVersionUID = 1L; });
 		
 		assertEquals(null, oneTimePasswordRepository.removeOneTimePassword(email));		
 	}

@@ -20,8 +20,8 @@ import com.model.UserUpdate;
 import com.repository.UserRepository;
 import com.service.AccountKeyService;
 import com.service.UserService;
-import com.util.EmailService;
-import com.util.ProxyServer;
+import com.util.Util_EmailService;
+import com.util.Util_ProxyServer;
 import com.util.Util;
 
 import brave.ScopedSpan;
@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService{
 	
 	private AccountKeyService accountKeyService;
 	private UserRepository userRepository;
-	private EmailService emailService;
-	private ProxyServer proxyServer;
+	private Util_EmailService emailService;
+	private Util_ProxyServer proxyServer;
 	private SimpleSourceBean simpleSourceBean;
 	
 	@Autowired
@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	Tracer tracer;
 
-	public UserServiceImpl(AccountKeyService accountKeyService, UserRepository userRepository, EmailService emailService,
-			ProxyServer proxyServer, SimpleSourceBean simpleSourceBean) {
+	public UserServiceImpl(AccountKeyService accountKeyService, UserRepository userRepository, Util_EmailService emailService,
+			Util_ProxyServer proxyServer, SimpleSourceBean simpleSourceBean) {
 		this.accountKeyService = accountKeyService;
 		this.userRepository = userRepository;
 		this.emailService = emailService;

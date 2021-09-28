@@ -81,7 +81,7 @@ public class AccountKeyRepositoryTest1 {
 	@DisplayName("Testing Authentication_Service accountKeyRepository removeKey function; removing inserted key")
 	void a8() {
 
-		assertEquals("New AccountKey Deleted", accountKeyRepository.removeKey("key1"));
+		assertEquals("AccountKey Deleted", accountKeyRepository.removeKey("key1"));
 	}
 	
 	@Test
