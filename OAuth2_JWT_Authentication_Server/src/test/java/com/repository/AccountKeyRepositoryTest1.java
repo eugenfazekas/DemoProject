@@ -85,7 +85,7 @@ public class AccountKeyRepositoryTest1 {
 	}
 	
 	@Test
-	@DisplayName("Testing Authentication_Service accountKeyRepository verifying  if key was removed")
+	@DisplayName("Testing Authentication_Service accountKeyRepository verifying if key was removed")
 	void a9() {
 
 		assertEquals(0, accountKeyRepository.keyCheck("key1"));

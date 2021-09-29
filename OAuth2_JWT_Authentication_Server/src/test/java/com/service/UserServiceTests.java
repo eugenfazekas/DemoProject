@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.mail.MessagingException;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -59,18 +60,21 @@ public class UserServiceTests {
 	private Util util;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService createUsersTable function")
 	void createUsersTableTest () {
 		when(mockUserRepository.createUsersTable()).thenReturn("Users Table Created!");	
 		assertEquals("Users Table Created!", userService.createUsersTable());
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService dropUsersTable function")
 	void dropUsersTableTest () {
 		when(mockUserRepository.dropUsersTable()).thenReturn("Users Table Dropped!");	
 		assertEquals("Users Table Dropped!", userService.dropUsersTable());
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service UserService findByEmail function; testing EXCEPTION-s")
 	void findByEmailTest1() {
 		
 		Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.findByEmail(null));
@@ -86,6 +90,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService findByEmail function with null return value from repository")
 	void findByEmailTest2() {
 		
 		String EMAIL = "eu@fa.hu";
@@ -95,6 +100,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService userExistCheck function; testing EXCEPTION-s")
 	void userExistCheckTest1() {
 		
 		Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.userExistCheck(null));
@@ -109,6 +115,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService findByEmail function with 0 return value from repository")
 	void userExistCheckTest2() {
 
 		String EMAIL = "eu@fa.hu";
@@ -117,6 +124,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService userActivation function; testing EXCEPTION-s then activating user")
 	void userActivation1() {
 				
 		Throwable throwable1 = assertThrows(NoUserActivationKeyException.class, () -> userService.userActivation(null));
@@ -152,6 +160,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService userActivation function with null return values from dependencys")
 	void userActivation2() {
 		
 		String key = "key";
@@ -165,6 +174,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService userActivation function with null return values from redirectView")
 	void userActivation3() {
 		
 		String key = "key";
@@ -191,6 +201,7 @@ public class UserServiceTests {
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service UserService updateUser function with valid user")
 	void updateUserTest1() {
 		
 		UserUpdate userUpdate = new UserUpdate();	
@@ -220,6 +231,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService updateUser function with invalid user password")
 	void updateUserTest2() {
 		
 		UserUpdate userUpdate = new UserUpdate();			
@@ -244,8 +256,36 @@ public class UserServiceTests {
 			
 		assertEquals("Update have not been executed!", userService.updateUser(userUpdate));
 	}
+	
+	@Test
+	@DisplayName("Testing Authentication_Service UserService updateUser function with invalid repository return")
+	void updateUserTest3() {
+		
+		UserUpdate userUpdate = new UserUpdate();			
+		userUpdate.setId("");
+		
+		Throwable throwable = assertThrows(NoUserIdException.class, () -> userService.updateUser(userUpdate));
+		 assertEquals("Authentication_Server.UserService.updateUser --> updateUser.id cannot be null or empty string!", throwable.getMessage());
+		
+		userUpdate.setId("id");
+		userUpdate.setEmail("eu@fa.hu");
+		userUpdate.setOldPassword("myPassword1");
+		
+		user = new User();			
+		user.setId("id");
+		user.setEmail("eu@fa.hu");
+		user.setPassword("myPassword");
+		
+		when(mockEncoder.encode("myPassword2")).thenReturn("myPassword2");
+		when(mockEncoder.matches(userUpdate.getOldPassword(),user.getPassword())).thenReturn(false);
+		when(mockUserRepository.findById("id")).thenReturn(user);
+		when(mockUserRepository.updateUser(user)).thenReturn("User not updated!");
+			
+		assertEquals("Update have not been executed!", userService.updateUser(userUpdate));
+	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service UserService mfaCheck function with invalid  mfa user")
 	void mfaCheckTest1() {
 		
 		Throwable throwable1 = assertThrows(NoUsernameOrPasswordException.class, () -> userService.mfaCheck(null));
@@ -264,6 +304,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService mfaCheck function with valid  mfa user")
 	void mfaCheckTest2() {
 		
 		User user = new User();
@@ -277,6 +318,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService mfaCheck function with not registered user")
 	void mfaCheckTest3() {
 
 		when(mockUserRepository.findByEmail("eu@fa.hu")).thenReturn(null);		
@@ -284,6 +326,7 @@ public class UserServiceTests {
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service UserService registerUser function; testing EXCEPTION-s")
 	void registerUserTest1() throws Exception, IOException {	
 		
 		user = new User();	
@@ -317,6 +360,7 @@ public class UserServiceTests {
 	}
 		
 	@Test
+	@DisplayName("Testing Authentication_Service UserService registerUser function then register user")
 	void registerUserTest2() throws Exception, IOException  {	
 		
 		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
@@ -341,6 +385,7 @@ public class UserServiceTests {
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service UserService registerUser function but with null return value from createAccountKey function")
 	void registerUserTest3() throws Exception, IOException {	
 		
 		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
@@ -365,6 +410,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService registerUser function but with null return value from sendMessageen function")
 	void registerUserTest4() throws Exception, IOException {
 		
 		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
@@ -389,6 +435,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService registerUser function but with null return value from registerUser(UserRepository) function")
 	void registerUserTest5() throws Exception, IOException {
 		
 		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");
@@ -413,6 +460,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service UserService registerUser function but with MessagingException from sendMessageen")
 	void registerUserTest6() throws MessagingException {
 		
 		when(util.UUID_generator()).thenReturn("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8d");

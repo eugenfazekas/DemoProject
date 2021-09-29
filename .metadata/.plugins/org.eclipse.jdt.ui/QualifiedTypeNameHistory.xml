@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.auth.user.UserAuthenticationProviderService"/>
-    <fullyQualifiedTypeName name="com.auth.user.UserDetailsServiceImpl"/>
-    <fullyQualifiedTypeName name="com.repository.UserRepository"/>
-    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.TestInstance"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpEntity"/>
@@ -26,11 +21,8 @@
     <fullyQualifiedTypeName name="com.util.Util_OauthToken"/>
     <fullyQualifiedTypeName name="com.events.source.SimpleSourceBean"/>
     <fullyQualifiedTypeName name="com.events.model.UserDetailsPrepareTest"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
     <fullyQualifiedTypeName name="org.mockito.junit.jupiter.MockitoExtension"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.extension.ExtendWith"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.exception.CreateAccountKeyException"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="com.service.OneTimePasswordService"/>
@@ -42,7 +34,6 @@
     <fullyQualifiedTypeName name="com.auth.user.UserDetailsImpl"/>
     <fullyQualifiedTypeName name="com.model.DummyTestModel"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
-    <fullyQualifiedTypeName name="com.model.AccountKey"/>
     <fullyQualifiedTypeName name="org.junit.Rule"/>
     <fullyQualifiedTypeName name="org.junit.rules.ExpectedException"/>
     <fullyQualifiedTypeName name="com.exception.NoUsernameOrPasswordException"/>
@@ -52,12 +43,21 @@
     <fullyQualifiedTypeName name="com.exception.NoUserIdException"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.view.RedirectView"/>
     <fullyQualifiedTypeName name="com.exception.NoUserActivationKeyException"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
     <fullyQualifiedTypeName name="com.repository.OneTimePasswordRepository"/>
-    <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
     <fullyQualifiedTypeName name="com.util.ModelMapper"/>
     <fullyQualifiedTypeName name="org.springframework.dao.DataAccessException"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
+    <fullyQualifiedTypeName name="com.util.Util_JdbcTemplateAccountkey"/>
+    <fullyQualifiedTypeName name="com.model.AccountKey"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.mock.mockito.MockBean"/>
+    <fullyQualifiedTypeName name="com.util.Util_JdbcTemplateOneTimePassword"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.mockito.Mock"/>
     <fullyQualifiedTypeName name="org.mockito.Mockito"/>
+    <fullyQualifiedTypeName name="com.model.OneTimePassword"/>
+    <fullyQualifiedTypeName name="com.util.Util_JdbcTemplateUser"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="com.util.Util_SqlQueryList"/>
+    <fullyQualifiedTypeName name="org.springframework.dao.EmptyResultDataAccessException"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
 </qualifiedTypeNameHistroy>

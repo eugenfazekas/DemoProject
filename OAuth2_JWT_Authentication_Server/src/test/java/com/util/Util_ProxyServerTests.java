@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.UUID;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,7 @@ public class Util_ProxyServerTests {
 
 	  
 	@Test
+	@DisplayName("Testing Authentication_Service Util_ProxyServer sendNewUserId function with valid environemt")
 	void sendNewUserIdTest1() {
 		
 		String uuid =  UUID.randomUUID().toString();
@@ -49,6 +51,7 @@ public class Util_ProxyServerTests {
 	} 
 	
 	@Test
+	@DisplayName("Testing Authentication_Service Util_ProxyServer sendNewUserId function with thrown IllegalStateException")
 	void sendNewUserIdTest2() {
 		
 		String uuid =  UUID.randomUUID().toString();
@@ -63,6 +66,7 @@ public class Util_ProxyServerTests {
 	} 
 	
 	@Test
+	@DisplayName("Testing Authentication_Service Util_ProxyServer createHeader function")
 	void createHeaderTest() {
 		
 		HttpHeaders header = proxyServer.createHeader("token");
@@ -75,6 +79,7 @@ public class Util_ProxyServerTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service Util_ProxyServer httpIdRequestEntity function")
 	void httpIdRequestEntityTest() {
 		
 		String id = "id";
@@ -95,6 +100,7 @@ public class Util_ProxyServerTests {
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service Util_ProxyServer getCreateUserResourceUrl function")
 	void  getCreateUserResourceUrlTest() {
 		assertEquals("http://resource-service/api2/v1/user/createUserResource",  proxyServer.getCreateUserResourceUrl());
 	}

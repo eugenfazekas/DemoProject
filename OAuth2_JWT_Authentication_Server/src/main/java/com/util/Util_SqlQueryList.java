@@ -1,6 +1,8 @@
 package com.util;
 
 public class Util_SqlQueryList {
+	
+	public Util_SqlQueryList () {}
 
 	public final static String USER_CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS USERS (id VARCHAR(36) PRIMARY KEY, email VARCHAR(64) NOT NULL, UNIQUE  (email), password VARCHAR(64) NOT NULL, active BOOLEAN, mfa BOOLEAN, authorities VARCHAR(64) NOT NULL);";
 	public final static String USER_DROP_USERS_TABLE = "DROP TABLE IF EXISTS USERS";
@@ -26,5 +28,5 @@ public class Util_SqlQueryList {
 	public final static String ONETIMEPASSWORD_ONE_TIME_PASSWORD_CHECK = "SELECT COUNT(*) FROM ONETIMEPASSWORD WHERE email = ?";
 	public final static String ONETIMEPASSWORD_FIND_ONE_TIME_PASSWORD = "SELECT * FROM ONETIMEPASSWORD WHERE email = ?";
 	public final static String ONETIMEPASSWORD_REMOVE_ONE_TIME_PASSWORD = "DELETE FROM ONETIMEPASSWORD WHERE email = ?";
-
+		
 }

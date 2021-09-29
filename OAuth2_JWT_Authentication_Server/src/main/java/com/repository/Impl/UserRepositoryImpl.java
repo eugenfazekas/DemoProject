@@ -91,7 +91,6 @@ public class UserRepositoryImpl implements UserRepository {
 		try {
 			Integer jdbcResponse = jdbcTemplateUser.registerUser(user, authorities);
 			if(jdbcResponse == 1) { 
-				System.out.println(" registerUser jdbcResponse" + jdbcResponse);
 				repositoryResponse = "User Registered";
 				log.debug("UserRepository registerUser New User registered "+user.toString());
 				}
@@ -120,10 +119,9 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public String setActiveUser(String email) {
 	
-		String activated = "User have not been Activated!";		
-		
+		String activated = "User have not been Activated!";			
 		Integer userExist = userExistCheck(email);
-		System.out.println("setActiveUser userExist "+userExist);
+		
 		if(userExist == 1) {
 				try { 
 					Integer jdbcResponse = jdbcTemplateUser.setActiveUser(email);
@@ -145,7 +143,6 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		User userExist = null;
 		userExist = findById(user.getId());
-		System.out.println("updateUser userExist " + userExist);
 		if(userExist != null) {			
 			try { 
 				Integer jdbcResponse = jdbcTemplateUser.updateUser(userExist);

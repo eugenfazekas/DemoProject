@@ -46,9 +46,9 @@ public class Util_JdbcTemplateOneTimePassword {
 
 	public OneTimePassword createOneTimePassword(OneTimePassword oneTimePassword) throws DataAccessException {
 
-		Integer response = jdbc.update(Util_SqlQueryList.ONETIMEPASSWORD_CREATE_ONE_TIME_PASSWORD,oneTimePassword.getId(),oneTimePassword.getEmail(),oneTimePassword.getPassword());
+		jdbc.update(Util_SqlQueryList.ONETIMEPASSWORD_CREATE_ONE_TIME_PASSWORD,oneTimePassword.getId(),oneTimePassword.getEmail(),oneTimePassword.getPassword());
 			
-			return response == 1 ? oneTimePassword : null;
+			return oneTimePassword;
 	}
 
 	public Integer OneTimePasswordCheck(String email) throws DataAccessException {

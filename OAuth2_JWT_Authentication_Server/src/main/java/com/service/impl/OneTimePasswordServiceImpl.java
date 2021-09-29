@@ -47,9 +47,9 @@ public class OneTimePasswordServiceImpl implements OneTimePasswordService {
 
 		String randomPassword = getRandomNumberString();
 
-		if(username ==  "" || password== "" || username ==  null || password== null ) {
+		if(username ==  "" || password == "" || username ==  null || password == null ) {
 			throw new NoUsernameOrPasswordException(
-			"Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!");
+			"Authentication_Server.OneTimePasswordService.createOneTimePassword --> username and password cannot be null or empty string!");
 			}
 
 		User user = userService.findByEmail(username);

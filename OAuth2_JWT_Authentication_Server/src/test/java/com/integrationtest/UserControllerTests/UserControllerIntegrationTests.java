@@ -220,7 +220,7 @@ public class UserControllerIntegrationTests {
 	                .header("password", "myAdmin"));
 			}catch(NestedServletException e) {
 				assertEquals(NoUsernameOrPasswordException.class, e.getCause().getClass());
-				assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!",e.getCause().getMessage());
+				assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> username and password cannot be null or empty string!",e.getCause().getMessage());
 			}
     }
 	
@@ -234,7 +234,7 @@ public class UserControllerIntegrationTests {
 	                .header("password", ""));
 			}catch(NestedServletException e) {
 				assertEquals(NoUsernameOrPasswordException.class, e.getCause().getClass());
-				assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> accountkey, email, usertype cannot be null!",e.getCause().getMessage());
+				assertEquals("Authentication_Server.OneTimePasswordService.createOneTimePassword --> username and password cannot be null or empty string!",e.getCause().getMessage());
 			}
     }
 

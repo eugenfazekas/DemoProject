@@ -1,27 +1,18 @@
 package com.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.model.User;
 import com.util.Util_JdbcTemplateUser;
@@ -82,7 +73,7 @@ public class UserRepositoryTests2 {
 		
 		assertEquals(null, userRepository.findByEmail(user.getEmail())); 			
 	}
-	
+
 	
 	@Test
 	@DisplayName("Testing Authentication_Service UserRepository registerUser function when dropping DataAccessException")

@@ -55,7 +55,7 @@ public class Util_JdbcTemplateUser {
 	}
 	
 	public User findByEmail(String email) throws DataAccessException {
-		
+
 		return jdbc.queryForObject(Util_SqlQueryList.USER_FIND_BY_EMAIL, mapper, email);
 	}
 
@@ -70,23 +70,13 @@ public class Util_JdbcTemplateUser {
 	}
 
 	public Integer setActiveUser(String email) throws DataAccessException {	
-				
-		Integer userExist = userExistCheck(email);
-		
-		if(userExist == 1) {
-			return	jdbc.update(Util_SqlQueryList.USER_SET_ACTIVE_USER, email);
-			}
-				return null;
+
+		return	jdbc.update(Util_SqlQueryList.USER_SET_ACTIVE_USER, email);
 	}
 
 	public Integer updateUser(User user) throws DataAccessException {
+	
+		return jdbc.update(Util_SqlQueryList.USER_UPDATE_USER, user.getEmail(), user.getPassword(), user.isMfa(), user.getId() );
 
-		User userExist = null;
-		userExist = findById(user.getId());
-		
-		if(userExist != null) {			
-				return jdbc.update(Util_SqlQueryList.USER_UPDATE_USER, user.getEmail(), user.getPassword(), user.isMfa(), user.getId() );
-			}		
-				return null;
 	}	
 }

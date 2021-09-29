@@ -2,6 +2,7 @@ package com.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,24 +18,23 @@ public class OneTimePasswordTests1 {
 	private OneTimePassword oneTimePassword;
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository dropOneTimePasswordTable function")
 	void a1 () {
-		
-		//createOneTimePasswordTable
-				assertEquals("OneTimePassword Table Deleted", oneTimePasswordRepository.dropOneTimePasswordTable());
+
+		assertEquals("OneTimePassword Table Deleted", oneTimePasswordRepository.dropOneTimePasswordTable());
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository createOneTimePasswordTable function")
 	void a2 () {
-		
-		//dropOneTimePasswordTable
+
 		assertEquals("OneTimePassword Table Created", oneTimePasswordRepository.createOneTimePasswordTable());
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository createOneTimePassword function")
 	void a3() {
-		
-		//createOneTimePassword
-		
+
 		oneTimePassword = new OneTimePassword();
 		oneTimePassword.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8e");
 		oneTimePassword.setEmail("eu1@fa.hu");
@@ -44,55 +44,50 @@ public class OneTimePasswordTests1 {
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository OneTimePasswordCheck function; counting inserted keys with this otp-s ")
 	void a4() {
-		
-		//OneTimePasswordCheck
+
 		assertEquals(1, oneTimePasswordRepository.OneTimePasswordCheck("eu1@fa.hu"));
 		
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository OneTimePasswordCheck function; counting inserted keys with this otp-s ")
 	void a5() {
-		
-		//OneTimePasswordCheck
-				assertEquals(0, oneTimePasswordRepository.OneTimePasswordCheck("eu2@fa.hu"));
+
+		assertEquals(0, oneTimePasswordRepository.OneTimePasswordCheck("eu2@fa.hu"));
 	}
 
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository findOneTimePassword function with valid otp")
 	void a6() {
 
-		//findOneTimePassword
-		
 		oneTimePassword = new OneTimePassword();
 		oneTimePassword.setId("bbf7f3f5-3d94-4ca9-9515-aafff26f9c8e");
 		oneTimePassword.setEmail("eu1@fa.hu");
 		oneTimePassword.setPassword("012345");	
 		assertEquals(oneTimePassword, oneTimePasswordRepository.findOneTimePassword("eu1@fa.hu"));
 		
-		}
+	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository findOneTimePassword function with invalid otp")
 	void a7() {
 
-		//findOneTimePassword
-		
-		assertEquals(null, oneTimePasswordRepository.findOneTimePassword("eu2@fa.hu"));
-		
-		}
+		assertEquals(null, oneTimePasswordRepository.findOneTimePassword("eu2@fa.hu"));	
+	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository removeOneTimePassword function with valid otp")
 	void a8() {	
-		
-		//removeOneTimePassword
+
 		assertEquals("OneTimePassword Deleted", oneTimePasswordRepository.removeOneTimePassword("eu1@fa.hu"));	
 	}
 	
 	@Test
+	@DisplayName("Testing Authentication_Service OneTimePasswordRepository removeOneTimePassword function with invalid otp")
 	void a9() {
-		
-		//verify otp remove
-		assertEquals(0, oneTimePasswordRepository.OneTimePasswordCheck("eu1@fa.hu"));
-		
-	}
 
+		assertEquals(0, oneTimePasswordRepository.OneTimePasswordCheck("eu1@fa.hu"));		
+	}
 }

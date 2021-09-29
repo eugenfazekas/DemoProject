@@ -30,7 +30,7 @@ public class Util_JdbcTemplateAccountkey {
 			return n;
 		}
 	};
-	
+
 	public String createAccountKeyTable() throws DataAccessException {
 
 		jdbc.execute(Util_SqlQueryList.ACCOUNTKEY_CREATE_ACCOUNTKEYS_TABLE);
