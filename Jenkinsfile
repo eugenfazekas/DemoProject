@@ -1,13 +1,13 @@
 pipeline {
 	agent any
 	stages {
-		stage('Building Development Docker Environment') {
+		stage('Building and Testing Services') {
 		
 			steps {
-				bat  'docker-compose down --remove-orphans -f ~/Z_Docker_Dev_Mode/docker-compose.yml' 
+				bat  'docker-compose -f Z_Docker_Dev_Mode/docker-compose.yml down --remove-orphans' 
 			}
 			steps {
-				bat  'docker-compose up  -f ~/Z_Docker_Dev_Mode/docker-compose.yml' 
+				bat  'docker-compose -f Z_Docker_Dev_Mode/docker-compose.yml up' 
 			}
 			
 			steps {
