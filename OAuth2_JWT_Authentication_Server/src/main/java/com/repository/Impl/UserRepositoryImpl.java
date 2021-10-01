@@ -145,7 +145,7 @@ public class UserRepositoryImpl implements UserRepository {
 		userExist = findById(user.getId());
 		if(userExist != null) {			
 			try { 
-				Integer jdbcResponse = jdbcTemplateUser.updateUser(userExist);
+				Integer jdbcResponse = jdbcTemplateUser.updateUser(user);
 				if(jdbcResponse == 1) {
 					update = "User have been updated!";
 					log.debug("UserRepository updateUser User have been Updated"+user.toString());
