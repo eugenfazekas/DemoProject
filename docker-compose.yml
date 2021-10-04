@@ -23,7 +23,7 @@ services:
         image: mongo
         container_name: Mongo_Database
         volumes:
-            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+            - ./mongo-init:/docker-entrypoint-initdb.d/mongo-init.js:ro
             - mongodata:/data/db
         environment:
             - MONGO_INITDB_DATABASE=db_nx

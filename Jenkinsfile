@@ -42,11 +42,11 @@ pipeline {
 			}	
 
 			steps {
-			  bat  'mvn clean install -f OAuth2_JWT_Resource_Server/pom.xml'
+			    bat  'mvn clean install -f OAuth2_JWT_Resource_Server/pom.xml'
 			}
 			
 			steps {
-			  bat  'java -jar OAuth2_JWT_Resource_Server/target/resource_server-1.0.jar'
+			    bat  'java -jar OAuth2_JWT_Resource_Server/target/resource_server-1.0.jar'
 			}
 			
 		}

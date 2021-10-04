@@ -44,6 +44,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\Programing\Git\Demo_Project"/>
 			<item value="C:\Users\john\Desktop\SpringBoot_JUnit_Practice_09_Rest"/>
 			<item value="D:\Programing\Git\JUnit_Practice\SpringBoot_JUnit_Practice_09_Rest"/>
 			<item value="D:\Programing\Git\Demo Project"/>

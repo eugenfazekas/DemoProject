@@ -1,5 +1,31 @@
 version: '3.8'
 services:
+    
+    postgres:
+        image: "postgres:latest"
+        container_name: postgresdb
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        environment: 
+            - POSTGRES_DB=db_users
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=e21Wz44
+        ports:
+            - "5432:5432" 
+
+    mongodb:
+        image: mongo
+        container_name: Mongo_Database
+        volumes:
+            - ./mongo-init:/docker-entrypoint-initdb.d/mongo-init.js:ro
+            - mongodata:/data/db
+        environment:
+            - MONGO_INITDB_DATABASE=db_nx
+            - MONGO_INITDB_ROOT_USERNAME=mongo_admin
+            - MONGO_INITDB_ROOT_PASSWORD=admin_password
+        ports:
+            - "27017:27017"
+
     zipkin:
         image: openzipkin/zipkin
         container_name: Zipkin_Server
@@ -26,6 +52,10 @@ services:
         image: redis:alpine
         ports:
            - 6379:6379  
+     
+volumes:
+    pgdata:          
+    mongodata:           
   
 
  
