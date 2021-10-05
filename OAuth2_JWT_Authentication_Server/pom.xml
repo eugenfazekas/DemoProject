@@ -21,7 +21,7 @@
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<docker.image.prefix>skybolt83</docker.image.prefix>
 		<resilience4j.version>1.7.0</resilience4j.version>
-		<maven.test.skip>true</maven.test.skip> 
+<!-- 		<maven.test.skip>true</maven.test.skip>  -->
 	</properties>
 	
 	<dependencies>

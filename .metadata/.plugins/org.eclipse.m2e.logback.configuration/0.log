@@ -10312,3 +10312,10 @@ org.eclipse.core.runtime.CoreException: Could not read maven project
 2021-10-04 22:51:05,580 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2021-10-04 22:51:05,581 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2021-10-04 22:51:05,582 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Not copying test resources
+2021-10-05 16:40:22,763 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-10-05 16:44:58,702 [Worker-5: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com:oauth2_jwt_authorization_server:latest @ D:\Programing\Git\Demo_Project\OAuth2_JWT_Authentication_Server\pom.xml.
+2021-10-05 16:45:04,687 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-10-05 16:45:04,692 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2021-10-05 16:45:04,693 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2021-10-05 16:45:04,698 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-10-05 16:45:04,698 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Programing\Git\Demo_Project\OAuth2_JWT_Authentication_Server\src\test\resources
