@@ -1,8 +1,14 @@
-FROM jenkins/jenkins:lts-jdk11
+FROM jenkins/jenkins:2.303.2-jdk11
+
 COPY executors.groovy  /usr/share/jenkins/ref/init.groovy.d/executors.groovy
 
-RUN /usr/local/bin/install-plugins.sh docker-plugin
+USER root
+	   
+RUN apt-get update \
+&& apt-get install -y maven \
+&& apt-get install -y git \
+&& apt-get install -y vim    
 
+USER jenkins
 
-#COPY plugins.txt /usr/share/jenkins/plugins.txt
-#RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
+RUN jenkins-plugin-cli --plugins "pipeline-model-definition github-branch-source:1.8 docker-workflow:1.26"
