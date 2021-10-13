@@ -2,7 +2,7 @@ spring:
     application:
       name: gateway-server 
     profiles:
-      active: dev 
+      active: ${SPRING_DEMO_PROJECT_PROFILE}
     cloud:
       config: 
         uri: http://localhost:8888
