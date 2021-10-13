@@ -12,7 +12,7 @@ check=false
 
 while [[ $check = false ]]
 do
-	response="$(curl http://servicePath/actuator/health)"
+	response="$(curl http://$servicePath/actuator/health)"
 	
 		if [[ $response = $statusOk ]]; then
 		
