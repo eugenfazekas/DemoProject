@@ -23,8 +23,6 @@ pipeline {
                 sh 'docker run --detach --name zookeeper --network host  wurstmeister/zookeeper:latest'
                  
                 sh 'docker run --detach --name postgres -p 5432:5432  --env POSTGRES_USER=postgres  --env POSTGRES_PASSWORD=e21Wz44 --env POSTGRES_DB=db_users postgres:latest'
-
-                sh 'docker run --detach --name mongodb -p 27017:27017 --env MONGO_INITDB_USER=John_Woo --env MONGO_INITDB_DATABASE=db_nx --env MONGO_INITDB_PWD="2hJ$lDS#nA&8" mongo:latest'
                 
                 sh 'docker run --detach --name zipkin -p 9411:9411 openzipkin/zipkin:latest'
                 
