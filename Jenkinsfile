@@ -30,9 +30,9 @@ pipeline {
                 
                 sh 'docker run --detach --name redisserver -p 6379:6379 redis:alpine'
                 
-                sh 'chmod 777 Continuous_Integration/start_service.sh'
+                sh 'chmod 555 Continuous_Integration/start_service.sh'
                 
-                sh 'chmod 777 Continuous_Integration/service_check.sh'
+                sh 'chmod 555 Continuous_Integration/service_check.sh'
       
                 sh 'Continuous_Integration/start_service.sh Eureka_Server/pom.xml Eureka_Server'
                 

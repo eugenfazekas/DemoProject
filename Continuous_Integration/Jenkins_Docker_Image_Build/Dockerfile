@@ -17,4 +17,4 @@ USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean:1.24.7 docker-plugin:1.2.3 docker-commons:1.17 docker-build-step:2.8 docker-slaves:1.0.7 docker-compose-build-step:1.0 docker-workflow:1.26"
 
 
-  
+# vim could be a security issue but i not deleting now.

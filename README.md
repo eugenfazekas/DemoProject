@@ -1,11 +1,12 @@
 ### Demo Project Description Content:
 	
 	   1.Info
-       2.Develop
-       3.Full Usage
-	   4.Continuous Integration
+	   2.Application Description
+       3.Develop
+       4.Full Usage
+	   5.Continuous Integration
 	   
-## 1.Info:	
+##  1.Info:	
 
         This demo project implementing many features as possible,
 	for a small microservice based architetured application.
@@ -15,20 +16,37 @@
 		JAVA 11.0.11,
 		STS 4.11.1,
 		Docker 20.10.8,
-		Jenkins docker image jenkins/jenkins:lts,
 		NPM 6.14.13,
 		Angular Cli: 9.1.15,
 		Node: 14.17.1
+		
+##  2.Application Description:
+		
+		Service-Discovery with Eureka-Server,
+		Environment variables storage on Configuration-Server,
+		Spring Cloud Gateway-Server implementation,
+		OAuth2 JWT token based with asymmetric key Authentication-Service,
+		OAuth2 JWT token based with asymmetric key Resource-Service,
+		Authentication-Service implement: PostgresDB, Junit5 tests, Integrations-tests, MFA, 
+		Resource-Service implement: MongoDB, 
+		Aungular frontend description:
+			- MFA (Multi-factor-authentication),
+			- User registration,
+			- Basic user, Admin User,
+			- User account editing,
+			- User details editing with image upload,
+			- Article creation with image upload,
+			- Articles multi filtering,			
 						
-## 2.Develop
+##  3.Develop
 
 		To make it easyare the develop process,
 		I created Z_Docker_Dev_Mode\docker-compose.yml to have all needed dependencys.
 	
 ###		To Start Developer-mode
 	
-		1. Cretae environment system variable SPRING_DEMO_PROJECT_PROFILE:dev ,
-			ENCRYPT_KEY: IMSYMMETRIC ,
+		1. Cretae environment system variable SPRING_DEMO_PROJECT_PROFILE:dev,
+			ENCRYPT_KEY: IMSYMMETRIC 
 		2. From cmd '~path\Demo_Proiect\Z_Docker_Dev_Mode\docker-compose up',  
 			(if you not start the first time please use first 'docker-compose down'.),
 		3. Start STS.(If you start STS before env variable has been created, 
@@ -41,13 +59,15 @@
 		9. From cmd '~path\Demo_Proiect\Angular_Ui\ ng serve'
 		   (Node js and Angular CLI needed to install)
 		
-## 3.Full Usage	
+##  4.Full Usage	
 
-		To Start the application with full featureas please use,
+		To Start the application with full featureas please use
 		
 			cmd '~path\Demo_Proiect\docker-compose up'
+			
+			Application accessible on http://localhost:4200
 		
-##	4.Continuous Integration
+##	5.Continuous Integration
 
 	To run continuous integration (Jenkinsfile) needed 2 docker images to be build:
 	
@@ -63,11 +83,10 @@
 				--volume jenkins-data:/var/jenkins_home --publish-all docker:dind'
 						
 		Step 3. - Create Jenkins container - Jenkins image needed to run with the command:
-			cmd 'docker run --name jenkins  --detach  --network jenkins \
-				--env DOCKER_HOST=tcp://docker:2376 --env DOCKER_CERT_PATH=/certs/client \ 
-				--env DOCKER_TLS_VERIFY=1 --volume jenkins-data:/var/jenkins_home \ 
-				--volume jenkins-docker-certs:/certs/client:ro --publish 8000:8080 \
-				--publish 50000:50000 jenkins-master'
+			cmd 'docker run --name dockerdind --detach \ 
+				--privileged --network jenkins --network-alias docker \ 
+				--env DOCKER_TLS_CERTDIR=/certs --volume jenkins-docker-certs:/certs/client \
+				--volume jenkins-data:/var/jenkins_home docker:dind'
 
 		Step 4. - Configure Jenkins on http://localhost:8000
 		
