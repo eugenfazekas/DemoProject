@@ -30,16 +30,12 @@ public class DataSourceConfig {
 	@Value("${spring.datasource.password}")
 	private String password;
 	
-	@Value("${ENCRYPT_KEY}")
-	private String encryptkey;
-	
 	@Value("${spring.database.databaseName}")
 	private String db ;
-	
-	
+
 	public DataSource mySqlDataSource() {
 		
-		log.debug("Datasource Configuration: url "+url +" db "+db+" username "+username + " password "+ password + " encryptkey " + encryptkey) ;
+		log.debug("Datasource Configuration: url "+url +" db "+db+" username "+username + " password "+ password) ;
 		log.debug("DataSource Url "+"jdbc:postgresql://" + url+ "/" + db);
 		
 		log.debug("MailSending Configuration: mail.host " +host +" .mail.port "+port + " mail.username "+ mail_username + " mail.password " + mail_password) ;

@@ -32,51 +32,33 @@ services:
         ports:
             - "27017:27017"
         healthcheck:
-          test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u "mongo_admin" -p "admin_password" --quiet | grep 1
-          interval: 1s
-          timeout:  1s
-          retries: 30
-          start_period: 20s 
+            test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u "mongo_admin" -p "admin_password" --quiet | grep 1
+            interval: 1s
+            timeout:  1s
+            retries: 10
+            start_period: 1s
     
     eurekaserver:
         image: skybolt83/eurekaserver
         container_name: Eureka_Server
         ports:
-          - "8761:8761"  
-        healthcheck:
-          test: curl --fail http://localhost:8761/actuator/health || exit 1
-          interval: 1s
-          timeout: 1s
-          retries: 20 
-          start_period: 3s    
+          - "8761:8761"
         mem_limit: 1024m
         mem_reservation: 128M    
 
     configserver:
         image: skybolt83/configserver
         container_name: configserver
+        ports:
+           - "8888:8888"
         environment: 
             ENCRYPT_KEY: "IMSYMMETRIC"
-        depends_on:
-          eurekaserver:
-            condition: service_healthy      
-        ports:
-           - "8888:8888" 
-        healthcheck:
-          test: curl --fail http://localhost:8888/actuator/health || exit 1
-          interval: 1s
-          timeout: 1s
-          retries: 20 
-          start_period: 3s
         mem_limit: 1024m
         mem_reservation: 128M   
             
     gatewayserver:
         image: skybolt83/gatewayserver
         container_name: Gateway_Server
-        depends_on:
-          configserver:
-            condition: service_healthy
         ports:
           - "5555:5555"
         mem_limit: 1024m
@@ -85,41 +67,27 @@ services:
     authenticationservice:
         image: skybolt83/oauth2_jwt_authorization_server
         container_name: OAuth2_JWT_Authorization_Server
+        ports:
+            - "4800:4800"
         depends_on:
             postgres:
                 condition: service_healthy
-            configserver:
-                condition: service_healthy    
-        environment: 
-            ENCRYPT_KEY: "IMSYMMETRIC"
-        ports:
-            - "4800:4800"
-        healthcheck:
-          test: curl --fail http://localhost:4800/actuator/health || exit 1
-          interval: 1s
-          timeout: 1s
-          retries: 30 
-          start_period: 3s
         mem_limit: 1024m
         mem_reservation: 128M 
        
     resourceservice:
         image: skybolt83/oauth2_jwt_resource_server
         container_name: OAuth2_JWT_Resource_Server
+        ports:
+            - "4880:4880"
         depends_on:
             mongodb:
                 condition: service_healthy
-            authenticationservice:
-                condition: service_healthy
-        environment: 
-            ENCRYPT_KEY: "IMSYMMETRIC"
-        ports:
-            - "4880:4880" 
         mem_limit: 1024m
         mem_reservation: 128M      
             
     angularui:
-        build: ./Angular_Ui
+        image: skybolt83/angularui
         container_name: Angular_Ui
         depends_on:
             - "authenticationservice" 

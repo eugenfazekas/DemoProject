@@ -27,8 +27,8 @@
 		Spring Cloud Gateway-Server implementation,
 		OAuth2 JWT token based with asymmetric key Authentication-Service,
 		OAuth2 JWT token based with asymmetric key Resource-Service,
-		Authentication-Service implement: PostgresDB, Junit5 tests, Integrations-tests, MFA, 
-		Resource-Service implement: MongoDB, 
+		Authentication-Service implementations: PostgresDB, Junit5 tests, Integrations-tests, MFA, 
+		Resource-Service implementations: MongoDB, 
 		Aungular frontend description:
 			- MFA (Multi-factor-authentication),
 			- User registration,
@@ -45,8 +45,8 @@
 	
 ###		To Start Developer-mode
 	
-		1. Cretae environment system variable SPRING_DEMO_PROJECT_PROFILE:dev,
-			ENCRYPT_KEY: IMSYMMETRIC 
+		1. Cretae environment system variables 'SPRING_DEMO_PROJECT_PROFILE: dev',
+			'ENCRYPT_KEY: IMSYMMETRIC' 
 		2. From cmd '~path\Demo_Proiect\Z_Docker_Dev_Mode\docker-compose up',  
 			(if you not start the first time please use first 'docker-compose down'.),
 		3. Start STS.(If you start STS before env variable has been created, 
@@ -90,7 +90,7 @@
 
 		Step 4. - Configure Jenkins on http://localhost:8000
 		
-			Create a test type 'pipeline' ;
+			Create an Item type 'pipeline' ;
 			and if you don't want to make any other configuration's on Jenkins Server
 			just copy Jenkinsfile content to script on the bottom of the test,
 			and run Build!.
