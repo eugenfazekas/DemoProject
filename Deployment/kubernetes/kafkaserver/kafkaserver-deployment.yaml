@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: kafkaserver
+    labels:
+        app: kafkaserver
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: kafkaserver
+    template:
+        metadata:
+            labels:
+                app: kafkaserver
+        spec:
+            containers:
+              - name: kafkaserver
+                image: wurstmeister/kafka:latest
+                ports:
+                  - containerPort: 9092

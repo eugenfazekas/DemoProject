@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: configserver
+    labels:
+        app: configserver
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: configserver
+    template:
+        metadata:
+            labels:
+                app: configserver
+        spec:
+            containers:
+              - name: configserver
+                image: skybolt83/configserver
+                ports:
+                  - containerPort: 8888
+                 env:
+                  - name: ENCRYPT_KEY
+                    valueFrom: 
+                        secretKeyRef:
+                            name: cronoweb-secret
+                            key: ENCRYPT_KEY  

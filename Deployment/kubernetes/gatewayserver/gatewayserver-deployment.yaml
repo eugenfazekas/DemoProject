@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: gatewayserver
+    labels:
+        app: gatewayserver
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: gatewayserver
+    template:
+        metadata:
+            labels:
+                app: gatewayserver
+        spec:
+            containers:
+              - name: gatewayserver
+                image: skybolt83/gatewayserver
+                ports:
+                  - containerPort: 5555

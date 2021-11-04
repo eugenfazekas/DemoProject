@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: authenticationservice
+    labels:
+        app: authenticationservice
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: authenticationservice
+    template:
+        metadata:
+            labels:
+                app: authenticationservice
+        spec:
+            containers:
+              - name: authenticationservice
+                image: skybolt83/authenticationservice
+                ports:
+                  - containerPort: 4800

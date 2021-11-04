@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: angularui
+    labels:
+        app: angularui
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: angularui
+    template:
+        metadata:
+            labels:
+                app: angularui
+        spec:
+            containers:
+              - name: angularui
+                image: skybolt83/angularui
+                ports:
+                  - containerPort: 4200

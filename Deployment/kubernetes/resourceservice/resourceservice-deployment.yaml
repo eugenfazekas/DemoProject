@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: resourceservice
+    labels:
+        app: resourceservice
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: resourceservice
+    template:
+        metadata:
+            labels:
+                app: resourceservice
+        spec:
+            containers:
+              - name: resourceservice
+                image: skybolt83/resourceservice
+                ports:
+                  - containerPort: 4880

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - image: postgres:latest
+        name: postgres
+        env:
+        - name: POSTGRES_DB
+          valueFrom: 
+              secretKeyRef:
+                  name: cronoweb-secret
+                  key: POSTGRES_DB 
+        - name: POSTGRES_USER
+          valueFrom: 
+              secretKeyRef:
+                  name: cronoweb-secret
+                  key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom: 
+              secretKeyRef:
+                  name: cronoweb-secret
+                  key: POSTGRES_PASSWORD                    
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - name: postgres-persistent-storage
+          mountPath: /var/lib/postgres
+      volumes:
+      - name: postgres-persistent-storage
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
