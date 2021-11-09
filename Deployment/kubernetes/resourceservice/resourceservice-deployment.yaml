@@ -16,6 +16,30 @@ spec:
         spec:
             containers:
               - name: resourceservice
-                image: skybolt83/resourceservice
+                image: skybolt83/oauth2_jwt_resource_server
                 ports:
                   - containerPort: 4880
+                livenessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 4880
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+                readinessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 4880
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: resourceservice
+spec:
+    selector:
+        app: resourceservice
+    ports:
+    - protocol: TCP
+      port: 4880
+      targetPort: 4880

@@ -19,3 +19,27 @@ spec:
                 image: skybolt83/eurekaserver
                 ports:
                   - containerPort: 8761
+                livenessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 8761
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+                readinessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 8761
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: eurekaserver
+spec:
+    selector:
+        app: eurekaserver
+    ports:
+    - protocol: TCP
+      port: 8761
+      targetPort: 8761

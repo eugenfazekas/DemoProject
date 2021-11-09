@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: mongo-configmap
+data:
+    mongo-init.js: |
+        db.createUser(
+                        {
+                            user: "John_Woo",
+                            pwd:  "2hJ$lDS#nA&8",   
+                            roles: [
+                                        {
+                                            role: "readWrite",
+                                            db: "db_nx"
+                                        }
+                                    ]
+                        }
+                    )
+      
+
+    

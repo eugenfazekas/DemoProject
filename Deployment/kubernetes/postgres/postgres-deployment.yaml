@@ -1,21 +1,25 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: postgres
+  labels:
+    app: postgres
 spec:
+  serviceName: "postgres"
+  replicas: 1
   selector:
     matchLabels:
       app: postgres
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
         app: postgres
     spec:
       containers:
-      - image: postgres:latest
-        name: postgres
+      - name: postgres
+        image: postgres:12
+        ports:
+        - containerPort: 5432
         env:
         - name: POSTGRES_DB
           valueFrom: 
@@ -31,14 +35,27 @@ spec:
           valueFrom: 
               secretKeyRef:
                   name: cronoweb-secret
-                  key: POSTGRES_PASSWORD                    
-        ports:
-        - containerPort: 5432
-          name: postgres
+                  key: POSTGRES_PASSWORD
         volumeMounts:
-        - name: postgres-persistent-storage
-          mountPath: /var/lib/postgres
+        - name: pv-data
+          mountPath: /var/lib/postgresql/data
       volumes:
-      - name: postgres-persistent-storage
+      - name: pv-data
         persistentVolumeClaim:
-          claimName: postgres-pv-claim
+          claimName: postgres-pvc-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  clusterIP: None
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+
