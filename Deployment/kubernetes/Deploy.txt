@@ -1,6 +1,8 @@
 kubectl apply ^
 	-f cronoweb-secret.yaml ^
 	-f cronoweb-configmap.yaml ^
+	-f ingress\ingress-secret.yaml ^
+	-f ingress\ingress.yaml ^
 	-f postgres\postgres-pv.yaml ^
 	-f postgres\postgres-pvc.yaml ^
 	-f postgres\postgres-deployment.yaml ^

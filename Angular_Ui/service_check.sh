@@ -1,19 +1,19 @@
-#!/bin/bash     
-servicePath=$1     
-serviceName=$2     
-response=noResponse     
-statusOk='{"status":"UP"}'     
-check=false     
-while [[ $check = false ]]     
-do     
-	response="$(curl http://$servicePath/actuator/health)"     
-		if [[ $response = $statusOk ]]     
-		then     
-			check=true     
-			echo Service "$serviceName" is online     
-			break     
-		else     
-			echo Service "$serviceName" is offline     
-		fi     
-		sleep 1     
-done     
+#!/bin/sh
+response='noResponse'
+statusOk1='{"status":"UP"}'
+statusOk2='{"status":"UP","groups":["liveness","readiness"]}'
+check=false
+while [[ $check = false ]]
+do
+	response="$(curl http://gatewayserver:5555/actuator/health)"
+		echo Response from server $response
+		if [ $response = $statusOk1 ] || [ $response = $statusOk2 ]
+		then
+			check=true
+			echo Gateway-Server is online
+			break
+		else
+			echo Gateway-Server is offline
+		fi
+		sleep 1
+done

@@ -39,7 +39,8 @@ metadata:
 spec:
     selector:
         app: eurekaserver
+    type: NodePort    
     ports:
-    - protocol: TCP
-      port: 8761
-      targetPort: 8761
+      - port: 8761
+        targetPort: 8761
+        nodePort: 30761

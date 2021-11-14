@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-    name: gatewayserver
-    labels:
-        app: gatewayserver
+  name: gatewayserver
+  labels:
+    app: gatewayserver
 spec:
+    serviceName: "gatewayserver"
     replicas: 1
     selector: 
         matchLabels:
@@ -37,6 +38,7 @@ kind: Service
 metadata:
     name: gatewayserver
 spec:
+    clusterIP: None
     selector:
         app: gatewayserver
     ports:

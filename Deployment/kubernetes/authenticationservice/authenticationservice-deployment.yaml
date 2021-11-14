@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-    name: authenticationservice
-    labels:
-        app: authenticationservice
+  name: authenticationservice
+  labels:
+    app: authenticationservice
 spec:
+    serviceName: "authenticationservice"
     replicas: 1
     selector: 
         matchLabels:
@@ -37,6 +38,7 @@ kind: Service
 metadata:
     name: authenticationservice
 spec:
+    clusterIP: None
     selector:
         app: authenticationservice
     ports:
