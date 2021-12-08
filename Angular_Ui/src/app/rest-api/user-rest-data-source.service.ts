@@ -34,8 +34,8 @@ export class UserRestDataSourceService {
    
   constructor(private loggedUserService: LoggedUserService, private _http: HttpClient, @Inject(AUTH_URL) _authURL: string, @Inject(RESOURCE_URL) _resourceURL: string, private logservice: LogService) {
            this.logservice.logDebugMessage(String('UserRestDataSourceService constructor: '));
-           this._authURL = _authURL; 
-           this._resourceURL = _resourceURL; 
+           this._authURL = _authURL + 'api1/v1';
+           this._resourceURL = _resourceURL + 'api2/v1';
    }
 
   saveUser(user: UserAccount): Observable<String> {

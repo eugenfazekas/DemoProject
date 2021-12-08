@@ -36,17 +36,17 @@ services:
             interval: 20s
             retries: 3
     
-    eurekaserver:
+    eureka-server:
         image: skybolt83/eurekaserver
-        container_name: Eureka_Server
+        container_name: Eureka-Server
         ports:
           - "8761:8761"
         mem_limit: 1024m
         mem_reservation: 128M    
 
-    configserver:
+    configuration-server:
         image: skybolt83/configserver
-        container_name: configserver
+        container_name: configuration-server
         ports:
            - "8888:8888"
         environment: 
@@ -54,15 +54,15 @@ services:
         mem_limit: 1024m
         mem_reservation: 128M   
             
-    gatewayserver:
+    gateway-server:
         image: skybolt83/gatewayserver
-        container_name: Gateway_Server
+        container_name: Gateway-Server
         ports:
           - "5555:5555"
         mem_limit: 1024m
         mem_reservation: 128M           
             
-    authenticationservice:
+    authentication-service:
         image: skybolt83/oauth2_jwt_authorization_server
         container_name: OAuth2_JWT_Authorization_Server
         ports:
@@ -73,7 +73,7 @@ services:
         mem_limit: 1024m
         mem_reservation: 128M 
        
-    resourceservice:
+    resource-service:
         image: skybolt83/oauth2_jwt_resource_server
         container_name: OAuth2_JWT_Resource_Server
         ports:
@@ -88,7 +88,8 @@ services:
         image: skybolt83/angularui
         container_name: Angular_Ui
         ports:
-            - "4200:80"
+            - "80:80"
+            - "443:443"
     
     zipkin:
         image: openzipkin/zipkin

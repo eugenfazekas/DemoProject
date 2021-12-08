@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api1: 'https://localhost:5555/gatewaytoapi1/',
+  api2: 'https://localhost:5555/gatewaytoapi2/'
 };
 
 /*

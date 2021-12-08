@@ -45,7 +45,7 @@ export class AuthService {
   
   loginUser(user: string, pass: string): Observable<string> {
     this.logservice.logDebugMessage(String('AuthService loginUser() '));
-    return this._http.post('http://localhost:5555/api1/oauth/token',{},{'headers': this.basicAuthHeader() ,'params' : this.param(user,pass) }).pipe(
+    return this._http.post(this.baseURL+'/oauth/token',{},{'headers': this.basicAuthHeader() ,'params' : this.param(user,pass) }).pipe(
 
               map( (response: any) => {
                       const decodedToken = this.helper.decodeToken(response.access_token);
@@ -60,7 +60,7 @@ export class AuthService {
 
   generateOneTimePassword(user: string, pass: string): Observable<string> {
     this.logservice.logDebugMessage(String('AuthService loginUser() '));
-    return this._http.post(`${this.baseURL}/user/createOneTimePassword`,{},{'headers': this.generateOneTimePasswordHeader(user, pass), responseType: 'text' }).pipe(
+    return this._http.post(`${this.baseURL}api1/v1/user/createOneTimePassword`,{},{'headers': this.generateOneTimePasswordHeader(user, pass), responseType: 'text' }).pipe(
 
               map( (response: any) => {
                     return response;
@@ -71,6 +71,6 @@ export class AuthService {
 
   mfaCheck(email: string): Observable<string>{
     this.logservice.logDebugMessage(String('UserRestDataSourceService userExistCheck() '));
-    return this._http.post(`${this.baseURL}/user/mfaCheck`, {},{'headers': this.mfaCheckHeader(email), responseType: 'text'});
+    return this._http.post(`${this.baseURL}api1/v1/user/mfaCheck`, {},{'headers': this.mfaCheckHeader(email), responseType: 'text'});
   }
 }

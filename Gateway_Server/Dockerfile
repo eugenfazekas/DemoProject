@@ -2,7 +2,7 @@ FROM adoptopenjdk/openjdk11:jdk-11.0.11_9-alpine
 
 RUN apk --no-cache add curl
 
-WORKDIR /workspace
+ADD src/main/resources/cacerts opt/java/openjdk/lib/security/cacerts
 
 ADD target/gatewayserver-latest.jar gatewayserver-latest.jar
 

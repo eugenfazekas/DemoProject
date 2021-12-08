@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     	http.httpBasic();
     	http.authorizeRequests().mvcMatchers("api1/v1/user/**").permitAll()
-    							.mvcMatchers("actuator/health").permitAll()
+    							.mvcMatchers("actuator/**").permitAll()
     	    .and().authorizeRequests().anyRequest().authenticated();
     }
 }

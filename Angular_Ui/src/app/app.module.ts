@@ -37,6 +37,7 @@ import { ArticlesComponent } from './components/auth/common/articles/articles.co
 import { LoggedUserService } from './shared/services/logged-user.service';
 import { AdminGuard } from './shared/guards/admin-guard';
 import { SignOutService } from './shared/services/sign-out.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -69,8 +70,8 @@ import { SignOutService } from './shared/services/sign-out.service';
   ],
   providers: [
               UserRestDataSourceService,
-              { provide: AUTH_URL, useValue: 'http://localhost:5555/api1/api1/v1'},
-              { provide: RESOURCE_URL, useValue: 'http://localhost:5555/api2/api2/v1'},
+              { provide: AUTH_URL, useValue: environment.api1 },
+              { provide: RESOURCE_URL, useValue:  environment.api2 },
               AuthService,
               AuthGuard,
               AdminGuard,

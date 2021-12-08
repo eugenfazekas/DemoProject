@@ -3,7 +3,7 @@ server:
   
 spring:
   application:
-    name: config-server
+    name: configuration-server
   profiles: 
     active: default
   cloud:
@@ -16,7 +16,9 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/           
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
         
 #logging:
 #  level:

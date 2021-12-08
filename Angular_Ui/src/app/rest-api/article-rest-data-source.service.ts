@@ -16,7 +16,7 @@ export class ArticleRestDataSourceService {
   }
 
   constructor( private _http: HttpClient, @Inject(RESOURCE_URL) _baseURL: string, private loggedUserService: LoggedUserService, private logservice: LogService ) {
-           this.baseURL = _baseURL;
+           this.baseURL = _baseURL + 'api2/v1';
            this.logservice.logDebugMessage(String('ArticleRestDataSourceService constructor: ')); 
    }
 

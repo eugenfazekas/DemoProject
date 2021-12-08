@@ -1,47 +1,48 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: resourceservice
+  name: authentication-service
   labels:
-    app: resourceservice
+    app: authentication-service
 spec:
-    serviceName: "resourceservice"
+    serviceName: "authentication-service"
     replicas: 1
     selector: 
         matchLabels:
-            app: resourceservice
+            app: authentication-service
     template:
         metadata:
             labels:
-                app: resourceservice
+                app: authentication-service
         spec:
             containers:
-              - name: resourceservice
-                image: skybolt83/oauth2_jwt_resource_server
+              - name: authentication-service
+                image: skybolt83/oauth2_jwt_authorization_server
                 ports:
-                  - containerPort: 4880
+                  - containerPort: 4800
                 livenessProbe:
                     httpGet:
                         path: /actuator/health
-                        port: 4880
+                        port: 4800
+                        scheme: HTTPS
                     initialDelaySeconds: 60
                     periodSeconds: 20
                 readinessProbe:
                     httpGet:
                         path: /actuator/health
-                        port: 4880
+                        port: 4800
+                        scheme: HTTPS
                     initialDelaySeconds: 60
                     periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: resourceservice
+    name: authentication-service
 spec:
-    clusterIP: None
     selector:
-        app: resourceservice
+        app: authentication-service
     ports:
-    - protocol: TCP
-      port: 4880
-      targetPort: 4880
+    - protocol: "TCP"
+      port: 4800
+      targetPort: 4800

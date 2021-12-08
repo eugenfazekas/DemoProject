@@ -1,12 +1,12 @@
 spring:
     application:
-     name: authentication-service
+      name: authentication-service
     profiles:
       active: ${SPRING_DEMO_PROJECT_PROFILE}
     cloud:
         config: 
             uri: http://localhost:8888
-            
+        
 resilience4j.circuitbreaker:
   instances:
     registerService:

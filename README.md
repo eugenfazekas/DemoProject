@@ -47,17 +47,21 @@
 	
 		1. Cretae environment system variables 'SPRING_DEMO_PROJECT_PROFILE: dev',
 			'ENCRYPT_KEY: IMSYMMETRIC' 
-		2. From cmd '~path\Demo_Proiect\Z_Docker_Dev_Mode\docker-compose up',  
+		2. Add to C:\Windows\System32\drivers\etc\hosts
+			this line '127.0.0.1   example.com' to redirect example.com to localhost
+		3. From cmd '~path\Demo_Proiect\Z_Docker_Dev_Mode\docker-compose up',  
 			(if you not start the first time please use first 'docker-compose down'.),
-		3. Start STS.(If you start STS before env variable has been created, 
+		4. Start STS.(If you start STS before env variable has been created, 
 			STS will not gonna see it.),	
-		4. From STS Run Eureka-Server,
-		5. From STS Run Configuration-Server,
-		6. From STS Run Gateway-Server,
-		7. From STS Run Authentication-Service,
-		8. From STS Run Resource-Service,
-		9. From cmd '~path\Demo_Proiect\Angular_Ui\ ng serve'
+		5. From STS Run Eureka-Server,
+		6. From STS Run Configuration-Server,
+		7. From STS Run Gateway-Server,
+		8. From STS Run Authentication-Service,
+		9. From STS Run Resource-Service,
+		10. From cmd '~path\Demo_Proiect\Angular_Ui\ng serve  --ssl true \ 
+		--ssl-cert "/ssl/domain.crt"  --ssl-key "/ssl/domain.key"  --port 443 --disable-host-check' 
 		   (Node js and Angular CLI needed to install)
+		11. Application will be accessible on https://example.com 
 		
 ##  4.Full Usage	
 
@@ -65,7 +69,7 @@
 		
 			cmd '~path\Demo_Proiect\docker-compose up'
 			
-			Application accessible on http://localhost:4200
+			Application accessible on https://example.com
 		
 ##	5.Continuous Integration
 

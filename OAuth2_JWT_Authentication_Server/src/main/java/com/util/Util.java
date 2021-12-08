@@ -15,7 +15,7 @@ public class Util {
 	public RedirectView redirectView(String keycheckResponse) {
 
 		 RedirectView redirectView = new RedirectView();
-		 redirectView.setUrl("http://localhost:4200");
+		 redirectView.setUrl("https://example.com");
 		 
 		 if(keycheckResponse == "User Successfully activated!")
 			 return redirectView;

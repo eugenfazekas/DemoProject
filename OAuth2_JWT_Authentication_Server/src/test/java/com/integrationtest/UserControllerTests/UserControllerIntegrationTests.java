@@ -130,7 +130,7 @@ public class UserControllerIntegrationTests {
     public void userKeyCheckIntegrationTest() throws Exception {
 		
 		String code = "key";
-		String url = "http://localhost:4200";
+		String url = "https://example.com";
 		mvc.perform(get("/api1/v1/user/userKeyCheck/"+code))
 	            .andExpect(redirectedUrl(url));
  }

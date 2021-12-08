@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { RESOURCE_URL } from 'src/app/rest-api/user-rest-data-source.service';
 import { LogService } from './log.service';
 
 
@@ -8,11 +9,12 @@ export class ImageService {
   public imageBlob: Blob;
   public imageBase64;
   private imageWidths: number = 500;
-  public _url: string = 'http://localhost:5555/api2'; 
+  public _url: string;
   public imageBinaryBoolean: boolean = false;
 
-  constructor(private logservice: LogService) {
+  constructor(private logservice: LogService, @Inject(RESOURCE_URL) _resourceURL: string) {
     this.logservice.logDebugMessage(String('ImageService constructor: '));
+    this._url = _resourceURL;
    }
 
   fileReader(item) {

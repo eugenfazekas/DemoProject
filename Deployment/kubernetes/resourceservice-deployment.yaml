@@ -1,51 +1,48 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-    name: configserver
-    labels:
-        app: configserver
+  name: resource-service
+  labels:
+    app: resource-service
 spec:
+    serviceName: "resource-service"
     replicas: 1
     selector: 
         matchLabels:
-            app: configserver
+            app: resource-service
     template:
         metadata:
             labels:
-                app: configserver
+                app: resource-service
         spec:
             containers:
-              - name: configserver
-                image: skybolt83/configserver
+              - name: resource-service
+                image: skybolt83/oauth2_jwt_resource_server
                 ports:
-                  - containerPort: 8888
-                env:
-                  - name: ENCRYPT_KEY
-                    valueFrom: 
-                        secretKeyRef:
-                            name: cronoweb-secret
-                            key: ENCRYPT_KEY
+                  - containerPort: 4880
                 livenessProbe:
                     httpGet:
                         path: /actuator/health
-                        port: 8888
+                        port: 4880
+                        scheme: HTTPS
                     initialDelaySeconds: 60
                     periodSeconds: 20
                 readinessProbe:
                     httpGet:
                         path: /actuator/health
-                        port: 8888
+                        port: 4880
+                        scheme: HTTPS
                     initialDelaySeconds: 60
                     periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: configserver
+    name: resource-service
 spec:
     selector:
-        app: configserver
+        app: resource-service
     ports:
     - protocol: TCP
-      port: 8888
-      targetPort: 8888
+      port: 4880
+      targetPort: 4880

@@ -39,7 +39,6 @@ spec:
         volumeMounts:
         - name: pv-data
           mountPath: /var/lib/mongo/data
-        volumeMounts:
         - name: mongo-initdb
           mountPath: /docker-entrypoint-initdb.d
       volumes:

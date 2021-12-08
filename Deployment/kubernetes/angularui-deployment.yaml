@@ -15,7 +15,7 @@ spec:
                 app: angularui
         spec:
             containers:
-              - name: angular-ui
+              - name: angularui
                 image: skybolt83/angularui
                 ports:
                   - containerPort: 80
@@ -26,9 +26,9 @@ metadata:
     name: angularui-service
 spec:
     selector:
-        app: angularui
-    ports:
-      - protocol: TCP
+        app: angularui     
+    ports: 
+      - protocol: "TCP"
         port: 4200
         targetPort: 80
 

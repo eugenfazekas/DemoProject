@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+   -  cronoweb-secret.yaml 
+   -  cronoweb-configmap.yaml 
+   -  ingress-secret.yaml 
+   -  ingress.yaml 
+   -  postgres-pv.yaml 
+   -  postgres-pvc.yaml 
+   -  postgres-deployment.yaml 
+   -  mongo-configmap.yaml 
+   -  mongodb-pv.yaml 
+   -  mongodb-pvc.yaml 
+   -  mongodb-deployment.yaml 
+   -  angularui-deployment.yaml 
+   -  authenticationservice-deployment.yaml 
+   -  configserver-deployment.yaml 
+   -  eurekaserver-deployment.yaml 
+   -  gatewayserver-deployment.yaml 
+   -  kafkaserver-deployment.yaml 
+   -  redisserver-deployment.yaml 
+   -  resourceservice-deployment.yaml 
+   -  zipkin-deployment.yaml 
+   -  zookeeper-deployment.yaml 

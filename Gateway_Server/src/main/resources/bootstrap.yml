@@ -5,11 +5,21 @@ spring:
       active: ${SPRING_DEMO_PROJECT_PROFILE}
     cloud:
       config: 
-        uri: http://localhost:8888
-
-management:  
+        uri: http://localhost:8888 
+                  
+management: 
+  endpoint: 
+    gateway: 
+      enabled: true 
+    health:
+      enabled: true  
   endpoints:   
     web:
      exposure:
-        include: health
-
+        include: "gateway,health"
+        
+reactor:
+   netty:
+      http:
+         server:
+            accessLogEnabled: true  

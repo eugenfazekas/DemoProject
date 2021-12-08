@@ -102,6 +102,6 @@ public class Util_ProxyServerTests {
 	@Test
 	@DisplayName("Testing Authentication_Service Util_ProxyServer getCreateUserResourceUrl function")
 	void  getCreateUserResourceUrlTest() {
-		assertEquals("http://resource-service/api2/v1/user/createUserResource",  proxyServer.getCreateUserResourceUrl());
+		assertEquals("https://resource-service/api2/v1/user/createUserResource",  proxyServer.getCreateUserResourceUrl());
 	}
 }
