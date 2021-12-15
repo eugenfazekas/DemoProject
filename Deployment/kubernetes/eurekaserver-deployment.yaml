@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: eureka-server
+    namespace: jenkins
     labels:
         app: eureka-server
 spec:
@@ -36,6 +37,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: eureka-server
+    namespace: jenkins
 spec:
     selector:
         app: eureka-server   

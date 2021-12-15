@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: angularui
+    namespace: jenkins
     labels:
         app: angularui
 spec:
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: angularui-service
+    namespace: jenkins
 spec:
     selector:
         app: angularui     

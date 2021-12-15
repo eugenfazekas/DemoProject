@@ -1,0 +1,84 @@
+pipeline {
+    agent any 
+    
+    environment {
+        SPRING_DEMO_PROJECT_PROFILE = 'windowsTest'
+    }
+
+    stages {
+        
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/eugenfazekas/DemoProject.git'
+            }
+        }
+        
+        stage('Building Test Environment and run Tests') {
+            
+            steps {
+                
+                bat 'docker network create jenkinsTest'
+                
+                bat 'docker run --detach --name zookeeper --network jenkinsTest  wurstmeister/zookeeper:latest'
+                 
+                bat 'docker run --detach --name postgres -p 5432:5432  --env POSTGRES_USER=postgres  --env POSTGRES_PASSWORD=e21Wz44 --env POSTGRES_DB=db_users postgres:latest'
+                
+                bat 'docker run --detach --name zipkin -p 9411:9411 openzipkin/zipkin:latest'
+                
+                bat 'docker run --detach --name kafkaserver --network jenkinsTest --env KAFKA_ADVERTISED_HOST_NAME=localhost --env KAFKA_ADVERTISED_PORT=9092 --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -p 9092:9092 wurstmeister/kafka:latest'
+                
+                bat 'docker run --detach --name redisserver -p 6379:6379 redis:alpine'
+               
+                bat 'docker run --detach --name eureka-server --network jenkinsTest -p 8761:8761 skybolt83/eurekaserver'
+                
+                bat 'docker run --detach --name configuration-server --network jenkinsTest -p 8888:8888 --env ENCRYPT_KEY=IMSYMMETRIC skybolt83/configserver'
+                
+                bat 'docker exec configuration-server sh service_check.sh configuration-server:8888 localhost:8888'
+                
+                bat 'mvn test -f OAuth2_JWT_Authentication_Server/pom.xml'
+            }    
+        }
+			
+        stage('Deploy') {
+
+                steps {
+                    kubeconfig(caCertificate: '''
+                    MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
+                    a3ViZUNBMB4XDTIxMTIxMTIyMjU0OVoXDTMxMTIxMDIyMjU0OVowFTETMBEGA1UE
+                    AxMKbWluaWt1YmVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK3K
+                    rOS4BZeyKtVtuLYQOKGMqpt+nARANXqaNX2Gk781Z8v64MfkRPaOA0YwetpoxRjn
+                    4iw+83Hed8balxwhJkG+ImHekrtBHvyK05J/WcrNOiP6y9B4wSie1Dllw51ZAOQe
+                    8sNoL5TicnYCtHWPQLTrAUbeNEJN/iLWpNfBb1CkJDYl+fjFkbjYXsjeMg6Z11yz
+                    EbFmVdFjzviJVZzkfO3vn/claBKFY3lpNFY142QsSR57j0GJeawllaj3rOFw+sw2
+                    b20oCFzvvtfdpm4JnEAxE+MwZzfyAbndWBb0JB2Ow4uWZyCJI26ORnyLaB2DCWhK
+                    3S++mCLldKL/P8nXKtUCAwEAAaNhMF8wDgYDVR0PAQH/BAQDAgKkMB0GA1UdJQQW
+                    MBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQW
+                    BBQqLIO4CvlGpP60qf3Jjebk05jKlDANBgkqhkiG9w0BAQsFAAOCAQEAos1MkUx5
+                    +YqfYbqyK3prK+EYza3+vztQ5d/g7w5EXFw/5YgnJPEltrrE1CcTqq/GLM9mz+WJ
+                    TwBQcNhGe9XxxvXKixOpQpDeWTkjqOR10//VHfmMXxZ/l1Jptju95/nqZiUxfgXl
+                    p4GnFVSvWsdRlgXZITCdH6XXMniOAvXHsJKDKCANoLmJohn9CLavOw9AfAlYrAb/
+                    ZPIiCdHEwuh9NKv3bfjf3IjtgXGSLNw4BejmwPvyyITYHtQaSdEg6prT5ZUHq/16
+                    tpiuXQ19KD82n2oVXpQfC8g+lDtMh2/X84ewK6Z6Cc5abJ/jliuzFqxl27uv3gTX
+                    vnCqhnMmmpYw9Q==
+                    ''', credentialsId: 'jenkins-kind', serverUrl: 'https://127.0.0.1:59575') 
+					{
+						bat 'kubectl apply -k Deployment/kubernetes -n  jenkins'
+                    
+                }
+			}	
+        }	
+    }
+	
+	post { 
+           
+	    always { 
+			
+			 bat 'docker stop zookeeper postgres zipkin kafkaserver redisserver eureka-server configuration-server' 
+			
+			 bat 'docker container prune -f'  
+			 
+			 bat 'docker network rm jenkinsTest'
+			 		 
+        }
+    }
+}

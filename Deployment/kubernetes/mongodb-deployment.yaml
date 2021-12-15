@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongodb
+  namespace: jenkins
   labels:
     app: mongodb
 spec:
@@ -53,6 +54,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
+  namespace: jenkins
   labels:
     app: mongodb
 spec:

@@ -9,7 +9,11 @@ ADD target/eurekaserver-latest.jar eurekaserver-latest.jar
 EXPOSE 8761
 
 ADD run.sh run.sh
+ADD service_check.sh service_check.sh
+
 RUN chmod +x run.sh
+RUN chmod +x service_check.sh
+
 CMD ./run.sh
 
 

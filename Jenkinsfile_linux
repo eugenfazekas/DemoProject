@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         ENCRYPT_KEY = 'IMSYMMETRIC'
-        SPRING_DEMO_PROJECT_PROFILE = 'test'
+        SPRING_DEMO_PROJECT_PROFILE = 'linuxTest'
     }
 
     stages {
@@ -17,8 +17,6 @@ pipeline {
         stage('Building Test Environment and run Tests') {
             
             steps {
-                
-                sh 'docker network create jenkinsTest'
                 
                 sh 'docker run --detach --name zookeeper --network host  wurstmeister/zookeeper:latest'
                  
@@ -53,9 +51,7 @@ pipeline {
 			
 			 sh 'docker stop $(docker ps -a -q)' 
 			
-			 sh 'docker container prune -f'   
-			 
-			 sh 'docker network rm jenkinsTest'
+			 sh 'docker container prune -f'   			 
         }
     }
 }
