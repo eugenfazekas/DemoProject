@@ -17,9 +17,13 @@ public class CorsConfig implements WebFluxConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowCredentials(true)
-                .allowedOrigins("*")
+                .allowedOrigins("https://example.com")
+                .allowedOrigins("http://localhost:80")
+                .allowedOrigins("https://localhost:443")
                 .allowedHeaders("*")
-                .allowedMethods("*")
+                .allowedMethods("GET")
+                .allowedMethods("POST")
+                .allowedMethods("OPTIONS")
                 .exposedHeaders(HttpHeaders.SET_COOKIE);
     }
 
@@ -28,8 +32,12 @@ public class CorsConfig implements WebFluxConfigurer {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addAllowedMethod("*");
-        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.addAllowedMethod("GET");
+        corsConfiguration.addAllowedMethod("POST");
+        corsConfiguration.addAllowedMethod("OPTIONS");
+        corsConfiguration.addAllowedOrigin("https://example.com");
+        corsConfiguration.addAllowedOrigin("http://localhost:80");
+        corsConfiguration.addAllowedOrigin("https://localhost:443");
         corsConfiguration.addExposedHeader(HttpHeaders.SET_COOKIE);
         UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
         corsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);

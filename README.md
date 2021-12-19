@@ -133,7 +133,7 @@
 
 			Step 3. Install minikube; and if needed: openssh - program, kubernetes CLI - program
 
-			Step 4. minikube addons enable ingress
+			Step 4. Add Ingress to minikube: run cmd 'minikube addons enable ingress'
 
 			Step 5. Create service account for jenkins with the followed
 
@@ -187,14 +187,16 @@
 				So you have to make the Deployment Step only in the pipeline,
 				the rest of pipeline you can use from  Jenkinsfile_windows
 
-			Step 11. To test 'Deployment' you must port-forward ingress-controller; to do that you need few cmd commands
+			Step 11. To test 'Deployment' you must port-forward ingress-controller;
+
+				to do that you need few cmd commands
 
 				1.run cmd 'kubectl get po -n ingress-nginx'
 
 						Result:
-							-ingress-nginx-admission-create--1-xrtkg     0/1     Completed   0          104s
-							-ingress-nginx-admission-patch--1-mptc9      0/1     Completed   1          104s
-							-ingress-nginx-controller-5f66978484-68lbg   1/1     Running     0          105s
+							-ingress-nginx-admission-create--1-xrtkg     0/1     Completed   0       104s
+							-ingress-nginx-admission-patch--1-mptc9      0/1     Completed   1       104s
+							-ingress-nginx-controller-5f66978484-68lbg   1/1     Running     0       105s
 
 				2.run cmd 'kubectl port-forward ingress-nginx-controller-5f66978484-68lbg -n ingress-nginx 443:443'
 
