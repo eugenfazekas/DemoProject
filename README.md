@@ -68,6 +68,9 @@
 			--ssl-cert "/ssl/domain.crt"  --ssl-key "/ssl/domain.key"  --port 443 --disable-host-check'
 		   (Node js and Angular CLI needed to install)
 		12. Application will be accessible on https://example.com
+		13. One User added with username: "eu@fa.hu" , password: "myPassword"
+			One Admin added with username: "admin@fa.hu" , password: "myAdmin" ,
+				OneTimePassword: from authentication-service console
 
 ##  4.Full Usage	
 
@@ -76,6 +79,10 @@
 			cmd '~path\Demo_Proiect\docker-compose up'
 
 			Application accessible on https://example.com
+
+			One User added with username: "eu@fa.hu" , password: "myPassword"
+			One Admin added with username: "admin@fa.hu" , password: "myAdmin",
+				OneTimePassword: from authentication-service container
 
 ##	5.Continuous Integration
 

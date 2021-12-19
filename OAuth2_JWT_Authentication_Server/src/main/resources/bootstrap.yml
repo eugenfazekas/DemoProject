@@ -32,10 +32,5 @@ resilience4j.ratelimiter:
     authenticationService:
       limitForPeriod: 5
       limitRefreshPeriod: 1s
-      timeoutDuration: 0      
-      
-        
-           
-
-
+      timeoutDuration: 0
 
