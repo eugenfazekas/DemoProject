@@ -64,8 +64,9 @@
 		8. From STS Run Gateway-Server,
 		9. From STS Run Authentication-Service,
 		10. From STS Run Resource-Service,
-		11. From cmd '~path\Demo_Proiect\Angular_Ui\ng serve  --ssl true \
-			--ssl-cert "/ssl/domain.crt"  --ssl-key "/ssl/domain.key"  --port 443 --disable-host-check'
+		11. From cmd '~path\Demo_Proiect\Angular_Ui\ng serve  --ssl true --ssl-cert  \
+					"/ssl/angular/app_cert.pem"  --ssl-key "/ssl/angular/app_key.pem" \
+					--port 443 --disable-host-check'
 		   (Node js and Angular CLI needed to install)
 		12. Application will be accessible on https://example.com
 		13. One User added with username: "eu@fa.hu" , password: "myPassword"

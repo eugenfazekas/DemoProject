@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-cronoweb
+  namespace: jenkins
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-ssl-protocols: "TLSv1 TLSv1.1 TLSv1.2 TLSv1.3"
+    nginx.ingress.kubernetes.io/proxy-ssl-secret: "jenkins/proxy-secret-tls"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    ingress.kubernetes.io/secure-backends: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+      - example.com
+    secretName: "base-secret-tls"
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: angularui-service
+            port:
+              number: 2443

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: eureka-server
+    namespace: jenkins
+    labels:
+        app: eureka-server
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: eureka-server
+    template:
+        metadata:
+            labels:
+                app: eureka-server
+        spec:
+            containers:
+              - name: eureka-server
+                image: skybolt83/eurekaserver
+                ports:
+                  - containerPort: 8761
+                livenessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 8761
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+                readinessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 8761
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: eureka-server
+    namespace: jenkins
+spec:
+    selector:
+        app: eureka-server   
+    ports:
+      - port: 8761
+        targetPort: 8761

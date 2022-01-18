@@ -6,3 +6,12 @@ spring:
     cloud:
         config:
             uri: http://localhost:8888
+
+management:
+  endpoint:
+    health:
+      enabled: true
+  server:
+    port: 14880
+    ssl:
+      enabled: false

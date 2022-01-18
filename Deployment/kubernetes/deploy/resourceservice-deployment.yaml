@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: resource-service
+  namespace: jenkins
+  labels:
+    app: resource-service
+spec:
+    serviceName: "resource-service"
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: resource-service
+    template:
+        metadata:
+            labels:
+                app: resource-service
+        spec:
+            containers:
+              - name: resource-service
+                image: skybolt83/oauth2_jwt_resource_server
+                ports:
+                  - containerPort: 4880
+                livenessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 14880
+                        scheme: HTTP
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+                readinessProbe:
+                    httpGet:
+                        path: /actuator/health
+                        port: 14880
+                        scheme: HTTP
+                    initialDelaySeconds: 60
+                    periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: resource-service
+    namespace: jenkins
+spec:
+    selector:
+        app: resource-service
+    ports:
+    - protocol: TCP
+      port: 4880
+      targetPort: 4880

@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: jenkins
+  labels:
+    app: postgres
+spec:
+  serviceName: "postgres"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:12
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          valueFrom: 
+              secretKeyRef:
+                  name: cronoweb-secret
+                  key: POSTGRES_DB 
+        - name: POSTGRES_USER
+          valueFrom: 
+              secretKeyRef:
+                  name: cronoweb-secret
+                  key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom: 
+              secretKeyRef:
+                  name: cronoweb-secret
+                  key: POSTGRES_PASSWORD
+        volumeMounts:
+        - name: pv-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: pv-data
+        persistentVolumeClaim:
+          claimName: postgres-pvc-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: jenkins
+  labels:
+    app: postgres
+spec:
+  clusterIP: None
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+

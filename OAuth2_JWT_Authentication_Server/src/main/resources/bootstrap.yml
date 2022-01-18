@@ -6,7 +6,7 @@ spring:
     cloud:
         config: 
             uri: http://localhost:8888
-        
+          
 resilience4j.circuitbreaker:
   instances:
     registerService:
@@ -33,4 +33,14 @@ resilience4j.ratelimiter:
       limitForPeriod: 5
       limitRefreshPeriod: 1s
       timeoutDuration: 0
+  
+management:  server:
+    port: 14800    ssl:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+
 

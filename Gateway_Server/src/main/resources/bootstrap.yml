@@ -6,20 +6,20 @@ spring:
     cloud:
       config: 
         uri: http://localhost:8888 
-                  
+    
 management: 
   endpoint: 
-    gateway: 
-      enabled: true 
     health:
       enabled: true  
-  endpoints:   
-    web:
-     exposure:
-        include: "gateway,health"
-        
+  server:
+    port: 15555
+    ssl:
+      enabled: false
+    
 reactor:
    netty:
       http:
          server:
             accessLogEnabled: true  
+            
+          

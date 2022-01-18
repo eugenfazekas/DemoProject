@@ -1,0 +1,17 @@
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:TRUE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName = @alt_names 
+
+[alt_names]
+DNS.1 = example.com
+DNS.2 = localhost
+DNS.3 = ingress
+DNS.4 = angularui
+DNS.5 = gatewayserver
+DNS.6 = gateway-server 
+DNS.7 = authenticationservice
+DNS.8 = authentication-service
+DNS.9 = resourceservice
+DNS.10 = resource-service
+IP.1 = 0.0.0.0

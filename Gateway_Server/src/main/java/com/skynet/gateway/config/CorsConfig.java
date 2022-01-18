@@ -20,6 +20,7 @@ public class CorsConfig implements WebFluxConfigurer {
                 .allowedOrigins("https://example.com")
                 .allowedOrigins("http://localhost:80")
                 .allowedOrigins("https://localhost:443")
+                .allowedOrigins("https://localhost/")
                 .allowedHeaders("*")
                 .allowedMethods("GET")
                 .allowedMethods("POST")
@@ -38,6 +39,7 @@ public class CorsConfig implements WebFluxConfigurer {
         corsConfiguration.addAllowedOrigin("https://example.com");
         corsConfiguration.addAllowedOrigin("http://localhost:80");
         corsConfiguration.addAllowedOrigin("https://localhost:443");
+        corsConfiguration.addAllowedOrigin("https://localhost/");
         corsConfiguration.addExposedHeader(HttpHeaders.SET_COOKIE);
         UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
         corsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);

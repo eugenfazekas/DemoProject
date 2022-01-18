@@ -1,0 +1,20 @@
+[req]
+
+days                   = 180
+distinguished_name     = req_distinguished_name
+req_extensions         = v3_req
+
+[req_distinguished_name]
+
+countryName                = RO
+stateOrProvinceName        = BIHOR
+localityName               = ORADEA
+organizationName           = SKY.CORP
+commonName                 = example.com
+
+
+[ v3_req ]
+
+# Extensions to add to a certificate request
+basicConstraints       = CA:FALSE
+keyUsage               = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign

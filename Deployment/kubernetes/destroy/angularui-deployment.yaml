@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: angularui
+    namespace: jenkins
+    labels:
+        app: angularui
+spec:
+    replicas: 1
+    selector: 
+        matchLabels:
+            app: angularui
+    template:
+        metadata:
+            labels:
+                app: angularui
+        spec:
+            containers:
+              - name: angularui
+                image: skybolt83/angularui
+                imagePullPolicy: Always
+                ports: 
+                - name: https
+                  containerPort: 2443 
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: angularui-service
+    namespace: jenkins
+spec:
+    selector:
+        app: angularui     
+    ports: 
+     -  port: 2443    
+        protocol: "TCP"
+        targetPort: https
+    
