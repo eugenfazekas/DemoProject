@@ -143,34 +143,38 @@
 
 			Step 4. Add Ingress to minikube: run cmd 'minikube addons enable ingress'
 
-			Step 5. Create service account for jenkins with the followed
+			Step 5. Create jenkins namespace for jenkins account
+
+				cmd 'kubectl apply -f Deployment/kubernetes/deploy/jenkins-namespace.yaml'
+
+			Step 6. Create service account jenkins with the followed command
 
 				cmd 'kubectl apply -f Deployment/kuberntes_service_account/serviceaccount.yaml'
 
-			Step 6. Extract jenkins kuberntes account details with the followed command to get account
+			Step 7. Extract jenkins kubernetes account details with the followed command 
 
 				secrets name cmd:'kubectl get serviceaccounts/jenkins -o yaml -n jenkins >  \
 
 								Deployment/kuberntes_service_account/jenkins_account_details.yaml'
 
-			Step 7. Extract token from jenkins_account_details:secret with the followed command
+			Step 8. Extract token from jenkins account details:secret with the followed command
 
 				cmd 'kubectl describe secret jenkins-token-mkkng  -n jenkins > \
 
 					Deployment/kuberntes_service_account/token.txt'
 
-			Step 8. Create Clusterrole for jenkins_account	with the followed command
+			Step 9. Create Clusterrole for jenkins account with the followed command
 
 				cmd 'kubectl create clusterrolebinding  jenkins-admin-binding --clusterrole=cluster-admin \
 
 					--serviceaccount=jenkins:jenkins --namespace=jenkins'
 
-			Step 9. Add credential to jenkins credentials password with type secret text
+			Step 10. Add credential to jenkins credentials password with type secret text
 
 					ID: jenkins_kind
 					secret-text: copy from Deployment/kuberntes_service_account/token.txt => token property
 
-			Step 10. To create " 'Deployment' STEP  of the project" we have to use  "Pipeline Syntax"
+			Step 11. To create " 'Deployment' STEP  of the project" we have to use  "Pipeline Syntax"
 
 							to generate step script.
 
@@ -195,7 +199,7 @@
 				So you have to make the Deployment Step only in the pipeline,
 				the rest of pipeline you can use from  Jenkinsfile_windows
 
-			Step 11. To test 'Deployment' you must port-forward ingress-controller;
+			Step 12. To test 'Deployment' you must port-forward ingress-controller;
 
 				to do that you need few cmd commands
 
@@ -207,6 +211,8 @@
 							-ingress-nginx-controller-5f66978484-68lbg   1/1     Running     0       105s
 
 				2.run cmd 'kubectl port-forward ingress-nginx-controller-5f66978484-68lbg -n ingress-nginx 443:443'
+
+				3.And wait for all pods became ready..... cmd 'kubectl get po -n jenkins'
 
 			Now That's it the app is accessible on https://example.com
 
