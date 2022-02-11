@@ -23,9 +23,11 @@
 		Minkube 1.24.0
 		Kubectl Client: 1.21.5
 		Kubectl Server: 1.22.3
+		OpenSSL 1.1.1m
 
 ##  2.Application Description:
 
+		JUnit testing for OAuth2_JWT_Authentication_Server (coverage 100%)
 		Service-Discovery with Eureka-Server,
 		Environment variables storage on Configuration-Server,
 		Spring Cloud Gateway-Server implementation,
@@ -41,6 +43,7 @@
 			- User details editing with image upload,
 			- Article creation with image upload,
 			- Articles multi filtering,
+		mTls key creation shell for all services Keys\ssl_cmd.bat	
 
 ##  3.Develop
 
